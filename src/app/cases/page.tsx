@@ -4,7 +4,6 @@ import { CASE_TYPE_LABELS } from '@/lib/types'
 import type { CaseType } from '@/lib/types'
 import { Plane, Calendar, Clock, Banknote, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
 
 export const metadata: Metadata = {
   title: '승소 사례',
@@ -49,9 +48,9 @@ export default async function CasesPage() {
         </div>
       </div>
 
-      {/* Hero image placeholder */}
+      {/* Hero image */}
       <div className="relative h-48 overflow-hidden">
-        <ImagePlaceholder label="항공기 / 공항 이미지" className="w-full h-full rounded-none" aspectRatio="" />
+        <img src="/images/cases-hero.png" alt="항공기 / 공항 이미지" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-navy/20 to-white" />
       </div>
 

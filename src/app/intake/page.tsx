@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import IntakeForm from '@/components/sections/intake/IntakeForm'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
 import { Shield, Clock, Phone } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -29,7 +28,7 @@ export default function IntakePage() {
             {/* Sidebar */}
             <div className="space-y-6">
               {/* Airport image placeholder */}
-              <ImagePlaceholder label="사건접수 / 공항 내부 사진" aspectRatio="aspect-[3/2]" className="rounded-2xl" />
+              <img src="/images/intake-airport.png" alt="공항 내부 사진" className="w-full rounded-2xl object-cover aspect-[3/2]" />
 
               <div className="bg-navy/3 rounded-2xl p-6 space-y-4 border border-navy/10">
                 <h3 className="font-bold text-navy">접수 안내</h3>

@@ -13,6 +13,7 @@ const services = [
     id: 'delay',
     icon: Clock,
     title: '항공 지연 보상',
+    img: '/images/service-delay.png',
     imgLabel: '공항 출발 전광판 / 지연 안내 사진',
     desc: '항공편이 3시간 이상 지연된 경우 EU261 또는 소비자보호원 기준에 따라 보상을 청구할 수 있습니다. 지연 사유가 항공사 귀책인지 여부를 전문적으로 분석하여 최대 보상을 이끌어냅니다.',
     bases: ['EU261 규정 (유럽 출도착 노선)', '몬트리올 협약 (국제선)', '소비자분쟁해결기준 (국내선)'],
@@ -26,6 +27,7 @@ const services = [
     id: 'cancel',
     icon: XCircle,
     title: '항공 결항 보상',
+    img: null,
     imgLabel: '결항 안내판 / 빈 게이트 사진',
     desc: '출발 14일 이내 통보된 결항에 대해 대체편 제공 또는 현금 보상을 청구할 수 있습니다. 숙박비·식비·대체 교통비 등 실비도 함께 청구합니다.',
     bases: ['EU261 규정', '몬트리올 협약', '소비자분쟁해결기준'],
@@ -39,6 +41,7 @@ const services = [
     id: 'denied',
     icon: UserX,
     title: '탑승 거부 (오버부킹)',
+    img: null,
     imgLabel: '공항 게이트 / 탑승 대기 사진',
     desc: '항공사의 오버부킹으로 탑승을 거부당한 경우 즉시 보상을 받을 수 있습니다. 대체편 탑승 여부와 무관하게 EU261 기준의 현금 보상을 청구할 수 있습니다.',
     bases: ['EU261 규정 (최대 €600)', '소비자분쟁해결기준'],
@@ -52,6 +55,7 @@ const services = [
     id: 'baggage',
     icon: Luggage,
     title: '수하물 피해 보상',
+    img: null,
     imgLabel: '수하물 벨트 / 파손 가방 사진',
     desc: '수하물 분실·파손·지연에 대해 몬트리올 협약에 따라 최대 1,288 SDR(약 230만원)을 청구할 수 있습니다. 고가품 신고 여부에 따른 전략적 청구를 도와드립니다.',
     bases: ['몬트리올 협약 (최대 1,288 SDR)', '소비자분쟁해결기준'],
@@ -94,7 +98,7 @@ export default function ServicesPage() {
       {/* Services */}
       <div className="py-16">
         <div className="container-wide section-padding space-y-24">
-          {services.map(({ id, icon: Icon, title, imgLabel, desc, bases, table }, idx) => (
+          {services.map(({ id, icon: Icon, title, img, imgLabel, desc, bases, table }, idx) => (
             <div key={id} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
               <div className={idx % 2 === 1 ? 'lg:order-2' : ''}>
                 <div className="w-12 h-12 bg-navy/5 rounded-xl flex items-center justify-center mb-4">
@@ -128,7 +132,10 @@ export default function ServicesPage() {
                 <Link href="/intake" className="btn-navy mt-6 inline-flex">무료 사건 접수</Link>
               </div>
               <div className={idx % 2 === 1 ? 'lg:order-1' : ''}>
-                <ImagePlaceholder label={imgLabel} className="w-full rounded-2xl shadow-lg" aspectRatio="aspect-[4/3]" />
+                {img
+                  ? <img src={img} alt={imgLabel} className="w-full rounded-2xl shadow-lg object-cover aspect-[4/3]" />
+                  : <ImagePlaceholder label={imgLabel} className="w-full rounded-2xl shadow-lg" aspectRatio="aspect-[4/3]" />
+                }
               </div>
             </div>
           ))}
