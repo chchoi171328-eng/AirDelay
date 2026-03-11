@@ -1,0 +1,125 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --navy: #0A2342;
+    --gold: #C9A84C;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Pretendard', 'Inter', system-ui, sans-serif;
+    color: #111827;
+    background: #F8F9FA;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .section-surface {
+    @apply bg-[#F8F9FA];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#FF8A5C] to-[#FF6B35] text-white font-bold px-6 py-3 rounded-xl
+           hover:shadow-lg hover:shadow-[#FF6B35]/20 transition-all duration-200
+           hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden;
+  }
+  
+  .btn-primary::after {
+    content: '';
+    @apply absolute inset-0 bg-white/20 opacity-0 transition-opacity duration-200;
+  }
+  
+  .btn-primary:hover::after {
+    @apply opacity-100;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border-2 border-white text-white font-semibold px-6 py-3 rounded-lg
+           hover:bg-white hover:text-navy transition-all duration-200;
+  }
+
+  .btn-navy {
+    @apply inline-flex items-center gap-2 bg-navy text-white font-bold px-6 py-3 rounded-lg
+           hover:bg-navy-light transition-all duration-200 shadow-lg hover:shadow-xl
+           hover:-translate-y-0.5;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100
+           hover:shadow-md transition-all duration-200;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-bold text-navy leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-gray-500 text-lg mt-3 leading-relaxed;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+
+  .badge-gold {
+    @apply badge bg-gold/10 text-gold-dark;
+  }
+
+  .badge-navy {
+    @apply badge bg-navy/10 text-navy;
+  }
+
+  .badge-green {
+    @apply badge bg-green-100 text-green-700;
+  }
+
+  /* Fade-in on scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Image placeholder */
+  .img-placeholder {
+    @apply bg-gradient-to-br from-navy to-navy-light flex flex-col items-center justify-center
+           text-white/50 rounded-xl overflow-hidden relative;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
