@@ -29,7 +29,7 @@ export default function Hero() {
               <span className="text-white text-sm font-semibold tracking-wide">성공 시에만 수임료 발생</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.4] tracking-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.4] tracking-tight">
               항공편 지연보상,<br />
               <span className="text-orange">한국/영국 변호사</span>에게 맡기세요
             </h1>
