@@ -12,12 +12,12 @@ export const metadata: Metadata = {
 }
 
 const DEMO_POSTS = [
-  { id: '1', title: '유럽 출발 항공기 지연, 최대 600유로 받는 법', category: 'eu261' as BlogCategory, summary: 'EU261/2004 규정에 따라 3시간 이상 지연 시 최대 600유로를 보상받을 수 있습니다. 조건과 예외 사항을 상세히 알아봅니다.', content: null, cover_image: null, published: true, created_at: '2024-09-01' },
-  { id: '2', title: '브렉시트 이후 영국 노선 EU261 적용 여부', category: 'eu261' as BlogCategory, summary: '브렉시트 이후 영국 관련 노선에 대한 EU261 적용 범위와 영국 항공법 CAA261의 차이점을 정리합니다.', content: null, cover_image: null, published: true, created_at: '2024-08-28' },
-  { id: '3', title: '한국소비자원 항공 피해 보상기준 완벽 정리', category: 'consumer' as BlogCategory, summary: '소비자분쟁해결기준에 따른 국내 항공사 보상 기준과 실제 청구 절차를 상세히 알아봅니다.', content: null, cover_image: null, published: true, created_at: '2024-08-20' },
-  { id: '4', title: '국제선 결항, 몬트리올 협약으로 받을 수 있는 보상은?', category: 'montreal' as BlogCategory, summary: '몬트리올 협약(1999)에 따른 국제 항공 보상 기준과 SDR 계산법을 설명합니다.', content: null, cover_image: null, published: true, created_at: '2024-08-15' },
-  { id: '5', title: '공항에서 지금 당장 해야 할 5가지', category: 'guide' as BlogCategory, summary: '지연·결항 발생 시 현장에서 즉시 챙겨야 할 증거와 행동 요령을 안내합니다.', content: null, cover_image: null, published: true, created_at: '2024-08-10' },
-  { id: '6', title: '항공 지연 보상 청구 시효는 몇 년일까?', category: 'guide' as BlogCategory, summary: '항공 피해 보상 청구권의 소멸시효와 늦게 청구할 경우 대응 방법을 알아봅니다.', content: null, cover_image: null, published: true, created_at: '2024-08-05' },
+  { id: '1', title: '유럽 출발 항공기 지연, 최대 600유로 받는 법', category: 'eu261' as BlogCategory, summary: 'EU261/2004 규정에 따라 3시간 이상 지연 시 최대 600유로를 보상받을 수 있습니다. 조건과 예외 사항을 상세히 알아봅니다.', content: null, cover_image: '/images/blog-cover.png', published: true, created_at: '2024-09-01' },
+  { id: '2', title: '브렉시트 이후 영국 노선 EU261 적용 여부', category: 'eu261' as BlogCategory, summary: '브렉시트 이후 영국 관련 노선에 대한 EU261 적용 범위와 영국 항공법 CAA261의 차이점을 정리합니다.', content: null, cover_image: '/images/blog-cover.png', published: true, created_at: '2024-08-28' },
+  { id: '3', title: '한국소비자원 항공 피해 보상기준 완벽 정리', category: 'consumer' as BlogCategory, summary: '소비자분쟁해결기준에 따른 국내 항공사 보상 기준과 실제 청구 절차를 상세히 알아봅니다.', content: null, cover_image: '/images/blog-cover.png', published: true, created_at: '2024-08-20' },
+  { id: '4', title: '국제선 결항, 몬트리올 협약으로 받을 수 있는 보상은?', category: 'montreal' as BlogCategory, summary: '몬트리올 협약(1999)에 따른 국제 항공 보상 기준과 SDR 계산법을 설명합니다.', content: null, cover_image: '/images/blog-cover.png', published: true, created_at: '2024-08-15' },
+  { id: '5', title: '공항에서 지금 당장 해야 할 5가지', category: 'guide' as BlogCategory, summary: '지연·결항 발생 시 현장에서 즉시 챙겨야 할 증거와 행동 요령을 안내합니다.', content: null, cover_image: '/images/blog-cover.png', published: true, created_at: '2024-08-10' },
+  { id: '6', title: '항공 지연 보상 청구 시효는 몇 년일까?', category: 'guide' as BlogCategory, summary: '항공 피해 보상 청구권의 소멸시효와 늦게 청구할 경우 대응 방법을 알아봅니다.', content: null, cover_image: '/images/blog-cover.png', published: true, created_at: '2024-08-05' },
 ]
 
 const CAT_TABS = [

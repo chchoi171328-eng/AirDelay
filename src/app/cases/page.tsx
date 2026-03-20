@@ -14,8 +14,6 @@ const TYPE_FILTERS = [
   { value: '', label: '전체' },
   { value: 'delay', label: '항공 지연' },
   { value: 'cancel', label: '항공 결항' },
-  { value: 'denied', label: '탑승 거부' },
-  { value: 'baggage', label: '수하물 피해' },
 ]
 
 // Fallback demo data
@@ -23,8 +21,6 @@ const DEMO_CASES = [
   { id: '1', airline: '대한항공', delay_date: '2024-08-15', delay_hours: '5시간 30분', amount: 800000, type: 'delay' as CaseType, summary: '인천→파리 노선 기상 외 사유 지연 보상 청구', detail: null, is_featured: true, created_at: '2024-08-15' },
   { id: '2', airline: '아시아나항공', delay_date: '2024-07-02', delay_hours: '4시간 10분', amount: 600000, type: 'cancel' as CaseType, summary: '인천→런던 노선 갑작스러운 결항 보상', detail: null, is_featured: true, created_at: '2024-07-02' },
   { id: '3', airline: 'British Airways', delay_date: '2024-06-20', delay_hours: '3시간 50분', amount: 1200000, type: 'delay' as CaseType, summary: '런던→인천 EU261 적용 지연 보상', detail: null, is_featured: true, created_at: '2024-06-20' },
-  { id: '4', airline: '제주항공', delay_date: '2024-05-10', delay_hours: '6시간 00분', amount: 450000, type: 'denied' as CaseType, summary: '오버부킹으로 인한 탑승 거부 보상 청구', detail: null, is_featured: false, created_at: '2024-05-10' },
-  { id: '5', airline: '진에어', delay_date: '2024-04-03', delay_hours: '해당없음', amount: 320000, type: 'baggage' as CaseType, summary: '수하물 분실로 인한 몬트리올 협약 기반 보상', detail: null, is_featured: false, created_at: '2024-04-03' },
   { id: '6', airline: 'Ryanair', delay_date: '2024-03-18', delay_hours: '5시간 10분', amount: 980000, type: 'delay' as CaseType, summary: '런던→바르셀로나 EU261 지연 보상', detail: null, is_featured: false, created_at: '2024-03-18' },
 ]
 
@@ -35,23 +31,21 @@ export default async function CasesPage() {
   const typeColors: Record<CaseType, string> = {
     delay: 'badge-gold',
     cancel: 'bg-red-50 text-red-600',
-    denied: 'bg-purple-50 text-purple-600',
-    baggage: 'bg-blue-50 text-blue-600',
   }
 
   return (
     <div>
-      <div className="bg-navy py-16">
+      <div className="bg-navy pt-20 pb-16">
         <div className="container-wide section-padding text-center">
-          <h1 className="text-4xl font-black text-white mb-3">승소 사례</h1>
+          <h1 className="text-4xl font-black text-white mb-4">승소 사례</h1>
           <p className="text-white/60 text-lg">실제 보상을 이끌어낸 사례들입니다</p>
         </div>
       </div>
 
       {/* Hero image */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-64 overflow-hidden">
         <img src="/images/cases-hero.png" alt="항공기 / 공항 이미지" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/20 to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy via-navy/30 to-white" />
       </div>
 
       <div className="container-wide section-padding py-12">

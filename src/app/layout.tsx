@@ -8,8 +8,8 @@ export const metadata: Metadata = {
     default: '법무법인 명 | 항공지연·결항 보상 전문',
     template: '%s | 법무법인 명',
   },
-  description: '항공 지연·결항·탑승거부·수하물 피해 전문 법무법인. 한국–영국 변호사 협업으로 국내외 모든 노선을 처리합니다.',
-  keywords: ['항공지연보상', '항공결항', '탑승거부보상', 'EU261', '항공피해', '법무법인'],
+  description: '항공 지연·결항 피해 전문 법무법인. 한국–영국 변호사 협업으로 국내외 모든 노선을 처리합니다.',
+  keywords: ['항공지연보상', '항공결항', 'EU261', '항공피해', '법무법인'],
   openGraph: {
     siteName: '법무법인 명',
     locale: 'ko_KR',

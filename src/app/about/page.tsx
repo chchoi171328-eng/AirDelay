@@ -17,6 +17,7 @@ const attorneys = [
     bar: '대한변호사협회',
     specialties: ['국내 항공소송', '소비자보호법', '민사 손해배상'],
     imgLabel: '한국 변호사 프로필 사진',
+    img: '/images/lawyer-kr.png',
   },
   {
     country: '영국',
@@ -26,6 +27,7 @@ const attorneys = [
     bar: 'Solicitors Regulation Authority (SRA)',
     specialties: ['EU261 Regulation', 'Aviation Law', 'Consumer Rights Act'],
     imgLabel: '영국 변호사 프로필 사진',
+    img: '/images/lawyer-uk.png',
   },
 ]
 
@@ -68,7 +70,7 @@ export default function AboutPage() {
                 ))}
               </div>
             </div>
-            <ImagePlaceholder label="법무법인 사무실 / 로펌 이미지" aspectRatio="aspect-[4/3]" className="rounded-2xl shadow-lg" />
+            <img src="/images/lawyer-office.png" alt="법무법인 사무실 / 로펌 이미지" className="w-full rounded-2xl shadow-lg object-cover aspect-[4/3]" />
           </div>
         </div>
       </div>
@@ -81,10 +83,9 @@ export default function AboutPage() {
             <p className="section-subtitle">한국과 영국 두 나라의 항공법 전문가가 함께합니다</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {attorneys.map(({ country, flag, icon: Icon, name, bar, specialties, imgLabel }) => (
+            {attorneys.map(({ country, flag, icon: Icon, name, bar, specialties, imgLabel, img }) => (
               <div key={country} className="card overflow-hidden">
-                {/* Profile photo placeholder */}
-                <ImagePlaceholder label={imgLabel} aspectRatio="aspect-[3/2]" className="w-full" />
+                <img src={img} alt={imgLabel} className="w-full object-cover aspect-[3/2] object-top" />
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-2xl">{flag}</span>

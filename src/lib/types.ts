@@ -1,4 +1,4 @@
-export type CaseType = 'delay' | 'cancel' | 'denied' | 'baggage'
+export type CaseType = 'delay' | 'cancel'
 export type BlogCategory = 'eu261' | 'montreal' | 'consumer' | 'guide'
 
 export interface Case {
@@ -28,8 +28,6 @@ export interface BlogPost {
 export const CASE_TYPE_LABELS: Record<CaseType, string> = {
   delay: '항공 지연',
   cancel: '항공 결항',
-  denied: '탑승 거부',
-  baggage: '수하물 피해',
 }
 
 export const BLOG_CATEGORY_LABELS: Record<BlogCategory, string> = {

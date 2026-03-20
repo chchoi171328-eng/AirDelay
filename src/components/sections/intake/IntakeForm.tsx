@@ -9,10 +9,8 @@ const AIRLINES = ['대한항공', '아시아나항공', '제주항공', '티웨�
 const TYPES = [
   { value: 'delay', label: '항공 지연' },
   { value: 'cancel', label: '항공 결항' },
-  { value: 'denied', label: '탑승 거부 (오버부킹)' },
-  { value: 'baggage', label: '수하물 피해' },
 ]
-const DELAY_RANGES = ['3시간 미만', '3~5시간', '5시간 이상', '해당 없음 (결항/탑승거부)']
+const DELAY_RANGES = ['3시간 미만', '3~5시간', '5시간 이상', '해당 없음 (결항)']
 
 export default function IntakeForm() {
   const [step, setStep] = useState(0)
@@ -84,7 +82,7 @@ export default function IntakeForm() {
             <div>
               <label className="block text-sm font-semibold text-navy mb-1.5">항공사 *</label>
               <select value={form.airline} onChange={(e) => set('airline', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy">
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-4 focus:ring-navy/10 focus:border-navy bg-gray-50/50 hover:bg-gray-50 transition-all shadow-sm">
                 <option value="">선택하세요</option>
                 {AIRLINES.map((a) => <option key={a} value={a}>{a}</option>)}
               </select>
@@ -92,33 +90,33 @@ export default function IntakeForm() {
             <div>
               <label className="block text-sm font-semibold text-navy mb-1.5">항공편명</label>
               <input type="text" placeholder="예: KE001" value={form.flightNo} onChange={(e) => set('flightNo', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy" />
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-4 focus:ring-navy/10 focus:border-navy bg-gray-50/50 hover:bg-gray-50 transition-all shadow-sm" />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-semibold text-navy mb-1.5">출발지 *</label>
               <input type="text" placeholder="예: 인천 (ICN)" value={form.origin} onChange={(e) => set('origin', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy" />
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-4 focus:ring-navy/10 focus:border-navy bg-gray-50/50 hover:bg-gray-50 transition-all shadow-sm" />
             </div>
             <div>
               <label className="block text-sm font-semibold text-navy mb-1.5">도착지 *</label>
               <input type="text" placeholder="예: 런던 (LHR)" value={form.destination} onChange={(e) => set('destination', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy" />
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-4 focus:ring-navy/10 focus:border-navy bg-gray-50/50 hover:bg-gray-50 transition-all shadow-sm" />
             </div>
           </div>
           <div>
             <label className="block text-sm font-semibold text-navy mb-1.5">운항 날짜 *</label>
             <input type="date" value={form.date} onChange={(e) => set('date', e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy" />
+              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-4 focus:ring-navy/10 focus:border-navy bg-gray-50/50 hover:bg-gray-50 transition-all shadow-sm" />
           </div>
           <div>
             <label className="block text-sm font-semibold text-navy mb-1.5">피해 유형 *</label>
             <div className="grid grid-cols-2 gap-2">
               {TYPES.map((t) => (
                 <button key={t.value} type="button" onClick={() => set('type', t.value)}
-                  className={`border rounded-lg px-4 py-2.5 text-sm font-medium transition-all text-left ${
-                    form.type === t.value ? 'border-navy bg-navy text-white' : 'border-gray-200 text-gray-600 hover:border-navy/40'}`}>
+                  className={`border rounded-xl px-4 py-3 text-[15px] font-medium transition-all text-left shadow-sm ${
+                    form.type === t.value ? 'border-navy bg-navy text-white ring-4 ring-navy/10' : 'border-gray-200 text-gray-600 hover:border-navy/30 hover:bg-gray-50'}`}>
                   {t.label}
                 </button>
               ))}
@@ -129,8 +127,8 @@ export default function IntakeForm() {
             <div className="grid grid-cols-2 gap-2">
               {DELAY_RANGES.map((r) => (
                 <button key={r} type="button" onClick={() => set('delay_hours', r)}
-                  className={`border rounded-lg px-4 py-2.5 text-sm font-medium transition-all text-left ${
-                    form.delay_hours === r ? 'border-gold bg-gold/10 text-navy' : 'border-gray-200 text-gray-600 hover:border-gold/40'}`}>
+                  className={`border rounded-xl px-4 py-3 text-[15px] font-medium transition-all text-left shadow-sm ${
+                    form.delay_hours === r ? 'border-gold bg-gold/10 text-navy ring-4 ring-gold/20' : 'border-gray-200 text-gray-600 hover:border-gold/30 hover:bg-gray-50'}`}>
                   {r}
                 </button>
               ))}
@@ -150,23 +148,23 @@ export default function IntakeForm() {
             <div>
               <label className="block text-sm font-semibold text-navy mb-1.5">이름 *</label>
               <input type="text" placeholder="홍길동" value={form.name} onChange={(e) => set('name', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy" />
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-4 focus:ring-navy/10 focus:border-navy bg-gray-50/50 hover:bg-gray-50 transition-all shadow-sm" />
             </div>
             <div>
               <label className="block text-sm font-semibold text-navy mb-1.5">연락처 *</label>
               <input type="tel" placeholder="010-0000-0000" value={form.phone} onChange={(e) => set('phone', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy" />
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-4 focus:ring-navy/10 focus:border-navy bg-gray-50/50 hover:bg-gray-50 transition-all shadow-sm" />
             </div>
           </div>
           <div>
             <label className="block text-sm font-semibold text-navy mb-1.5">이메일 *</label>
             <input type="email" placeholder="example@email.com" value={form.email} onChange={(e) => set('email', e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy" />
+              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-4 focus:ring-navy/10 focus:border-navy bg-gray-50/50 hover:bg-gray-50 transition-all shadow-sm" />
           </div>
           <div>
             <label className="block text-sm font-semibold text-navy mb-1.5">피해 상세 내용</label>
             <textarea rows={4} placeholder="상황을 자세히 설명해 주세요..." value={form.detail} onChange={(e) => set('detail', e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy resize-none" />
+              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-4 focus:ring-navy/10 focus:border-navy bg-gray-50/50 hover:bg-gray-50 transition-all shadow-sm resize-none" />
           </div>
           <div>
             <label className="block text-sm font-semibold text-navy mb-1.5">증빙 파일 첨부 (선택)</label>

@@ -33,9 +33,9 @@ const config: Config = {
         sans: ['Pretendard', 'Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
-        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+        'fade-in-up': 'fadeInUp 0.6s ease-out both',
         'counter': 'counter 2s ease-out forwards',
-        'slide-in': 'slideIn 0.5s ease-out forwards',
+        'slide-in': 'slideIn 0.5s ease-out both',
       },
       keyframes: {
         fadeInUp: {

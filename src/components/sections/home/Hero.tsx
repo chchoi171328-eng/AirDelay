@@ -15,7 +15,7 @@ export default function Hero() {
           className="w-full h-full object-cover"
         />
         {/* Dark overlay for text readability, but lighter on the right for form */}
-        <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/60 to-navy/10" />
       </div>
 
       {/* Content */}
@@ -29,7 +29,7 @@ export default function Hero() {
               <span className="text-white text-sm font-semibold tracking-wide">성공 시에만 수임료 발생</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.4] tracking-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.4] tracking-tight mb-8">
               항공편 지연보상,<br />
               <span className="text-orange">한국/영국 변호사</span>에게 맡기세요
             </h1>
@@ -50,7 +50,7 @@ export default function Hero() {
 
           {/* Right Inline Form */}
           <div className="lg:justify-self-end w-full max-w-md">
-            <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 animate-fade-in-up">
+            <div className="bg-white/90 backdrop-blur-md border border-white/50 rounded-[2rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] p-8 sm:p-10 animate-fade-in-up transform hover:-translate-y-1 transition-all duration-300">
               <button
                 onClick={() => router.push('/intake')}
                 className="btn-primary w-full text-lg py-5 group"

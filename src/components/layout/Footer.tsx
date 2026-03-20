@@ -18,7 +18,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-white/60 text-sm leading-relaxed max-w-xs">
-              항공지연·결항·탑승거부·수하물 피해 전문 법무법인.<br />
+              항공지연·결항 피해 전문 법무법인.<br />
               한국–영국 변호사 협업으로 국내외 모든 노선을 처리합니다.
             </p>
           </div>
@@ -30,8 +30,6 @@ export default function Footer() {
               {[
                 ['항공 지연 보상', '/services'],
                 ['항공 결항 보상', '/services'],
-                ['탑승 거부 보상', '/services'],
-                ['수하물 피해 보상', '/services'],
                 ['사건 접수', '/intake'],
               ].map(([label, href]) => (
                 <li key={label}>

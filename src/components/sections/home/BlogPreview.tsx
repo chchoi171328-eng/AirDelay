@@ -5,9 +5,9 @@ import { BLOG_CATEGORY_LABELS } from '@/lib/types'
 import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
 
 const DEMO_POSTS: BlogPost[] = [
-  { id: '1', title: '유럽 출발 항공기 지연, 최대 600유로 받는 법', category: 'eu261', summary: 'EU261 규정에 따라 3시간 이상 지연 시 최대 600유로를 보상받을 수 있습니다.', content: null, cover_image: null, published: true, created_at: '2024-09-01' },
-  { id: '2', title: '한국소비자원 항공 피해 보상기준 완벽 정리', category: 'consumer', summary: '소비자분쟁해결기준에 따른 국내 항공사 보상 기준을 상세히 알아봅니다.', content: null, cover_image: null, published: true, created_at: '2024-08-20' },
-  { id: '3', title: '공항에서 지금 당장 해야 할 5가지', category: 'guide', summary: '지연·결항 발생 시 현장에서 즉시 챙겨야 할 증거와 행동 요령을 안내합니다.', content: null, cover_image: null, published: true, created_at: '2024-08-10' },
+  { id: '1', title: '유럽 출발 항공기 지연, 최대 600유로 받는 법', category: 'eu261', summary: 'EU261 규정에 따라 3시간 이상 지연 시 최대 600유로를 보상받을 수 있습니다.', content: null, cover_image: '/images/blog-cover.png', published: true, created_at: '2024-09-01' },
+  { id: '2', title: '한국소비자원 항공 피해 보상기준 완벽 정리', category: 'consumer', summary: '소비자분쟁해결기준에 따른 국내 항공사 보상 기준을 상세히 알아봅니다.', content: null, cover_image: '/images/blog-cover.png', published: true, created_at: '2024-08-20' },
+  { id: '3', title: '공항에서 지금 당장 해야 할 5가지', category: 'guide', summary: '지연·결항 발생 시 현장에서 즉시 챙겨야 할 증거와 행동 요령을 안내합니다.', content: null, cover_image: '/images/blog-cover.png', published: true, created_at: '2024-08-10' },
 ]
 
 interface Props { posts?: BlogPost[] }

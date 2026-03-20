@@ -10,11 +10,14 @@ export const metadata: Metadata = {
 export default function IntakePage() {
   return (
     <div>
-      <div className="bg-navy py-16">
-        <div className="container-wide section-padding text-center">
-          <h1 className="text-4xl font-black text-white mb-3">무료 사건 접수</h1>
+      <div className="bg-navy pt-20 pb-24 relative overflow-hidden">
+        <div className="container-wide section-padding text-center relative z-10">
+          <h1 className="text-4xl font-black text-white mb-4">무료 사건 접수</h1>
           <p className="text-white/60 text-lg">간단한 정보 입력으로 전문 검토를 받으세요</p>
         </div>
+        <svg className="absolute bottom-0 w-full h-10 text-white translate-y-px" preserveAspectRatio="none" viewBox="0 0 1440 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 40h1440V0c-184.22 24-421.1 40-720 40S184.22 24 0 0v40z" />
+        </svg>
       </div>
 
       <div className="py-16">
