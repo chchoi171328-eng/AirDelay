@@ -1,39 +1,29 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
+import type { Review } from '@/lib/types'
+import { CASE_TYPE_LABELS } from '@/lib/types'
+import DraftBadge from '@/components/content/DraftBadge'
 
-const testimonials = [
-  {
-    text: "혼자 항공사에 항의 메일을 보냈을 때는 매크로 답변만 돌아와서 포기했었어요. 법무법인 명에 맡기니 3주 만에 가족 4명 몫의 보상금 360만 원이 입금되었습니다. 정말 감사합니다.",
-    author: "홍*동",
-    date: "2024.08",
-    route: "인천 ↔ 파리 (대한항공)",
-    type: "항공기 지연",
-  },
-  {
-    text: "갑작스러운 결항으로 호텔비와 식비까지 엄청 깨졌는데, 보상금 600유로에 실경비까지 모두 받아주셨어요. 과정마다 카톡으로 친절하게 알려주셔서 안심할 수 있었습니다.",
-    author: "이*민",
-    date: "2024.07",
-    route: "런던 ↔ 로마 (British Airways)",
-    type: "항공기 결항",
-  }
-]
-
-export default function Testimonials() {
+// 후기는 content/reviews 폴더에서 읽습니다. 게시할 후기가 없으면 섹션을 숨깁니다.
+export default function Testimonials({ reviews }: { reviews: Review[] }) {
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
 
   // 자동 넘김: 마우스를 올리거나 키보드로 조작 중이면 멈추고, '동작 줄이기' 설정이면 하지 않습니다.
   useEffect(() => {
-    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (paused || reviews.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length)
+      setCurrent((prev) => (prev + 1) % reviews.length)
     }, 6000)
     return () => clearInterval(timer)
-  }, [paused, current])
+  }, [paused, current, reviews.length])
 
-  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length)
-  const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  if (reviews.length === 0) return null
+  const review = reviews[current]
+
+  const next = () => setCurrent((prev) => (prev + 1) % reviews.length)
+  const prev = () => setCurrent((prev) => (prev - 1 + reviews.length) % reviews.length)
 
   return (
     <section className="bg-navy py-24 relative overflow-hidden">
@@ -47,10 +37,10 @@ export default function Testimonials() {
             Customer Reviews
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight mb-4">
-            실제 보상 성공 이야기
+            고객 후기
           </h2>
           <p className="text-white/60 text-lg">
-            포기하셨던 당신의 권리, 저희가 찾아드렸습니다.
+            직접 맡겨 보신 분들이 남겨 주신 이야기입니다.
           </p>
         </div>
 
@@ -68,28 +58,29 @@ export default function Testimonials() {
             {/* 자동으로 넘어갈 때는 화면낭독기가 매번 읽지 않도록, 사용자가 조작할 때만 알립니다 */}
             <div className="relative z-10 min-h-[200px] flex flex-col justify-center pt-8 sm:pt-0" aria-live={paused ? 'polite' : 'off'}>
               <p className="text-lg sm:text-2xl text-navy font-medium leading-relaxed sm:leading-loose text-balance text-left sm:text-center sm:px-12">
-                &ldquo;{testimonials[current].text}&rdquo;
+                &ldquo;{review.text}&rdquo;
               </p>
               
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-100">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-surface rounded-full flex items-center justify-center font-bold text-navy text-lg">
-                    {testimonials[current].author[0]}
+                    {review.name[0]}
                   </div>
                   <div className="text-left">
-                    <div className="font-bold text-navy text-base">{testimonials[current].author} 고객님</div>
-                    <div className="text-gray-400 text-sm mt-0.5">{testimonials[current].date}</div>
+                    <div className="font-bold text-navy text-base flex items-center gap-2">{review.name} 고객님 {review.draft && <DraftBadge />}</div>
+                    <div className="text-gray-400 text-sm mt-0.5">{review.date.replace('-', '.')}</div>
                   </div>
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm font-semibold bg-surface px-4 py-2 rounded-xl text-gray-600">
-                  <span className="text-orange whitespace-nowrap">{testimonials[current].type}</span>
+                  <span className="text-orange whitespace-nowrap">{CASE_TYPE_LABELS[review.type]}</span>
                   <span className="w-1 h-1 bg-gray-300 rounded-full" />
-                  <span>{testimonials[current].route}</span>
+                  <span>{review.route}</span>
                 </div>
               </div>
             </div>
             
             {/* Nav Controls — 모바일에서는 글을 가리지 않도록 아래쪽 점 옆에 둡니다 */}
+            {reviews.length > 1 && (<>
             <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 -left-6">
               <button
                 onClick={prev}
@@ -108,14 +99,16 @@ export default function Testimonials() {
                 <ChevronRight className="w-6 h-6" />
               </button>
             </div>
+            </>)}
           </div>
           
           {/* Dots Indicator */}
+          {reviews.length > 1 && (
           <div className="flex justify-center items-center gap-3 mt-10">
             <button onClick={prev} aria-label="이전 후기" className="sm:hidden w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center">
               <ChevronLeft className="w-5 h-5" />
             </button>
-            {testimonials.map((_, idx) => (
+            {reviews.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrent(idx)}
@@ -130,6 +123,8 @@ export default function Testimonials() {
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
+          )}
+          <p className="text-center text-white/40 text-xs mt-6">의뢰인의 동의를 받아 게재한 후기이며, 사건마다 결과는 다를 수 있습니다.</p>
         </div>
       </div>
     </section>
