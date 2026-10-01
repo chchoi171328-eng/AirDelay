@@ -1,28 +1,31 @@
 export type CaseType = 'delay' | 'cancel'
 export type BlogCategory = 'eu261' | 'montreal' | 'consumer' | 'guide'
 
+// content/cases/*.md 한 개 = 사례 한 건
 export interface Case {
-  id: string
+  slug: string
   airline: string
-  delay_date: string
-  delay_hours: string
-  amount: number
+  route: string
+  flightDate: string // YYYY-MM-DD
+  delay: string // 예: '5시간 30분', '결항'
+  amount: number // 원
   type: CaseType
-  summary: string | null
-  detail: string | null
-  is_featured: boolean
-  created_at: string
+  summary: string
+  html: string | null // 본문이 있으면 상세 페이지가 생깁니다
+  draft: boolean
 }
 
+// content/blog/*.md 한 개 = 글 한 편
 export interface BlogPost {
-  id: string
+  slug: string
   title: string
+  seoTitle: string
   category: BlogCategory
-  summary: string | null
-  content: string | null
-  cover_image: string | null
-  published: boolean
-  created_at: string
+  summary: string
+  date: string // YYYY-MM-DD
+  cover: string | null
+  html: string | null
+  draft: boolean
 }
 
 export const CASE_TYPE_LABELS: Record<CaseType, string> = {

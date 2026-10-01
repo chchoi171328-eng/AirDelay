@@ -6,23 +6,17 @@ import ServiceCards from '@/components/sections/home/ServiceCards'
 import Testimonials from '@/components/sections/home/Testimonials'
 import BlogPreview from '@/components/sections/home/BlogPreview'
 import IntakeCTA from '@/components/sections/home/IntakeCTA'
-import { getFeaturedCases, getLatestPosts, getAllCases } from '@/lib/supabase'
+import { getCases, getPosts } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: '법무법인 명 | 항공지연·결항 보상 전문',
   description: '항공 지연·결항 피해 전문 법무법인. 한국–영국 변호사 협업으로 국내외 모든 노선을 처리합니다.',
 }
 
-export default async function HomePage() {
-  const [featuredCases, latestPosts, allCasesRes] = await Promise.allSettled([
-    getFeaturedCases(),
-    getLatestPosts(3),
-    getAllCases(),
-  ])
-
-  const cases = featuredCases.status === 'fulfilled' ? featuredCases.value : []
-  const posts = latestPosts.status === 'fulfilled' ? latestPosts.value : []
-  const recentCases = allCasesRes.status === 'fulfilled' ? allCasesRes.value.slice(0, 10) : [] // 최신 10건
+export default function HomePage() {
+  // 최근 운항일 순 10건 (본문 HTML은 화면에 쓰지 않으므로 빼고 넘깁니다)
+  const recentCases = getCases().slice(0, 10).map((c) => ({ ...c, html: null }))
+  const posts = getPosts().slice(0, 3)
 
   return (
     <>
