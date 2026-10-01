@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import MobileCTA from '@/components/layout/MobileCTA'
 import { FIRM, SITE_DESCRIPTION, SITE_URL } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -56,6 +57,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <MobileCTA />
       </body>
     </html>
   )

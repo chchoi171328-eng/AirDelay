@@ -28,16 +28,16 @@ export default function PostCard({ post }: { post: BlogPost }) {
         {post.draft && <DraftBadge className="absolute top-3 right-3" />}
       </div>
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="font-bold text-navy text-base leading-snug mb-2 group-hover:text-gold transition-colors line-clamp-2">
+        <h3 className="font-bold text-navy text-base leading-snug mb-2 group-hover:text-orange transition-colors line-clamp-2">
           {post.title}
         </h3>
         <p className="text-gray-500 text-sm leading-relaxed flex-1 line-clamp-3">{post.summary}</p>
         <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
-          <div className="flex items-center gap-1.5 text-gray-400 text-xs">
+          <div className="flex items-center gap-1.5 text-gray-500 text-xs">
             <Calendar className="w-3.5 h-3.5" />
             {formatDate(post.date)}
           </div>
-          <span className="flex items-center gap-1 text-navy text-xs font-semibold group-hover:text-gold transition-colors">
+          <span className="flex items-center gap-1 text-navy text-xs font-semibold group-hover:text-orange transition-colors">
             읽기 <ChevronRight className="w-3.5 h-3.5" />
           </span>
         </div>

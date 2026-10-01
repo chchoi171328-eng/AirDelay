@@ -18,7 +18,7 @@ export default function Faq({ items }: { items: FaqItem[] }) {
   }
 
   return (
-    <section className="py-24 bg-white" id="faq">
+    <section className="py-20 sm:py-24 bg-surface" id="faq">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="container-wide section-padding max-w-3xl">
         <div className="text-center mb-12">
@@ -28,13 +28,13 @@ export default function Faq({ items }: { items: FaqItem[] }) {
 
         <div className="space-y-3">
           {items.map((f) => (
-            <details key={f.slug} className="group rounded-2xl border border-gray-200 bg-surface open:bg-white open:shadow-sm transition-colors">
+            <details key={f.slug} className="group rounded-2xl border border-gray-200 bg-white open:shadow-sm transition-colors">
               <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 [&::-webkit-details-marker]:hidden">
                 <span className="font-bold text-navy text-[15px] sm:text-base flex flex-wrap items-center gap-2">
                   {f.question}
                   {f.draft && <DraftBadge />}
                 </span>
-                <ChevronDown className="w-5 h-5 text-gray-400 shrink-0 transition-transform group-open:rotate-180" />
+                <ChevronDown className="w-5 h-5 text-gray-500 shrink-0 transition-transform group-open:rotate-180" />
               </summary>
               <div
                 className="px-6 pb-6 prose prose-sm prose-gray max-w-none prose-strong:text-navy prose-li:my-0.5"

@@ -4,7 +4,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
 import { BLOG_CATEGORY_LABELS, CASE_TYPE_LABELS } from './types'
-import type { BlogCategory, BlogPost, Case, CaseType, FaqItem, Review } from './types'
+import type { BlogCategory, BlogPost, Case, CaseType, FaqItem } from './types'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content')
 
@@ -94,25 +94,7 @@ export function getCases(): Case[] {
 const ENTITIES: Record<string, string> = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'" }
 const decodeEntities = (s: string) => s.replace(/&(amp|lt|gt|quot|#39);/g, (m) => ENTITIES[m])
 
-let reviewsCache: Review[] | null = null
 let faqCache: FaqItem[] | null = null
-
-export function getReviews(): Review[] {
-  reviewsCache ??= readDir('reviews')
-    .map(({ slug, file, data, body }) => {
-      const type = data.type as CaseType
-      if (!(type in CASE_TYPE_LABELS)) fail(file, `type은 ${Object.keys(CASE_TYPE_LABELS).join(', ')} 중 하나여야 합니다`)
-      const date = String(data.date ?? '')
-      if (!/^\d{4}-\d{2}$/.test(date)) fail(file, 'date는 YYYY-MM 형식이어야 합니다 (예: 2026-08)')
-      const draft = data.draft === true
-      // 변호사 광고 규정상 의뢰인 동의 없는 후기는 게시할 수 없으므로, 게시할 후기는 consent: true가 있어야 합니다.
-      if (!draft && data.consent !== true) fail(file, '게시하려면 의뢰인 서면 동의를 받은 뒤 consent: true를 적어야 합니다')
-      if (!body) fail(file, '후기 본문이 비어 있습니다')
-      return { slug, name: required(file, data, 'name'), date, route: required(file, data, 'route'), type, text: body.replace(/\s+/g, ' '), draft }
-    })
-    .sort((a, b) => b.date.localeCompare(a.date))
-  return reviewsCache.filter((r) => SHOW_DRAFTS || !r.draft)
-}
 
 export function getFaqs(): FaqItem[] {
   faqCache ??= readDir('faq')

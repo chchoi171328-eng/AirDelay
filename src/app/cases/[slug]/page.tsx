@@ -46,7 +46,7 @@ export default function CaseDetailPage({ params }: { params: { slug: string } })
             <span className={`badge text-xs ${CASE_TYPE_COLORS[c.type]}`}>{CASE_TYPE_LABELS[c.type]}</span>
             {c.draft && <DraftBadge />}
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-white leading-tight text-balance break-keep">{c.summary}</h1>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight text-balance break-keep">{c.summary}</h1>
         </div>
       </div>
 
@@ -54,13 +54,13 @@ export default function CaseDetailPage({ params }: { params: { slug: string } })
         <div className="card p-6 grid grid-cols-2 sm:grid-cols-5 gap-4 mb-10">
           {facts.map(([label, value]) => (
             <div key={label}>
-              <div className="text-xs text-gray-400 mb-1">{label}</div>
+              <div className="text-xs text-gray-500 mb-1">{label}</div>
               <div className="font-semibold text-navy text-sm">{value}</div>
             </div>
           ))}
           <div>
-            <div className="text-xs text-gray-400 mb-1">보상금액</div>
-            <div className="font-black text-gold">{c.amount.toLocaleString()}원</div>
+            <div className="text-xs text-gray-500 mb-1">보상금액</div>
+            <div className="font-extrabold text-navy">{c.amount.toLocaleString()}원</div>
           </div>
         </div>
 
@@ -68,7 +68,7 @@ export default function CaseDetailPage({ params }: { params: { slug: string } })
 
         <ArticleCTA />
 
-        <Link href="/cases" className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy hover:text-gold transition-colors mt-10">
+        <Link href="/cases" className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy hover:text-orange transition-colors mt-10">
           <ArrowLeft className="w-4 h-4" /> 승소 사례 목록
         </Link>
       </div>

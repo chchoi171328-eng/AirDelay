@@ -37,7 +37,7 @@ export default function Hero() {
               <span className="text-white text-sm font-semibold tracking-wide">성공 시에만 수임료 발생</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl xl:text-7xl font-black text-white leading-[1.3] sm:leading-[1.4] tracking-tight mb-6 sm:mb-8">
+            <h1 className="text-4xl sm:text-5xl xl:text-7xl font-extrabold text-white leading-[1.3] sm:leading-[1.4] tracking-tight mb-6 sm:mb-8">
               항공편 지연보상,<br />
               <span className="text-orange">한국/영국 변호사</span>에게 맡기세요
             </h1>
@@ -59,7 +59,7 @@ export default function Hero() {
           {/* Right: 간편 확인 양식 */}
           <div className="lg:justify-self-end w-full max-w-md">
             <form onSubmit={start} className="bg-white/95 backdrop-blur-md border border-white/50 rounded-[2rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] p-7 sm:p-9 animate-fade-in-up">
-              <h2 className="text-xl font-black text-navy mb-1">내 항공편, 보상받을 수 있을까요?</h2>
+              <h2 className="text-xl font-extrabold text-navy mb-1">내 항공편, 보상받을 수 있을까요?</h2>
               <p className="text-sm text-gray-500 mb-5">항공편 정보를 넣고 무료 검토를 신청하세요.</p>
               <div className="grid grid-cols-2 gap-3 mb-3">
                 <div>

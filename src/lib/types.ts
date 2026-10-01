@@ -28,17 +28,6 @@ export interface BlogPost {
   draft: boolean
 }
 
-// content/reviews/*.md 한 개 = 고객 후기 한 건 (의뢰인 서면 동의 필수)
-export interface Review {
-  slug: string
-  name: string // 익명 표기 (예: '김*민')
-  date: string // YYYY-MM
-  route: string
-  type: CaseType
-  text: string
-  draft: boolean
-}
-
 // content/faq/*.md 한 개 = 질문 하나
 export interface FaqItem {
   slug: string

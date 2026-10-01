@@ -38,10 +38,6 @@
     @apply max-w-7xl mx-auto;
   }
 
-  .section-surface {
-    @apply bg-[#F8F9FA];
-  }
-
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#FF8A5C] to-[#FF6B35] text-white font-bold px-6 py-3 rounded-xl
            hover:shadow-lg hover:shadow-[#FF6B35]/20 transition-all duration-200
@@ -85,16 +81,8 @@
     @apply inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full;
   }
 
-  .badge-gold {
-    @apply badge bg-gold/10 text-gold-dark;
-  }
-
   .badge-navy {
     @apply badge bg-navy/10 text-navy;
-  }
-
-  .badge-green {
-    @apply badge bg-green-100 text-green-700;
   }
 
   /* Fade-in on scroll */

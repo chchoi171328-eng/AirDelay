@@ -4,6 +4,7 @@ import { getPosts } from '@/lib/content'
 import { BLOG_CATEGORY_LABELS } from '@/lib/types'
 import FilterTabs from '@/components/ui/FilterTabs'
 import PostCard from '@/components/content/PostCard'
+import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
   title: '법률 정보',
@@ -18,12 +19,7 @@ export default function BlogPage() {
 
   return (
     <div>
-      <div className="bg-navy py-16">
-        <div className="container-wide section-padding text-center">
-          <h1 className="text-4xl font-black text-white mb-3">법률 정보</h1>
-          <p className="text-white/60 text-lg">항공 보상에 관한 핵심 법률 정보를 제공합니다</p>
-        </div>
-      </div>
+      <PageHeader title="법률 정보" subtitle="항공 보상에 관한 핵심 법률 정보를 제공합니다" />
 
       <div className="container-wide section-padding py-12">
         {posts.length > 0 ? (

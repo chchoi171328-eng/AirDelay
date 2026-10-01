@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { FIRM } from '@/lib/site'
 import { PRIVACY_POLICY_VERSION } from '@/lib/intake'
+import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
   title: '개인정보처리방침',
@@ -29,12 +30,7 @@ const tableCls = 'w-full text-sm border border-gray-200 rounded-lg overflow-hidd
 export default function PrivacyPage() {
   return (
     <div>
-      <div className="bg-navy py-16">
-        <div className="container-wide section-padding text-center">
-          <h1 className="text-4xl font-black text-white mb-3">개인정보처리방침</h1>
-          <p className="text-white/60 text-lg">시행일 {PRIVACY_POLICY_VERSION}</p>
-        </div>
-      </div>
+      <PageHeader title="개인정보처리방침" subtitle={`시행일 ${PRIVACY_POLICY_VERSION}`} />
 
       <div className="container-wide section-padding py-12">
         <div className="max-w-3xl mx-auto bg-white rounded-2xl border border-gray-100 shadow-sm p-6 sm:p-10 space-y-10">

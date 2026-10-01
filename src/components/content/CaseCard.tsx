@@ -6,7 +6,7 @@ import DraftBadge from './DraftBadge'
 import { formatDate } from './PostCard'
 
 export const CASE_TYPE_COLORS: Record<Case['type'], string> = {
-  delay: 'bg-amber-50 text-gold-dark',
+  delay: 'bg-blue-50 text-navy',
   cancel: 'bg-red-50 text-red-600',
 }
 
@@ -25,11 +25,11 @@ export default function CaseCard({ c }: { c: Case }) {
             </div>
             <span className="font-bold text-navy">{c.airline}</span>
           </div>
-          <div className="text-xs text-gray-400 mt-1.5">{c.route}</div>
+          <div className="text-xs text-gray-500 mt-1.5">{c.route}</div>
         </div>
         <div className="text-right shrink-0">
-          <div className="text-xs text-gray-400">보상금액</div>
-          <div className="text-gold font-black text-lg">{c.amount.toLocaleString()}원</div>
+          <div className="text-xs text-gray-500">보상금액</div>
+          <div className="text-navy font-extrabold text-lg">{c.amount.toLocaleString()}원</div>
         </div>
       </div>
 
@@ -37,17 +37,17 @@ export default function CaseCard({ c }: { c: Case }) {
 
       <div className="grid grid-cols-2 gap-3 pt-3 border-t border-gray-100">
         <div className="flex items-center gap-1.5 text-xs text-gray-500">
-          <Calendar className="w-3.5 h-3.5 text-gold" />
+          <Calendar className="w-3.5 h-3.5 text-navy/50" />
           {formatDate(c.flightDate)}
         </div>
         <div className="flex items-center gap-1.5 text-xs text-gray-500">
-          <Clock className="w-3.5 h-3.5 text-gold" />
+          <Clock className="w-3.5 h-3.5 text-navy/50" />
           {c.delay}
         </div>
       </div>
 
       {c.html && (
-        <Link href={`/cases/${c.slug}`} className="flex items-center gap-1 text-navy text-sm font-semibold hover:text-gold transition-colors">
+        <Link href={`/cases/${c.slug}`} className="flex items-center gap-1 text-navy text-sm font-semibold hover:text-orange transition-colors">
           자세히 보기 <ChevronRight className="w-4 h-4" />
         </Link>
       )}

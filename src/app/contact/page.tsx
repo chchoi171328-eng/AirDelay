@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
-import { FileText, Phone, Mail, MapPin, MessageCircle } from 'lucide-react'
+import { FileText, Phone, Mail, MapPin, MessageCircle, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
+import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
   title: '문의하기',
@@ -10,18 +11,13 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div>
-      <div className="bg-navy py-16">
-        <div className="container-wide section-padding text-center">
-          <h1 className="text-4xl font-black text-white mb-3">문의하기</h1>
-          <p className="text-white/60 text-lg">사건 접수 및 법률 상담 창구를 안내합니다</p>
-        </div>
-      </div>
+      <PageHeader title="문의하기" subtitle="사건 접수 및 법률 상담 창구를 안내합니다" />
 
       <div className="py-16">
         <div className="container-wide section-padding">
           {/* Primary CTA */}
           <div className="bg-gradient-to-br from-navy to-navy-dark rounded-2xl p-10 text-center mb-12 shadow-xl">
-            <h2 className="text-2xl font-black text-white mb-3">사건 접수가 가장 빠릅니다</h2>
+            <h2 className="text-2xl font-extrabold text-white mb-3">사건 접수가 가장 빠릅니다</h2>
             <p className="text-white/60 mb-6">온라인 접수 → 48시간 내 담당 변호사가 직접 연락드립니다</p>
             <Link href="/intake" className="btn-primary inline-flex text-base px-10 py-4">
               <FileText className="w-5 h-5" />
@@ -34,41 +30,41 @@ export default function ContactPage() {
             {/* Korea */}
             <div className="card p-8">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">🇰🇷</span>
+                <span className="w-11 h-11 rounded-xl bg-navy text-white text-sm font-extrabold flex items-center justify-center">KR</span>
                 <div>
-                  <div className="font-black text-navy">한국 법인</div>
-                  <div className="text-gray-400 text-sm">국내선·일반 국제선 담당</div>
+                  <div className="font-extrabold text-navy">한국 법인</div>
+                  <div className="text-gray-500 text-sm">국내선·일반 국제선 담당</div>
                 </div>
               </div>
               <div className="space-y-4">
                 <div className="flex items-start gap-3 text-sm">
-                  <Phone className="w-4 h-4 text-gold mt-0.5 shrink-0" />
+                  <Phone className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />
                   <div>
                     <div className="font-semibold text-navy">전화 상담</div>
                     <div className="text-gray-500">02-000-0000</div>
-                    <div className="text-gray-400 text-xs mt-0.5">평일 09:00–18:00</div>
+                    <div className="text-gray-500 text-xs mt-0.5">평일 09:00–18:00</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 text-sm">
-                  <Mail className="w-4 h-4 text-gold mt-0.5 shrink-0" />
+                  <Mail className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />
                   <div>
                     <div className="font-semibold text-navy">이메일</div>
                     <div className="text-gray-500">korea@lawfirm-myung.com</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 text-sm">
-                  <MapPin className="w-4 h-4 text-gold mt-0.5 shrink-0" />
+                  <MapPin className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />
                   <div>
                     <div className="font-semibold text-navy">주소</div>
                     <div className="text-gray-500">서울특별시 강남구 테헤란로 000</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 text-sm">
-                  <MessageCircle className="w-4 h-4 text-gold mt-0.5 shrink-0" />
+                  <MessageCircle className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />
                   <div>
                     <div className="font-semibold text-navy">카카오톡 채널</div>
-                    <a href="#" className="text-gold hover:underline text-sm font-semibold">@법무법인명</a>
-                    <div className="text-gray-400 text-xs mt-0.5">빠른 상담 가능</div>
+                    <a href="#" className="text-navy underline underline-offset-2 hover:text-orange text-sm font-semibold">@법무법인명</a>
+                    <div className="text-gray-500 text-xs mt-0.5">빠른 상담 가능</div>
                   </div>
                 </div>
               </div>
@@ -77,30 +73,30 @@ export default function ContactPage() {
             {/* UK */}
             <div className="card p-8">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">🇬🇧</span>
+                <span className="w-11 h-11 rounded-xl bg-navy text-white text-sm font-extrabold flex items-center justify-center">UK</span>
                 <div>
-                  <div className="font-black text-navy">영국 법인</div>
-                  <div className="text-gray-400 text-sm">EU261·영국 노선 담당</div>
+                  <div className="font-extrabold text-navy">영국 법인</div>
+                  <div className="text-gray-500 text-sm">EU261·영국 노선 담당</div>
                 </div>
               </div>
               <div className="space-y-4">
                 <div className="flex items-start gap-3 text-sm">
-                  <Phone className="w-4 h-4 text-gold mt-0.5 shrink-0" />
+                  <Phone className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />
                   <div>
                     <div className="font-semibold text-navy">전화 상담</div>
                     <div className="text-gray-500">+44 20 0000 0000</div>
-                    <div className="text-gray-400 text-xs mt-0.5">Mon–Fri 09:00–17:00 (GMT)</div>
+                    <div className="text-gray-500 text-xs mt-0.5">Mon–Fri 09:00–17:00 (GMT)</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 text-sm">
-                  <Mail className="w-4 h-4 text-gold mt-0.5 shrink-0" />
+                  <Mail className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />
                   <div>
                     <div className="font-semibold text-navy">이메일</div>
                     <div className="text-gray-500">uk@lawfirm-myung.com</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 text-sm">
-                  <MapPin className="w-4 h-4 text-gold mt-0.5 shrink-0" />
+                  <MapPin className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />
                   <div>
                     <div className="font-semibold text-navy">주소</div>
                     <div className="text-gray-500">London, United Kingdom</div>
@@ -111,9 +107,10 @@ export default function ContactPage() {
           </div>
 
           {/* Notice */}
-          <div className="bg-gold/5 border border-gold/20 rounded-xl p-5 text-center">
+          <div className="bg-navy/5 border border-navy/10 rounded-xl p-5 flex items-center justify-center gap-2">
+            <CheckCircle className="w-4 h-4 text-navy shrink-0" />
             <p className="text-sm text-gray-600">
-              ⚠️ <strong>모든 초기 상담은 무료</strong>입니다. 승소 시에만 수임료가 발생합니다 (성공 보수 방식).
+              <strong className="text-navy">모든 초기 상담은 무료</strong>입니다. 승소 시에만 수임료가 발생합니다 (성공 보수 방식).
             </p>
           </div>
         </div>

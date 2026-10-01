@@ -20,14 +20,11 @@ const services = [
 
 export default function ServiceCards() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-20 sm:py-24 bg-white">
       <div className="container-wide section-padding">
-        <div className="text-center mb-16">
-          <div className="inline-block text-orange font-bold text-sm tracking-widest uppercase mb-3">
-            Our Services
-          </div>
-          <h2 className="section-title">항공 피해의 모든 유형, <br className="sm:hidden" />법무법인 명이 전문가입니다</h2>
-          <p className="section-subtitle">EU261, 몬트리올 협약, 그리고 국내 항공법까지 완벽하게 파악합니다.</p>
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="section-title">항공 지연·결항, <br className="sm:hidden" />이렇게 도와드립니다</h2>
+          <p className="section-subtitle">EU261, 몬트리올 협약, 국내 기준 중 노선에 맞는 근거로 청구합니다.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -40,14 +37,14 @@ export default function ServiceCards() {
 
                 <div className="flex justify-between items-start mb-8">
                   <div className="w-14 h-14 bg-white group-hover:bg-white/10 rounded-xl flex items-center justify-center transition-colors duration-300 shadow-sm">
-                    <Icon className="w-7 h-7 text-orange" />
+                    <Icon className="w-7 h-7 text-navy group-hover:text-white transition-colors" />
                   </div>
                   <span className="badge bg-navy text-white group-hover:bg-orange group-hover:text-white text-[11px] px-3 py-1 font-bold">
                     {badge}
                   </span>
                 </div>
                 
-                <h3 className="font-black text-xl mb-3 text-navy group-hover:text-white transition-colors">
+                <h3 className="font-extrabold text-xl mb-3 text-navy group-hover:text-white transition-colors">
                   {title}
                 </h3>
                 <p className="text-gray-500 text-[15px] leading-relaxed group-hover:text-white/70 transition-colors mb-6">

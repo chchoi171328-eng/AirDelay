@@ -2,6 +2,7 @@ import Image from 'next/image'
 import type { Metadata } from 'next'
 import IntakeForm from '@/components/sections/intake/IntakeForm'
 import { Shield, Clock, Phone } from 'lucide-react'
+import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
   title: '사건 접수',
@@ -14,15 +15,7 @@ export default function IntakePage() {
 
   return (
     <div>
-      <div className="bg-navy pt-20 pb-24 relative overflow-hidden">
-        <div className="container-wide section-padding text-center relative z-10">
-          <h1 className="text-4xl font-black text-white mb-4">무료 사건 접수</h1>
-          <p className="text-white/60 text-lg">간단한 정보 입력으로 전문 검토를 받으세요</p>
-        </div>
-        <svg className="absolute bottom-0 w-full h-10 text-white translate-y-px" preserveAspectRatio="none" viewBox="0 0 1440 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 40h1440V0c-184.22 24-421.1 40-720 40S184.22 24 0 0v40z" />
-        </svg>
-      </div>
+      <PageHeader title="무료 사건 접수" subtitle="간단한 정보 입력으로 변호사 검토를 받으세요" />
 
       <div className="py-16">
         <div className="container-wide section-padding">
@@ -47,7 +40,7 @@ export default function IntakePage() {
                     { icon: Phone, text: '승소 시에만 수임료 발생 (성공 보수)' },
                   ].map(({ icon: Icon, text }) => (
                     <div key={text} className="flex items-start gap-3 text-sm text-gray-600">
-                      <Icon className="w-4 h-4 text-gold mt-0.5 shrink-0" />
+                      <Icon className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />
                       {text}
                     </div>
                   ))}

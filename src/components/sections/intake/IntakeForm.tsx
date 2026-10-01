@@ -196,12 +196,12 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
         {STEPS.map((label, i) => (
           <div key={label} className="flex items-center gap-2 flex-1">
             <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0 transition-all ${
-              i < step ? 'bg-gold text-navy' : i === step ? 'bg-navy text-white' : 'bg-gray-200 text-gray-400'
+              i < step ? 'bg-navy/10 text-navy' : i === step ? 'bg-navy text-white' : 'bg-gray-200 text-gray-500'
             }`}>
               {i < step ? <CheckCircle className="w-4 h-4" /> : i + 1}
             </div>
-            <span className={`text-sm font-medium ${i === step ? 'text-navy' : 'text-gray-400'}`}>{label}</span>
-            {i < STEPS.length - 1 && <div className={`h-px flex-1 ml-2 ${i < step ? 'bg-gold' : 'bg-gray-200'}`} />}
+            <span className={`text-sm font-medium ${i === step ? 'text-navy' : 'text-gray-500'}`}>{label}</span>
+            {i < STEPS.length - 1 && <div className={`h-px flex-1 ml-2 ${i < step ? 'bg-navy/30' : 'bg-gray-200'}`} />}
           </div>
         ))}
       </div>
@@ -248,7 +248,7 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
               {DELAY_RANGES.map((r) => (
                 <button key={r} type="button" aria-pressed={form.delayRange === r} onClick={() => set('delayRange', r)}
                   className={`border rounded-xl px-4 py-3 text-[15px] font-medium transition-all text-left shadow-sm ${
-                    form.delayRange === r ? 'border-gold bg-gold/10 text-navy ring-4 ring-gold/20' : 'border-gray-200 text-gray-600 hover:border-gold/30 hover:bg-gray-50'}`}>
+                    form.delayRange === r ? 'border-navy bg-navy/5 text-navy ring-4 ring-navy/10' : 'border-gray-200 text-gray-600 hover:border-navy/30 hover:bg-gray-50'}`}>
                   {r}
                 </button>
               ))}
@@ -284,17 +284,17 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
               <label className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-8 cursor-pointer hover:border-navy/40 hover:bg-gray-50 focus-within:ring-4 focus-within:ring-navy/10 transition-all ${errors.files ? 'border-red-400' : 'border-gray-200'}`}>
                 <Upload className="w-8 h-8 text-gray-300 mb-3" />
                 <span className="text-sm text-gray-500 font-medium">항공권, 탑승권, 영수증 등</span>
-                <span className="text-xs text-gray-400 mt-1">PDF·JPG·PNG·HEIC, 파일당 10MB, 최대 {MAX_FILES}개</span>
+                <span className="text-xs text-gray-500 mt-1">PDF·JPG·PNG·HEIC, 파일당 10MB, 최대 {MAX_FILES}개</span>
                 <input id="intake-files" type="file" multiple accept={FILE_ACCEPT} onChange={addFiles} className="sr-only"
                   aria-describedby={errors.files ? 'intake-files-error' : undefined} />
               </label>
-              <p className="text-xs text-gray-400 mt-1.5">여권번호 등 고유식별정보가 보이는 부분은 가린 뒤 올려 주세요.</p>
+              <p className="text-xs text-gray-500 mt-1.5">여권번호 등 고유식별정보가 보이는 부분은 가린 뒤 올려 주세요.</p>
               {files.length > 0 && (
                 <ul className="mt-2 space-y-1">
                   {files.map((f, i) => (
                     <li key={`${f.name}-${f.size}`} className="flex items-center justify-between gap-2 text-xs text-navy bg-navy/5 rounded px-3 py-1.5">
-                      <span className="truncate">{f.name} <span className="text-gray-400">({(f.size / 1024 / 1024).toFixed(1)}MB)</span></span>
-                      <button type="button" onClick={() => removeFile(i)} aria-label={`${f.name} 삭제`} className="text-gray-400 hover:text-red-600 shrink-0">
+                      <span className="truncate">{f.name} <span className="text-gray-500">({(f.size / 1024 / 1024).toFixed(1)}MB)</span></span>
+                      <button type="button" onClick={() => removeFile(i)} aria-label={`${f.name} 삭제`} className="text-gray-500 hover:text-red-600 shrink-0">
                         <X className="w-3.5 h-3.5" />
                       </button>
                     </li>
@@ -365,7 +365,7 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
             <CheckCircle className="w-10 h-10 text-green-600" />
           </div>
-          <h2 className="text-2xl font-black text-navy mb-3">접수가 완료됐습니다!</h2>
+          <h2 className="text-2xl font-extrabold text-navy mb-3">접수가 완료됐습니다!</h2>
           <p className="text-gray-500 leading-relaxed mb-2">
             {form.name} 고객님, 사건을 접수했습니다.
           </p>
@@ -386,7 +386,7 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
             </p>
           )}
           {result.clientNotified && (
-            <p className="text-xs text-gray-400">접수 확인 이메일을 <strong>{form.email}</strong>(으)로 보냈습니다</p>
+            <p className="text-xs text-gray-500">접수 확인 이메일을 <strong>{form.email}</strong>(으)로 보냈습니다</p>
           )}
         </div>
       )}
