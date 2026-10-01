@@ -3,7 +3,6 @@ title: "한국소비자원 항공 피해 보상기준 완벽 정리"
 category: consumer
 summary: "소비자분쟁해결기준에 따른 국내 항공사 보상 기준과 실제 청구 절차를 상세히 알아봅니다."
 date: 2024-08-20
-cover: /images/blog-cover.jpg
 draft: true
 ---
 

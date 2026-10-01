@@ -23,7 +23,7 @@ export interface BlogPost {
   category: BlogCategory
   summary: string
   date: string // YYYY-MM-DD
-  cover: string | null
+  cover: string | null // 글에서 직접 지정한 대표 이미지 (없으면 분야별 기본 이미지)
   html: string | null
   draft: boolean
 }
@@ -49,3 +49,13 @@ export const BLOG_CATEGORY_LABELS: Record<BlogCategory, string> = {
   consumer: '소비자보호원 기준',
   guide: '실전 가이드',
 }
+
+// 대표 이미지를 지정하지 않은 글에 쓰는 분야별 기본 이미지
+export const BLOG_CATEGORY_COVERS: Record<BlogCategory, string> = {
+  eu261: '/images/blog/eu261.jpg',
+  montreal: '/images/blog/montreal.jpg',
+  consumer: '/images/blog/consumer.jpg',
+  guide: '/images/blog/guide.jpg',
+}
+
+export const coverOf = (post: Pick<BlogPost, 'cover' | 'category'>) => post.cover ?? BLOG_CATEGORY_COVERS[post.category]

@@ -19,7 +19,7 @@ seoTitle: "검색엔진용 제목 (선택, 없으면 title 사용)"
 category: eu261        # eu261 | montreal | consumer | guide
 summary: "목록 카드와 검색 결과에 보이는 한두 문장 설명"
 date: 2026-10-01
-cover: /images/blog/글주소/cover.png   # 선택. 이미지는 public/ 폴더 아래에 둡니다
+cover: /images/blog/글주소/cover.jpg   # 선택. public/ 폴더 아래에 둡니다. 없으면 분야별 기본 이미지를 씁니다
 ---
 
 본문 (마크다운: ## 소제목, **굵게**, 목록, 표, [링크](/intake))

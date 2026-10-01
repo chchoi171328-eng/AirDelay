@@ -3,7 +3,6 @@ title: "브렉시트 이후 영국 노선 EU261 적용 여부"
 category: eu261
 summary: "브렉시트 이후 영국 관련 노선에 대한 EU261 적용 범위와 영국 항공법(UK261)의 차이점을 정리합니다."
 date: 2024-08-28
-cover: /images/blog-cover.jpg
 draft: true
 ---
 

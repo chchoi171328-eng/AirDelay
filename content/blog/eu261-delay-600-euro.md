@@ -3,7 +3,6 @@ title: "유럽 출발 항공기 지연, 최대 600유로 받는 법"
 category: eu261
 summary: "EU261/2004 규정에 따라 3시간 이상 지연 시 최대 600유로를 보상받을 수 있습니다. 조건과 예외 사항을 상세히 알아봅니다."
 date: 2024-09-01
-cover: /images/blog-cover.jpg
 draft: true
 ---
 

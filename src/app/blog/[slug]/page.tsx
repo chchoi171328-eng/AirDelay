@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Calendar } from 'lucide-react'
 import { getPost, getPosts } from '@/lib/content'
-import { BLOG_CATEGORY_LABELS } from '@/lib/types'
+import { BLOG_CATEGORY_LABELS, coverOf } from '@/lib/types'
 import PostCard, { CATEGORY_COLORS, formatDate } from '@/components/content/PostCard'
 import DraftBadge from '@/components/content/DraftBadge'
 import ArticleCTA from '@/components/content/ArticleCTA'
@@ -60,11 +60,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </div>
 
       <div className="container-wide section-padding py-12 max-w-3xl">
-        {post.cover && (
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-10">
-            <Image src={post.cover} alt="" fill priority sizes="(min-width: 768px) 768px, 100vw" className="object-cover" />
-          </div>
-        )}
+        <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-10">
+          <Image src={coverOf(post)} alt="" fill priority sizes="(min-width: 768px) 768px, 100vw" className="object-cover" />
+        </div>
         <p className="text-lg text-gray-600 leading-relaxed mb-8">{post.summary}</p>
         {post.html && (
           <article className="prose prose-gray max-w-none prose-headings:text-navy prose-a:text-navy prose-strong:text-navy" dangerouslySetInnerHTML={{ __html: post.html }} />
