@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Plane, Phone, Mail, MapPin } from 'lucide-react'
+import { FIRM } from '@/lib/site'
 
 export default function Footer() {
   return (
@@ -51,11 +52,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2.5 text-sm text-white/60">
                 <Phone className="w-4 h-4 text-gold shrink-0" />
-                <span>02-000-0000</span>
+                <a href={`tel:${FIRM.phone}`} className="hover:text-white transition-colors">{FIRM.phone}</a>
               </li>
               <li className="flex items-center gap-2.5 text-sm text-white/60">
                 <Mail className="w-4 h-4 text-gold shrink-0" />
-                <span>info@lawfirm-myung.com</span>
+                <a href={`mailto:${FIRM.email}`} className="hover:text-white transition-colors">{FIRM.email}</a>
               </li>
             </ul>
           </div>
@@ -66,6 +67,7 @@ export default function Footer() {
             © {new Date().getFullYear()} 법무법인 명. All rights reserved.
           </p>
           <div className="flex gap-6">
+            <Link href="/privacy" className="text-white/70 hover:text-white font-bold text-xs transition-colors">개인정보처리방침</Link>
             <Link href="/about" className="text-white/40 hover:text-white/70 text-xs transition-colors">법인 소개</Link>
             <Link href="/contact" className="text-white/40 hover:text-white/70 text-xs transition-colors">문의하기</Link>
           </div>

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function IntakePage() {
+  // 첨부파일은 Supabase Storage(서버 키 필요)가 설정된 경우에만 받습니다.
+  const uploadsEnabled = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY)
+
   return (
     <div>
       <div className="bg-navy pt-20 pb-24 relative overflow-hidden">
@@ -25,7 +28,7 @@ export default function IntakePage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Form */}
             <div className="lg:col-span-2">
-              <IntakeForm />
+              <IntakeForm uploadsEnabled={uploadsEnabled} />
             </div>
 
             {/* Sidebar */}
