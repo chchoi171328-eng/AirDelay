@@ -65,7 +65,8 @@ export default function Testimonials() {
           <div className="bg-white rounded-[2rem] p-8 sm:p-14 shadow-2xl relative">
             <Quote className="absolute top-6 left-6 sm:top-12 sm:left-12 w-8 h-8 sm:w-12 sm:h-12 text-orange/20" />
 
-            <div className="relative z-10 min-h-[200px] flex flex-col justify-center pt-8 sm:pt-0" aria-live="polite">
+            {/* 자동으로 넘어갈 때는 화면낭독기가 매번 읽지 않도록, 사용자가 조작할 때만 알립니다 */}
+            <div className="relative z-10 min-h-[200px] flex flex-col justify-center pt-8 sm:pt-0" aria-live={paused ? 'polite' : 'off'}>
               <p className="text-lg sm:text-2xl text-navy font-medium leading-relaxed sm:leading-loose text-balance text-left sm:text-center sm:px-12">
                 &ldquo;{testimonials[current].text}&rdquo;
               </p>
