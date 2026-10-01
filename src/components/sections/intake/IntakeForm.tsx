@@ -301,7 +301,7 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
             <table className="w-full text-xs text-gray-600 mb-3">
               <tbody className="[&_th]:text-left [&_th]:font-semibold [&_th]:text-navy [&_th]:pr-3 [&_th]:py-1 [&_th]:align-top [&_th]:whitespace-nowrap [&_td]:py-1">
                 <tr><th>수집 목적</th><td>항공 피해 사건 접수, 보상 가능 여부 검토 및 상담 연락</td></tr>
-                <tr><th>수집 항목</th><td>(필수) 이름, 연락처, 이메일, 항공편 정보 · (선택) 피해 상세 내용, 증빙 파일</td></tr>
+                <tr><th>수집 항목</th><td>(필수) 이름, 연락처, 이메일, 항공편 정보 · (선택) 피해 상세 내용{uploadsEnabled && ', 증빙 파일'}</td></tr>
                 <tr><th>보유 기간</th><td><strong className="text-navy">접수일로부터 1년</strong> (사건을 수임하면 위임계약에 따름)</td></tr>
               </tbody>
             </table>

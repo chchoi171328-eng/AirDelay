@@ -67,10 +67,11 @@ export async function notifyIntake(
     type: CASE_TYPE_LABELS[input.type as CaseType] ?? input.type,
     delay_hours: input.delayRange || '-',
   }
-  // 법인용에만 연락처·상세 내용·첨부파일 링크를 담습니다. 법인용 템플릿에 {{intake_id}}, {{files}}를 추가해 주세요.
+  // 법인용에만 연락처·상세 내용·첨부파일 정보를 담습니다.
+  // DB를 연결해 첨부파일을 받게 되면 법인용 템플릿에 {{intake_id}}, {{files}}를 추가하세요.
   const firmParams = {
     ...clientParams,
-    intake_id: opts.id ?? '(DB 미저장)',
+    intake_id: opts.id ?? '-',
     phone: input.phone,
     detail: input.detail || '-',
     files: fileLines.length ? fileLines.join('\n') : '없음',

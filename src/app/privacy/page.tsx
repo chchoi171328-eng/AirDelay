@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: `${FIRM.name}의 개인정보 처리 목적, 항목, 보유기간 및 정보주체의 권리를 안내합니다.`,
 }
 
+// 현재 구성: 접수 내용을 저장하지 않고 메일(EmailJS)로만 전달합니다.
+// DB(Supabase)를 연결해 첨부파일을 받게 되면 제2·5·6·9조에 Supabase를 추가하고 시행일을 바꿔야 합니다.
+
 // 법인이 직접 확인·기재해야 하는 항목 — 공개 전에 모두 채워야 합니다.
 function Blank({ children }: { children: React.ReactNode }) {
   return <mark className="bg-amber-100 text-amber-800 rounded px-1">〔{children}〕</mark>
@@ -54,11 +57,11 @@ export default function PrivacyPage() {
               <thead><tr><th className="w-24">구분</th><th>항목</th></tr></thead>
               <tbody>
                 <tr><td>필수</td><td>이름, 연락처, 이메일, 항공편 정보(항공사, 출발지·도착지, 운항일, 피해 유형)</td></tr>
-                <tr><td>선택</td><td>항공편명, 지연 시간, 피해 상세 내용, 증빙 파일(항공권·탑승권·영수증 등)</td></tr>
+                <tr><td>선택</td><td>항공편명, 지연 시간, 피해 상세 내용, 상담 과정에서 제출하시는 증빙 서류(항공권·탑승권·영수증 등)</td></tr>
                 <tr><td>자동 생성</td><td>서비스 이용 과정에서 IP 주소, 접속 일시 등 접속 기록이 생성될 수 있습니다.</td></tr>
               </tbody>
             </table>
-            <p>증빙 파일에 여권번호 등 고유식별정보가 포함된 경우 해당 부분을 가린 뒤 제출해 주시기 바랍니다.</p>
+            <p>증빙 서류에 여권번호 등 고유식별정보가 포함된 경우 해당 부분을 가린 뒤 제출해 주시기 바랍니다.</p>
           </Section>
 
           <Section title="제3조 개인정보의 처리 및 보유 기간">
@@ -80,9 +83,9 @@ export default function PrivacyPage() {
             <table className={tableCls}>
               <thead><tr><th>수탁자</th><th>위탁 업무</th></tr></thead>
               <tbody>
-                <tr><td>Supabase Inc.</td><td>접수 정보 및 첨부파일 저장</td></tr>
                 <tr><td>Vercel Inc.</td><td>웹사이트 호스팅 및 접수 요청 처리</td></tr>
                 <tr><td>EmailJS <Blank>운영 법인명 확인</Blank></td><td>접수 알림 및 접수 확인 이메일 발송</td></tr>
+                <tr><td><Blank>법인 메일 서비스 제공자(예: Google)</Blank></td><td>접수 메일 수신 및 보관</td></tr>
               </tbody>
             </table>
           </Section>
@@ -93,13 +96,6 @@ export default function PrivacyPage() {
               <table className={`${tableCls} min-w-[560px]`}>
                 <thead><tr><th>이전받는 자(연락처)</th><th>국가</th><th>이전 항목</th><th>일시·방법</th><th>보유 기간</th></tr></thead>
                 <tbody>
-                  <tr>
-                    <td>Supabase Inc. (<Blank>연락처</Blank>)</td>
-                    <td>저장 위치: <Blank>프로젝트 리전</Blank></td>
-                    <td>제2조의 접수 정보, 증빙 파일</td>
-                    <td>접수 시 네트워크를 통해 전송</td>
-                    <td>제3조와 같음</td>
-                  </tr>
                   <tr>
                     <td>Vercel Inc. (<Blank>연락처</Blank>)</td>
                     <td>미국 등 <Blank>함수 실행 리전</Blank></td>
@@ -113,6 +109,13 @@ export default function PrivacyPage() {
                     <td>이름, 연락처, 이메일, 항공편 정보, 피해 상세 내용</td>
                     <td>접수 시 네트워크를 통해 전송</td>
                     <td>발송 완료 후 <Blank>보관 기간 확인</Blank></td>
+                  </tr>
+                  <tr>
+                    <td><Blank>법인 메일 서비스 제공자(국외인 경우)</Blank></td>
+                    <td><Blank>국가</Blank></td>
+                    <td>이름, 연락처, 이메일, 항공편 정보, 피해 상세 내용</td>
+                    <td>접수 시 이메일로 전송</td>
+                    <td>제3조와 같음</td>
                   </tr>
                   <tr>
                     <td><Blank>영국 협업 변호사(해당 시)</Blank></td>
@@ -144,7 +147,7 @@ export default function PrivacyPage() {
           <Section title="제9조 개인정보의 안전성 확보 조치">
             <ul className="list-disc pl-5 space-y-1">
               <li>전송 구간 암호화(HTTPS)</li>
-              <li>접수 정보와 첨부파일을 외부에서 조회할 수 없는 비공개 저장소에 보관</li>
+              <li>접수 내용은 웹사이트에 저장하지 않고 법인 업무용 메일함으로만 전달</li>
               <li>개인정보에 접근할 수 있는 담당자를 최소한으로 제한</li>
             </ul>
           </Section>
