@@ -1,53 +1,35 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { FileEdit, Search, Gavel, Banknote } from 'lucide-react'
+import { PROCESS_STEPS } from '@/lib/process'
 
-const steps = [
-  {
-    icon: FileEdit,
-    title: '1. 간편 사건 접수',
-    desc: '항공편 정보와 피해 사실만 간단히 입력해주세요. 나머지 복잡한 서류 작업은 저희가 알아서 준비합니다.',
-  },
-  {
-    icon: Search,
-    title: '2. 무료 법률 검토',
-    desc: '접수하신 내용을 바탕으로 한국·영국 변호사가 보상 가능 여부와 예상 금액을 48시간 내에 분석해 드립니다.',
-  },
-  {
-    icon: Gavel,
-    title: '3. 항공사 협상 및 소송',
-    desc: '항공사의 보상 거부 시, 최적 관할(한국/유럽)에 맞춰 법무법인 이름으로 강력하게 전문적인 법률 대응을 진행합니다.',
-  },
-  {
-    icon: Banknote,
-    title: '4. 보상금 수령',
-    desc: '항공사로부터 합의금 또는 판결금이 지급되면, 약정된 성공보수만 제외하고 고객님의 계좌로 바로 송금해 드립니다.',
-  },
-]
+const ICONS = [FileEdit, Search, Gavel, Banknote]
+const steps = PROCESS_STEPS.map((step, i) => ({ ...step, icon: ICONS[i] }))
 
 export default function ProcessTimeline() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [activeStep, setActiveStep] = useState(0)
 
   useEffect(() => {
+    // '동작 줄이기' 설정이면 처음부터 모든 단계를 보여 줍니다.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setActiveStep(steps.length - 1)
+      return
+    }
     const handleScroll = () => {
       if (!containerRef.current) return
-      
-      const elements = containerRef.current.querySelectorAll('.step-item')
       const triggerPoint = window.innerHeight * 0.7
-
-      elements.forEach((el, index) => {
-        const top = el.getBoundingClientRect().top
-        if (top < triggerPoint) {
-          setActiveStep(Math.max(activeStep, index))
-        }
+      let reached = -1
+      containerRef.current.querySelectorAll('.step-item').forEach((el, index) => {
+        if (el.getBoundingClientRect().top < triggerPoint) reached = index
       })
+      if (reached >= 0) setActiveStep((prev) => Math.max(prev, reached))
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll() // Trigger once on mount
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [activeStep])
+  }, [])
 
   return (
     <section className="bg-surface py-24">
@@ -81,7 +63,7 @@ export default function ProcessTimeline() {
                   <div key={index} className="step-item relative flex items-start gap-6 sm:gap-8 group">
                     {/* Circle Indicator */}
                     <div 
-                      className={`relative z-10 flex items-center justify-center w-14 h-14 sm:w-18 sm:h-18 rounded-full border-[4px] shrink-0 transition-all duration-500
+                      className={`relative z-10 flex items-center justify-center w-14 h-14 sm:w-[72px] sm:h-[72px] rounded-full border-[4px] shrink-0 transition-all duration-500
                         ${isActive 
                           ? 'bg-orange border-orange/20 shadow-[0_0_20px_rgba(255,107,53,0.4)]' 
                           : 'bg-white border-gray-100'
@@ -93,7 +75,7 @@ export default function ProcessTimeline() {
 
                     {/* Content Card */}
                     <div 
-                      className={`flex-1 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 transition-all duration-500 transform
+                      className={`flex-1 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 transition-all duration-500 motion-reduce:transition-none transform
                         ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
                         ${isCurrent ? 'ring-2 ring-orange/10 shadow-lg' : ''}
                       `}
@@ -102,7 +84,7 @@ export default function ProcessTimeline() {
                         STEP 0{index + 1}
                       </div>
                       <h3 className="text-xl sm:text-2xl font-bold text-navy mb-3">
-                        {step.title}
+                        {index + 1}. {step.title}
                       </h3>
                       <p className="text-gray-500 leading-relaxed text-[15px] sm:text-base">
                         {step.desc}

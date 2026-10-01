@@ -83,7 +83,19 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
   const [today, setToday] = useState('')
   const startedAt = useRef(Date.now())
 
-  useEffect(() => setToday(localToday()), [])
+  useEffect(() => {
+    setToday(localToday())
+    // 홈 화면 간편 양식에서 넘어온 값(?origin=&destination=&date=)을 미리 채웁니다.
+    const q = new URLSearchParams(window.location.search)
+    const pick = (k: string, max: number) => (q.get(k) ?? '').trim().slice(0, max)
+    const date = pick('date', 10)
+    setForm((f) => ({
+      ...f,
+      origin: pick('origin', 50) || f.origin,
+      destination: pick('destination', 50) || f.destination,
+      date: /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : f.date,
+    }))
+  }, [])
 
   const clearError = (k: IntakeField) =>
     setErrors((e) => {

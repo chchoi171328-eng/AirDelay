@@ -29,8 +29,8 @@ export default function Footer() {
             <h4 className="text-gold font-semibold text-sm mb-4 tracking-wide uppercase">서비스</h4>
             <ul className="space-y-2.5">
               {[
-                ['항공 지연 보상', '/services'],
-                ['항공 결항 보상', '/services'],
+                ['항공 지연 보상', '/services#delay'],
+                ['항공 결항 보상', '/services#cancel'],
                 ['사건 접수', '/intake'],
               ].map(([label, href]) => (
                 <li key={label}>

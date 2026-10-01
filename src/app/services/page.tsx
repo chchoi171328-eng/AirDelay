@@ -1,7 +1,9 @@
+import Image from 'next/image'
 import type { Metadata } from 'next'
-import { Clock, XCircle, UserX, Luggage, CheckCircle, ArrowRight } from 'lucide-react'
+import { Clock, XCircle, CheckCircle } from 'lucide-react'
 import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
 import Link from 'next/link'
+import { PROCESS_STEPS } from '@/lib/process'
 
 export const metadata: Metadata = {
   title: '서비스 안내',
@@ -13,7 +15,7 @@ const services = [
     id: 'delay',
     icon: Clock,
     title: '항공 지연 보상',
-    img: '/images/service-delay.png',
+    img: '/images/service-delay.jpg',
     imgLabel: '공항 출발 전광판 / 지연 안내 사진',
     desc: '항공편이 3시간 이상 지연된 경우 EU261 또는 소비자보호원 기준에 따라 보상을 청구할 수 있습니다. 지연 사유가 항공사 귀책인지 여부를 전문적으로 분석하여 최대 보상을 이끌어냅니다.',
     bases: ['EU261 규정 (유럽 출도착 노선)', '몬트리올 협약 (국제선)', '소비자분쟁해결기준 (국내선)'],
@@ -27,7 +29,7 @@ const services = [
     id: 'cancel',
     icon: XCircle,
     title: '항공 결항 보상',
-    img: '/images/service-cancel.png',
+    img: '/images/service-cancel.jpg',
     imgLabel: '결항 안내판 / 빈 게이트 사진',
     desc: '출발 14일 이내 통보된 결항에 대해 대체편 제공 또는 현금 보상을 청구할 수 있습니다. 숙박비·식비·대체 교통비 등 실비도 함께 청구합니다.',
     bases: ['EU261 규정', '몬트리올 협약', '소비자분쟁해결기준'],
@@ -57,22 +59,16 @@ export default function ServicesPage() {
       <div className="bg-gray-50 pt-8 pb-16 border-b">
         <div className="container-wide section-padding max-w-5xl mx-auto">
           <h2 className="text-center text-2xl font-black text-navy mb-12 tracking-tight">서비스 진행 절차</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 relative px-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4 relative px-4">
             <div className="hidden lg:block absolute top-6 left-12 right-12 h-[2px] bg-navy/10" />
             
-            {['사건 접수', '서류 검토', '관할 판단', '협상 또는 소송', '보상 수령'].map((step, i) => (
-              <div key={step} className="relative z-10 flex flex-col items-center text-center group">
+            {PROCESS_STEPS.map((step, i) => (
+              <div key={step.title} className="relative z-10 flex flex-col items-center text-center group">
                 <div className="w-12 h-12 bg-white rounded-full border-[3px] border-navy flex items-center justify-center text-navy font-black text-lg shadow-md group-hover:scale-110 group-hover:bg-navy group-hover:text-white transition-all duration-300 mb-4 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
                   {i + 1}
                 </div>
-                <div className="font-bold text-navy mb-1 text-[15px]">{step}</div>
-                <div className="text-[13px] text-gray-500 font-medium">
-                  {i === 0 && '온라인 무료 접수'}
-                  {i === 1 && '전문 변호사 검토'}
-                  {i === 2 && '한국/유럽 최적지 판단'}
-                  {i === 3 && '항공사 상대 권리 청구'}
-                  {i === 4 && '실제 계좌 입금'}
-                </div>
+                <div className="font-bold text-navy mb-1 text-[15px]">{step.title}</div>
+                <div className="text-[13px] text-gray-500 font-medium">{step.short}</div>
               </div>
             ))}
           </div>
@@ -83,7 +79,7 @@ export default function ServicesPage() {
       <div className="py-16">
         <div className="container-wide section-padding space-y-24">
           {services.map(({ id, icon: Icon, title, img, imgLabel, desc, bases, table }, idx) => (
-            <div key={id} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+            <div key={id} id={id} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center scroll-mt-24">
               <div className={idx % 2 === 1 ? 'lg:order-2' : ''}>
                 <div className="w-12 h-12 bg-navy/5 rounded-xl flex items-center justify-center mb-4">
                   <Icon className="w-6 h-6 text-navy" />
@@ -123,7 +119,11 @@ export default function ServicesPage() {
               </div>
               <div className={idx % 2 === 1 ? 'lg:order-1' : ''}>
                 {img
-                  ? <img src={img} alt={imgLabel} className="w-full rounded-2xl shadow-lg object-cover aspect-[4/3]" />
+                  ? (
+                    <div className="relative w-full aspect-[4/3] rounded-2xl shadow-lg overflow-hidden">
+                      <Image src={img} alt={imgLabel} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+                    </div>
+                  )
                   : <ImagePlaceholder label={imgLabel} className="w-full rounded-2xl shadow-lg" aspectRatio="aspect-[4/3]" />
                 }
               </div>

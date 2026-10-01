@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Calendar, ChevronRight } from 'lucide-react'
 import type { BlogPost } from '@/lib/types'
@@ -17,9 +18,9 @@ export const formatDate = (date: string) => date.replace(/-/g, '. ')
 export default function PostCard({ post }: { post: BlogPost }) {
   return (
     <Link href={`/blog/${post.slug}`} className="card group overflow-hidden flex flex-col">
-      <div className="relative">
+      <div className="relative aspect-video">
         {post.cover
-          ? <img src={post.cover} alt="" className="w-full aspect-video object-cover" />
+          ? <Image src={post.cover} alt="" fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover" />
           : <ImagePlaceholder label="법률 정보" aspectRatio="aspect-video" />}
         <span className={`badge absolute top-3 left-3 text-xs ${CATEGORY_COLORS[post.category]}`}>
           {BLOG_CATEGORY_LABELS[post.category]}

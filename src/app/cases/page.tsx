@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Banknote } from 'lucide-react'
@@ -9,6 +10,7 @@ import CaseCard from '@/components/content/CaseCard'
 export const metadata: Metadata = {
   title: '승소 사례',
   description: '법무법인 명의 실제 항공 피해 보상 승소 사례를 확인하세요.',
+  alternates: { canonical: '/cases' },
 }
 
 const TYPE_TABS = Object.entries(CASE_TYPE_LABELS).map(([value, label]) => ({ value, label }))
@@ -27,7 +29,7 @@ export default function CasesPage() {
 
       {/* Hero image */}
       <div className="relative h-64 overflow-hidden">
-        <img src="/images/cases-hero.png" alt="" className="w-full h-full object-cover" />
+        <Image src="/images/cases-hero.jpg" alt="" fill sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-navy via-navy/30 to-white" />
       </div>
 

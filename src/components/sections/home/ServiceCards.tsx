@@ -1,19 +1,19 @@
 import Link from 'next/link'
-import { Clock, XCircle, UserX, Luggage, ArrowRight } from 'lucide-react'
+import { Clock, XCircle, ArrowRight } from 'lucide-react'
 
 const services = [
   {
     icon: Clock,
     title: '항공기 지연 보상',
     desc: '3시간 이상 지연 시 EU261 또는 국내 소비자보호원 기준으로 지연 보상금을 청구합니다.',
-    href: '/services',
+    href: '/services#delay',
     badge: '최대 600유로',
   },
   {
     icon: XCircle,
     title: '항공기 결항 보상',
     desc: '갑작스러운 결항으로 인한 실비(숙박, 식비 등)와 대체편 관련 손해배상을 전액 청구합니다.',
-    href: '/services',
+    href: '/services#cancel',
     badge: '전액 손해배상',
   },
 ]
@@ -30,7 +30,7 @@ export default function ServiceCards() {
           <p className="section-subtitle">EU261, 몬트리올 협약, 그리고 국내 항공법까지 완벽하게 파악합니다.</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {services.map(({ icon: Icon, title, desc, href, badge }, idx) => (
             <Link key={title} href={href} className="group block animate-fade-in-up" style={{ animationDelay: `${idx * 150}ms` }}>
               <div className="h-full bg-surface border border-gray-100 rounded-2xl p-8 hover:bg-navy hover:text-white hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl relative overflow-hidden">

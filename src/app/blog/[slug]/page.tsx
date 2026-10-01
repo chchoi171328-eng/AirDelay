@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -7,6 +8,7 @@ import { BLOG_CATEGORY_LABELS } from '@/lib/types'
 import PostCard, { CATEGORY_COLORS, formatDate } from '@/components/content/PostCard'
 import DraftBadge from '@/components/content/DraftBadge'
 import ArticleCTA from '@/components/content/ArticleCTA'
+import { FIRM } from '@/lib/site'
 
 export const dynamicParams = false
 
@@ -20,7 +22,16 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: post.seoTitle,
     description: post.summary,
-    openGraph: { type: 'article', title: post.seoTitle, description: post.summary, publishedTime: post.date, ...(post.cover && { images: [post.cover] }) },
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      type: 'article',
+      siteName: FIRM.name,
+      locale: 'ko_KR',
+      title: post.seoTitle,
+      description: post.summary,
+      publishedTime: post.date,
+      images: [post.cover ?? '/og.png'],
+    },
     ...(post.draft && { robots: { index: false } }),
   }
 }
@@ -49,7 +60,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </div>
 
       <div className="container-wide section-padding py-12 max-w-3xl">
-        {post.cover && <img src={post.cover} alt="" className="w-full rounded-2xl object-cover aspect-video mb-10" />}
+        {post.cover && (
+          <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-10">
+            <Image src={post.cover} alt="" fill priority sizes="(min-width: 768px) 768px, 100vw" className="object-cover" />
+          </div>
+        )}
         <p className="text-lg text-gray-600 leading-relaxed mb-8">{post.summary}</p>
         {post.html && (
           <article className="prose prose-gray max-w-none prose-headings:text-navy prose-a:text-navy prose-strong:text-navy" dangerouslySetInnerHTML={{ __html: post.html }} />

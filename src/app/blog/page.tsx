@@ -8,6 +8,7 @@ import PostCard from '@/components/content/PostCard'
 export const metadata: Metadata = {
   title: '법률 정보',
   description: 'EU261, 몬트리올 협약, 소비자보호원 기준 등 항공 피해 보상에 관한 법률 정보를 제공합니다.',
+  alternates: { canonical: '/blog' },
 }
 
 const CATEGORY_TABS = Object.entries(BLOG_CATEGORY_LABELS).map(([value, label]) => ({ value, label }))

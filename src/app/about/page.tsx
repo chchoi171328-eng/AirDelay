@@ -1,7 +1,8 @@
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { Scale, Globe, ArrowRight, CheckCircle } from 'lucide-react'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
 import Link from 'next/link'
+import { PROCESS_STEPS } from '@/lib/process'
 
 export const metadata: Metadata = {
   title: '법인 소개',
@@ -17,7 +18,7 @@ const attorneys = [
     bar: '대한변호사협회',
     specialties: ['국내 항공소송', '소비자보호법', '민사 손해배상'],
     imgLabel: '한국 변호사 프로필 사진',
-    img: '/images/lawyer-kr.png',
+    img: '/images/lawyer-kr.jpg',
   },
   {
     country: '영국',
@@ -27,16 +28,11 @@ const attorneys = [
     bar: 'Solicitors Regulation Authority (SRA)',
     specialties: ['EU261 Regulation', 'Aviation Law', 'Consumer Rights Act'],
     imgLabel: '영국 변호사 프로필 사진',
-    img: '/images/lawyer-uk.png',
+    img: '/images/lawyer-uk.jpg',
   },
 ]
 
-const flowSteps = [
-  { step: '01', title: '사건 접수', desc: '고객이 온라인으로 피해 내용을 접수합니다' },
-  { step: '02', title: '관할 판단', desc: '한국·영국 전문가가 최적 관할을 분석합니다' },
-  { step: '03', title: '한국 또는 영국에서 진행', desc: '관할에 따라 담당 변호사가 직접 처리합니다' },
-  { step: '04', title: '보상 수령', desc: '합의 또는 판결을 통해 보상금을 수령합니다' },
-]
+const flowSteps = PROCESS_STEPS.map((s, i) => ({ step: String(i + 1).padStart(2, '0'), title: s.title, desc: s.desc }))
 
 export default function AboutPage() {
   return (
@@ -70,7 +66,9 @@ export default function AboutPage() {
                 ))}
               </div>
             </div>
-            <img src="/images/lawyer-office.png" alt="법무법인 사무실 / 로펌 이미지" className="w-full rounded-2xl shadow-lg object-cover aspect-[4/3]" />
+            <div className="relative w-full aspect-[4/3] rounded-2xl shadow-lg overflow-hidden">
+              <Image src="/images/lawyer-office.jpg" alt="법무법인 사무실" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+            </div>
           </div>
         </div>
       </div>
@@ -85,7 +83,9 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {attorneys.map(({ country, flag, icon: Icon, name, bar, specialties, imgLabel, img }) => (
               <div key={country} className="card overflow-hidden">
-                <img src={img} alt={imgLabel} className="w-full object-cover aspect-[3/2] object-top" />
+                <div className="relative w-full aspect-[3/2]">
+                  <Image src={img} alt={imgLabel} fill sizes="(min-width: 768px) 448px, 100vw" className="object-cover object-top" />
+                </div>
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-2xl">{flag}</span>

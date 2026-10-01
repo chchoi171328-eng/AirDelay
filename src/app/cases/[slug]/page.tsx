@@ -22,6 +22,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${c.airline} ${c.route} ${CASE_TYPE_LABELS[c.type]} 보상 사례`,
     description: c.summary,
+    alternates: { canonical: `/cases/${c.slug}` },
     ...(c.draft && { robots: { index: false } }),
   }
 }

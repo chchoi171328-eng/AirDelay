@@ -30,7 +30,7 @@ const config: Config = {
         }
       },
       fontFamily: {
-        sans: ['Pretendard', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['"Pretendard Variable"', 'Pretendard', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-in-up': 'fadeInUp 0.6s ease-out both',
