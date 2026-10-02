@@ -69,7 +69,7 @@ export default function CaseDetailPage({ params }: { params: { slug: string } })
         <ArticleCTA />
 
         <Link href="/cases" className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy hover:text-orange transition-colors mt-10">
-          <ArrowLeft className="w-4 h-4" /> 승소 사례 목록
+          <ArrowLeft className="w-4 h-4" /> 보상 사례 목록
         </Link>
       </div>
     </div>

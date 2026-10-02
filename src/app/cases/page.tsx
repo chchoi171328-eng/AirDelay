@@ -8,8 +8,8 @@ import CaseCard from '@/components/content/CaseCard'
 import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
-  title: '승소 사례',
-  description: '법무법인 명의 실제 항공 피해 보상 승소 사례를 확인하세요.',
+  title: '보상 사례',
+  description: '법무법인 명이 실제로 보상을 받아 낸 항공 지연·결항 사례를 확인하세요.',
   alternates: { canonical: '/cases' },
 }
 
@@ -20,7 +20,7 @@ export default function CasesPage() {
 
   return (
     <div>
-      <PageHeader title="승소 사례" subtitle="실제 보상을 이끌어낸 사례들입니다" />
+      <PageHeader title="보상 사례" subtitle="실제 보상을 이끌어낸 사례들입니다" />
 
       <div className="container-wide section-padding py-12">
         {cases.length > 0 ? (
@@ -31,7 +31,7 @@ export default function CasesPage() {
             items={cases.map((c) => ({ key: c.slug, group: c.type, node: <CaseCard c={c} /> }))}
           />
         ) : (
-          <p className="text-center text-gray-500 py-10">승소 사례를 정리하고 있습니다.</p>
+          <p className="text-center text-gray-500 py-10">보상 사례를 정리하고 있습니다.</p>
         )}
 
         {/* CTA */}

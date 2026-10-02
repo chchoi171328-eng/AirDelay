@@ -1,4 +1,4 @@
-// 승소 사례·법률 정보 콘텐츠 — content/ 폴더의 마크다운 파일을 빌드할 때 읽습니다. (작성법: content/README.md)
+// 보상 사례·법률 정보 콘텐츠 — content/ 폴더의 마크다운 파일을 빌드할 때 읽습니다. (작성법: content/README.md)
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'

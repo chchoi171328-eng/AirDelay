@@ -7,7 +7,7 @@ import Logo from './Logo'
 
 const navLinks = [
   { href: '/services', label: '서비스 안내' },
-  { href: '/cases', label: '승소 사례' },
+  { href: '/cases', label: '보상 사례' },
   { href: '/blog', label: '법률 정보' },
   { href: '/about', label: '법인 소개' },
   { href: '/contact', label: '문의하기' },
