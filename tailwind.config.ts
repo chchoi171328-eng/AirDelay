@@ -15,7 +15,7 @@ const config: Config = {
           light: '#0D2E56',
         },
         gold: {
-          DEFAULT: '#C9A84C', // Accent gold/bronze
+          DEFAULT: '#C5A47E', // 로고 금색 (메인 사이트 brand-gold와 같은 값)
           light: '#D4B86A',
           dark: '#A8873A',
         },

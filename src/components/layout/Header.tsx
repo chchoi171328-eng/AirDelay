@@ -2,7 +2,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { Menu, X, Plane } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import Logo from './Logo'
 
 const navLinks = [
   { href: '/services', label: '서비스 안내' },
@@ -22,14 +23,8 @@ export default function Header() {
       <div className="container-wide section-padding">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 bg-gold rounded-lg flex items-center justify-center group-hover:bg-gold-light transition-colors">
-              <Plane className="w-4 h-4 text-navy" />
-            </div>
-            <div className="leading-tight">
-              <div className="text-white font-bold text-sm tracking-wide">법무법인</div>
-              <div className="text-gold font-extrabold text-base tracking-tight -mt-0.5">명</div>
-            </div>
+          <Link href="/" className="hover:opacity-90 transition-opacity">
+            <Logo />
           </Link>
 
           {/* Desktop nav */}

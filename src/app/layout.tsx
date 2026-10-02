@@ -28,6 +28,7 @@ const jsonLd = {
   '@type': 'LegalService',
   name: FIRM.name,
   url: SITE_URL,
+  logo: `${SITE_URL}/images/logo.png`,
   description: SITE_DESCRIPTION,
   telephone: FIRM.phone,
   email: FIRM.email,

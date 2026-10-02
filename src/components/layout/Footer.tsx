@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import { Plane, Phone, Mail, MapPin } from 'lucide-react'
+import { Phone, Mail, MapPin } from 'lucide-react'
 import { FIRM } from '@/lib/site'
+import Logo from './Logo'
 
 export default function Footer() {
   return (
@@ -9,15 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Logo & intro */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 bg-gold rounded-lg flex items-center justify-center">
-                <Plane className="w-4 h-4 text-navy" />
-              </div>
-              <div className="leading-tight">
-                <div className="text-white/70 text-xs tracking-wide">법무법인</div>
-                <div className="text-gold font-extrabold text-lg tracking-tight -mt-0.5">명</div>
-              </div>
-            </div>
+            <Logo className="mb-4" />
             <p className="text-white/60 text-sm leading-relaxed max-w-xs break-keep">
               항공지연·결항 피해 전문 법무법인.<br />
               한국–영국 변호사 협업으로 국내외 모든 노선을 처리합니다.
