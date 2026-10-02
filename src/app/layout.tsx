@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+// Pretendard: 사이트에서 직접 제공 (화면에 쓰인 글자 묶음만 내려받는 방식)
+import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -44,12 +46,6 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        {/* Pretendard: 화면에 쓰인 글자 묶음만 내려받는 방식 */}
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"
-        />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body className="min-h-screen flex flex-col">
