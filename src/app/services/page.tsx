@@ -17,7 +17,7 @@ const services = [
     icon: Clock,
     title: '항공 지연 보상',
     img: '/images/service-delay.jpg',
-    imgLabel: '공항 출발 전광판 / 지연 안내 사진',
+    imgLabel: '공항 탑승구에서 지연된 항공편을 기다리는 승객들',
     desc: '항공편이 3시간 이상 지연된 경우 EU261 또는 소비자보호원 기준에 따라 보상을 청구할 수 있습니다. 지연 사유가 항공사 귀책인지 여부를 전문적으로 분석하여 최대 보상을 이끌어냅니다.',
     bases: ['EU261 규정 (유럽 출도착 노선)', '몬트리올 협약 (국제선)', '소비자분쟁해결기준 (국내선)'],
     table: [
@@ -31,7 +31,7 @@ const services = [
     icon: XCircle,
     title: '항공 결항 보상',
     img: '/images/service-cancel.jpg',
-    imgLabel: '결항 안내판 / 빈 게이트 사진',
+    imgLabel: '비 내리는 밤, 승객이 떠난 탑승구에 남은 여행가방',
     desc: '출발 14일 이내 통보된 결항에 대해 대체편 제공 또는 현금 보상을 청구할 수 있습니다. 숙박비·식비·대체 교통비 등 실비도 함께 청구합니다.',
     bases: ['EU261 규정', '몬트리올 협약', '소비자분쟁해결기준'],
     table: [
