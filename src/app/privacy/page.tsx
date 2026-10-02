@@ -123,7 +123,7 @@ export default function PrivacyPage() {
                 </tbody>
               </table>
             </div>
-            <p>국외 이전을 원하지 않으시면 온라인 접수 대신 전화로 상담하실 수 있습니다.</p>
+            <p>국외 이전을 원하지 않으시면 온라인 접수 대신 전화로 접수하실 수 있습니다.</p>
           </Section>
 
           <Section title="제7조 개인정보의 파기 절차 및 방법">

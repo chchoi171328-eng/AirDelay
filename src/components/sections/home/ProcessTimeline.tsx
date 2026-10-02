@@ -10,7 +10,7 @@ export default function ProcessTimeline() {
       <div className="container-wide section-padding">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="section-title">복잡한 항공 보상, <br className="sm:hidden" />저희가 대신 처리합니다</h2>
-          <p className="section-subtitle">고객님은 접수만 하세요. 나머지는 변호사가 맡습니다.</p>
+          <p className="section-subtitle">고객님은 접수만 하세요. 청구는 변호사가 맡습니다.</p>
         </div>
 
         <div className="relative">

@@ -31,8 +31,8 @@ export default function BlogPage() {
           />
         ) : (
           <div className="text-center py-16">
-            <p className="text-gray-500 mb-6">법률 정보를 준비하고 있습니다. 궁금한 점은 무료 사건 접수로 문의해 주세요.</p>
-            <Link href="/intake" className="btn-primary">무료 사건 접수</Link>
+            <p className="text-gray-500 mb-6">법률 정보를 준비하고 있습니다. 궁금한 점은 사건 접수로 문의해 주세요.</p>
+            <Link href="/intake" className="btn-primary">사건 접수하기</Link>
           </div>
         )}
       </div>

@@ -39,7 +39,7 @@ export default function MobileCTA() {
       </a>
       <Link href="/intake" tabIndex={visible ? undefined : -1} className="btn-primary flex-1 text-sm py-3">
         <FileText className="w-4 h-4" />
-        무료 사건 접수
+        사건 접수하기
       </Link>
     </div>
     </>

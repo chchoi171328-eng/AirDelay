@@ -8,7 +8,7 @@ export default function NotFound() {
       <p className="text-gray-500 mb-8">주소가 바뀌었거나 삭제된 페이지입니다.</p>
       <div className="flex flex-wrap gap-3 justify-center">
         <Link href="/" className="btn-navy">홈으로</Link>
-        <Link href="/intake" className="btn-primary">무료 사건 접수</Link>
+        <Link href="/intake" className="btn-primary">사건 접수하기</Link>
       </div>
     </div>
   )

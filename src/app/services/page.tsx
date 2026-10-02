@@ -107,7 +107,7 @@ export default function ServicesPage() {
                     </div>
                   </div>
                 </div>
-                <Link href="/intake" className="btn-navy mt-6 inline-flex">무료 사건 접수</Link>
+                <Link href="/intake" className="btn-navy mt-6 inline-flex">사건 접수하기</Link>
               </div>
               <div className={idx % 2 === 1 ? 'lg:order-1' : ''}>
                 {img

@@ -11,17 +11,17 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div>
-      <PageHeader title="문의하기" subtitle="사건 접수 및 법률 상담 창구를 안내합니다" />
+      <PageHeader title="문의하기" subtitle="사건 접수 및 문의 창구를 안내합니다" />
 
       <div className="py-16">
         <div className="container-wide section-padding">
           {/* Primary CTA */}
           <div className="bg-gradient-to-br from-navy to-navy-dark rounded-2xl p-10 text-center mb-12 shadow-xl">
             <h2 className="text-2xl font-extrabold text-white mb-3">사건 접수가 가장 빠릅니다</h2>
-            <p className="text-white/60 mb-6">온라인 접수 → 48시간 내 담당 변호사가 직접 연락드립니다</p>
+            <p className="text-white/60 mb-6">온라인 접수 → 영업일 기준 2일 이내에 연락드립니다</p>
             <Link href="/intake" className="btn-primary inline-flex text-base px-10 py-4">
               <FileText className="w-5 h-5" />
-              무료 사건 접수
+              사건 접수하기
             </Link>
           </div>
 
@@ -40,7 +40,7 @@ export default function ContactPage() {
                 <div className="flex items-start gap-3 text-sm">
                   <Phone className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />
                   <div>
-                    <div className="font-semibold text-navy">전화 상담</div>
+                    <div className="font-semibold text-navy">전화 문의</div>
                     <div className="text-gray-500">02-000-0000</div>
                     <div className="text-gray-500 text-xs mt-0.5">평일 09:00–18:00</div>
                   </div>
@@ -64,7 +64,7 @@ export default function ContactPage() {
                   <div>
                     <div className="font-semibold text-navy">카카오톡 채널</div>
                     <a href="#" className="text-navy underline underline-offset-2 hover:text-orange text-sm font-semibold">@법무법인명</a>
-                    <div className="text-gray-500 text-xs mt-0.5">빠른 상담 가능</div>
+                    <div className="text-gray-500 text-xs mt-0.5">빠른 문의 가능</div>
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default function ContactPage() {
                 <div className="flex items-start gap-3 text-sm">
                   <Phone className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />
                   <div>
-                    <div className="font-semibold text-navy">전화 상담</div>
+                    <div className="font-semibold text-navy">전화 문의</div>
                     <div className="text-gray-500">+44 20 0000 0000</div>
                     <div className="text-gray-500 text-xs mt-0.5">Mon–Fri 09:00–17:00 (GMT)</div>
                   </div>
@@ -110,7 +110,7 @@ export default function ContactPage() {
           <div className="bg-navy/5 border border-navy/10 rounded-xl p-5 flex items-center justify-center gap-2">
             <CheckCircle className="w-4 h-4 text-navy shrink-0" />
             <p className="text-sm text-gray-600">
-              <strong className="text-navy">모든 초기 상담은 무료</strong>입니다. 승소 시에만 수임료가 발생합니다 (성공 보수 방식).
+              <strong className="text-navy">착수금·선불금 없음</strong> — 보상금을 받은 경우에만 수임료가 발생합니다 (성공 보수 방식).
             </p>
           </div>
         </div>

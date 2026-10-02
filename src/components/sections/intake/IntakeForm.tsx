@@ -304,7 +304,7 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
             </Field>
           ) : (
             <div className="text-sm text-gray-500 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3">
-              항공권·탑승권 등 증빙 파일은 접수 후 담당 변호사가 연락드릴 때 안내에 따라 보내 주세요.
+              항공권·탑승권 등 증빙 파일은 접수 후 연락드릴 때 안내에 따라 보내 주세요.
             </div>
           )}
 
@@ -318,7 +318,7 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
               </tbody>
             </table>
             <p className="text-xs text-gray-500 mb-3">
-              동의를 거부할 수 있으나, 거부하시면 온라인 접수를 할 수 없습니다(전화 상담은 가능합니다).{' '}
+              동의를 거부할 수 있으나, 거부하시면 온라인 접수를 할 수 없습니다(전화로는 접수하실 수 있습니다).{' '}
               <Link href="/privacy" target="_blank" className="underline hover:text-navy">개인정보처리방침 전문</Link>
             </p>
             <label className="flex items-center gap-2.5 text-sm font-semibold text-navy cursor-pointer">
@@ -370,7 +370,8 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
             {form.name} 고객님, 사건을 접수했습니다.
           </p>
           <p className="text-gray-500 leading-relaxed mb-8">
-            검토 후 <strong className="text-navy">48시간 이내</strong>에 담당 변호사가 연락드립니다.
+            <strong className="text-navy">영업일 기준 2일 이내</strong>에 연락드립니다.<br />
+            보상 가능 여부를 안내드리거나, 판단에 필요한 내용을 여쭤봅니다.
           </p>
           <div className="bg-navy/5 rounded-xl p-5 text-left text-sm space-y-2 mb-8 max-w-sm mx-auto">
             <div className="flex justify-between"><span className="text-gray-500">항공사</span><span className="font-semibold text-navy">{form.airline}</span></div>
@@ -382,7 +383,7 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
               {result.filesStored === null
                 ? '첨부파일 저장 여부를 확인하지 못했습니다.'
                 : `첨부파일 ${result.filesSelected}개 중 ${result.filesStored}개만 저장됐습니다.`}{' '}
-              담당 변호사가 연락드릴 때 다시 보내 주세요.
+              연락드릴 때 다시 보내 주세요.
             </p>
           )}
           {result.clientNotified && (
