@@ -65,13 +65,13 @@ const details: Detail[] = [
   {
     timing: '6월 말·12월 말 마감 → 8월·2월 중 소장 접수',
     we: [
-      '같은 항공사 사건을 6개월 단위로 모아, 마감 후 항공사별 소송 진행 여부를 한꺼번에 안내드립니다.',
+      '같은 항공사 사건을 운항일 기준 6개월 단위로 모아, 마감 후 항공사별 소송 진행 여부를 한꺼번에 안내드립니다.',
       '동의하신 분들을 원고로 소장을 접수하고, 재판은 변호사가 대리해 진행합니다.',
     ],
     you: [
       '안내받은 날부터 1개월 안에 소송 진행 동의 여부를 알려 주세요.',
       '동의하실 때 소송 진행비 1만 원을 내 주세요.',
-      '법원에 직접 나오셔야 할 일이 생기면 미리 안내드립니다.',
+      '법원에 나오실 일은 없습니다.',
     ],
     fee: <>참여 동의 시 진행비 1인 <strong className="text-navy">1만 원</strong> + 판결금·합의금을 받은 경우 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</>,
     more: { label: '공동소송 일정과 기준 자세히 보기', href: '#group' },
@@ -94,15 +94,15 @@ const routes = [
 ]
 
 const reasons = [
-  { icon: Users, title: '같은 항공사끼리 함께', desc: '항공편이나 날짜가 달라도 같은 항공사 사건이면 하나의 소송으로 모아 진행합니다.' },
-  { icon: Scale, title: '변호사가 모두 대리', desc: '법무법인이 원고 모두를 대리해 소장 작성부터 재판까지 맡습니다.' },
+  { icon: Users, title: '같은 항공사끼리 함께', desc: '항공편이 달라도 같은 기간에 운항한 같은 항공사 사건이면 하나의 소송으로 모아 진행합니다.' },
+  { icon: Scale, title: '변호사가 모두 대리', desc: '법무법인이 원고 모두를 대리해 소장 작성부터 재판까지 맡습니다. 고객님이 법원에 나오실 일은 없습니다.' },
   { icon: Wallet, title: '부담은 진행비 1만 원', desc: '참여하실 때 진행비 1만 원만 내시면 되고, 성공보수는 소송으로 가도 25% 그대로입니다.' },
 ]
 
 // 공동소송 차수 일정 — 자주 묻는 질문(content/faq/09-litigation-timing.md)과 같은 내용을 유지해 주세요
 const batches = [
-  { label: '상반기 차수', close: '6월 말', file: '8월 중' },
-  { label: '하반기 차수', close: '12월 말', file: '2월 중' },
+  { label: '상반기 차수', flights: '1월~6월 운항 항공편', close: '6월 말', file: '8월 중' },
+  { label: '하반기 차수', flights: '7월~12월 운항 항공편', close: '12월 말', file: '다음 해 2월 중' },
 ]
 
 const rules = [
@@ -261,14 +261,17 @@ export default function ProcessPage() {
 
           {/* 차수 일정 */}
           <h3 className="text-xl font-extrabold text-navy mt-14 mb-2">차수 일정</h3>
-          <p className="text-gray-600 leading-relaxed mb-6 break-keep">6개월마다 한 번, 그동안 항공사가 거절한 사건을 모아 진행합니다.</p>
+          <p className="text-gray-600 leading-relaxed mb-6 break-keep">항공편 운항일을 기준으로 6개월씩 묶어 진행합니다.</p>
           <div className="space-y-4">
-            {batches.map(({ label, close, file }) => (
+            {batches.map(({ label, flights, close, file }) => (
               <div key={label} className="rounded-2xl border border-navy/10 overflow-hidden">
-                <div className="bg-navy text-white text-sm font-bold px-5 py-2.5">{label}</div>
+                <div className="bg-navy text-white text-sm px-5 py-2.5 flex flex-wrap gap-x-3 gap-y-0.5">
+                  <span className="font-bold">{label}</span>
+                  <span className="text-white/70">{flights}</span>
+                </div>
                 <ol className="grid grid-cols-1 sm:grid-cols-4">
                   {[
-                    { k: '소송 대상 마감', v: close },
+                    { k: '마감', v: close },
                     { k: '진행 여부 안내', v: '마감 후 한꺼번에' },
                     { k: '동의 확인', v: '안내받은 날부터 1개월' },
                     { k: '소장 접수', v: file },
@@ -282,7 +285,7 @@ export default function ProcessPage() {
               </div>
             ))}
           </div>
-          <p className="text-sm text-gray-500 mt-4 break-keep">예: 3월에 항공사가 거절한 사건은 상반기 차수(6월 말 마감)에 포함되며, 소송에 동의하시면 8월 중 소장이 접수됩니다.</p>
+          <p className="text-sm text-gray-500 mt-4 break-keep">예: 3월에 운항한 항공편은 상반기 차수에 포함되며, 항공사가 거절하고 소송에 동의하시면 8월 중 소장이 접수됩니다.</p>
 
           {/* 진행 기준 */}
           <h3 className="text-xl font-extrabold text-navy mt-14 mb-4">진행 기준</h3>
