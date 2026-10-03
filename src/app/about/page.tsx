@@ -132,20 +132,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Press logos placeholder */}
-      <div className="py-14 bg-white border-t">
-        <div className="container-wide section-padding text-center">
-          <div className="text-sm font-semibold text-gray-500 mb-8 tracking-widest uppercase">언론 보도</div>
-          <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-14">
-            {['YTN', '연합뉴스', 'KBS', '조선일보', 'Bloomberg'].map((press) => (
-              <div key={press} className="text-gray-300 font-extrabold text-xl sm:text-2xl tracking-tight hover:text-gray-500 transition-colors">
-                {press}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <IntakeCTA />
     </div>
   )
