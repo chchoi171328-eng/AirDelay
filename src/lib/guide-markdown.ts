@@ -23,6 +23,16 @@ const KINDS = ['summary', 'toc', 'term', 'caption', 'callout', 'deadline', 'flow
 const BLOCK_RE = new RegExp(`^:::(${KINDS.join('|')})[ \\t]*([^\\n]*)\\n([\\s\\S]*?)^:::[ \\t]*(?:\\n|$)`, 'm')
 const ID_RE = /\s*\{#([a-z0-9][a-z0-9-]*)\}\s*$/
 
+// 취소선은 물결 두 개(~~글자~~)일 때만. 한국어 글의 '3~4시간', '€250~600' 같은 범위 표기가
+// 한 줄에 두 번 나오면 마크다운이 그 사이를 취소선으로 바꾸는 것을 막습니다. (content.ts에서도 씁니다)
+export const tildeSafeTokenizer = {
+  del(this: { lexer: { inlineTokens: (src: string) => Tokens.Generic[] } }, src: string) {
+    const m = /^~~(?=\S)([\s\S]*?\S)~~(?!~)/.exec(src)
+    if (!m) return undefined
+    return { type: 'del', raw: m[0], text: m[1], tokens: this.lexer.inlineTokens(m[1]) } as Tokens.Del
+  },
+}
+
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 const plain = (html: string) =>
   html.replace(/<\/(p|li|div|h\d)>/g, ' ').replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim()
@@ -87,6 +97,7 @@ export function renderGuide(body: string): GuideHtml {
 
   const md = new Marked({
     extensions: [block],
+    tokenizer: tildeSafeTokenizer,
     renderer: {
       // '## 제목 {#english-id}' → <h2 id="english-id">. id를 적지 않으면 section-1, section-2 …
       heading(token) {

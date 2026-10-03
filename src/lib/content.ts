@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
-import { renderGuide } from './guide-markdown'
+import { renderGuide, tildeSafeTokenizer } from './guide-markdown'
 import { GUIDE_AUTHOR } from './site'
 import { BLOG_CATEGORY_LABELS, CASE_TYPE_LABELS, FAQ_CATEGORY_LABELS } from './types'
 import type { BlogCategory, BlogPost, Case, CaseType, FaqCategory, FaqItem } from './types'
@@ -44,6 +44,7 @@ function required(file: string, data: Record<string, unknown>, field: string): s
 
 const strings = (v: unknown) => (Array.isArray(v) ? v.map(String).map((s) => s.trim()).filter(Boolean) : [])
 
+marked.use({ tokenizer: tildeSafeTokenizer })
 const toHtml = (body: string) => (body ? (marked.parse(body, { async: false }) as string) : null)
 
 let postsCache: BlogPost[] | null = null
