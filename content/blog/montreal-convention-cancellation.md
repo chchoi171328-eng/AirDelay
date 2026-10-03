@@ -1,5 +1,5 @@
 ---
-title: "국제선 결항, 몬트리올 협약으로 받을 수 있는 보상은?"
+title: "정액 보상이 없는 국제선 — 몬트리올 협약으로 청구하는 손해"
 category: claim
 cover: /images/blog/montreal.jpg
 summary: "몬트리올 협약(1999)에 따른 국제 항공 보상 기준과 SDR 계산법을 설명합니다."

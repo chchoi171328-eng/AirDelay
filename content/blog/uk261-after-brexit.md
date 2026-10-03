@@ -1,5 +1,5 @@
 ---
-title: "브렉시트 이후 영국 노선 EU261 적용 여부"
+title: "영국 노선 지연 — 브렉시트 이후 UK261"
 category: claim
 cover: /images/blog/aviation.jpg
 summary: "브렉시트 이후 영국 관련 노선에 대한 EU261 적용 범위와 영국 항공법(UK261)의 차이점을 정리합니다."
