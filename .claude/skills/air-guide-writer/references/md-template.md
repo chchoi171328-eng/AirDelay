@@ -26,7 +26,7 @@ related: []                                                      # 함께 읽을
 ctaSituation: "유럽에서 출발한 항공편이 3시간 넘게 늦었다면"            # 맺음 상자 첫 문장 앞부분
 ctaOffer: "EU261 적용 여부와 비행거리 기준 금액"                      # "…부터 확인해 드립니다" 앞부분
 author: "법무법인 명"                                              # 작성자는 법무법인 명으로 통일 (생략해도 같은 값)
-draft: true                                                      # 검토 전에는 반드시 true
+draft: true                                                      # 사이트 공개 후에만 사용 (공개 전에는 이 줄 없이 올린다 — SKILL.md 6단계)
 ---
 ```
 
@@ -96,12 +96,12 @@ npm run lint && npm run build          # frontmatter 오류는 파일 이름과 
 npx next start -p 3100                 # /guide/{slug} 확인 (데스크톱 1280px, 모바일 390px)
 ```
 - 사진·캡션·블록이 깨지지 않는지 본다 (용어 사전이면 목차 링크가 각 소제목으로 이동하는지도)
-- 미리보기 배포(Vercel preview)에서는 `draft: true` 글도 보인다. 운영 사이트에는 `draft` 줄을 지워야 나온다
+- 미리보기 배포(Vercel preview)에서는 `draft: true` 글도 보인다. 운영 배포(production)에서는 `draft` 줄이 없어야 나온다
 
 ## 5. 보고 형식
 
 ```
-가이드 작성 완료 (초안, draft: true)
+가이드 작성 완료 (공개 전이라 draft 없이 반영 / 공개 후라면 draft: true)
 
 - title      : EU261 지연 보상
 - seoTitle   : EU261 지연 보상 — 유럽 출발 항공편이 3시간 늦었을 때 받는 금액
