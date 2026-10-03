@@ -104,6 +104,54 @@
   }
 }
 
+/* 항공 보상 가이드 본문의 전용 블록 (src/lib/guide-markdown.ts가 만드는 class) */
+@layer components {
+  .guide-body { @apply text-[16px] leading-[1.85] break-keep; }
+  .guide-body h2 { @apply text-2xl font-extrabold mt-14 mb-4 scroll-mt-24; }
+  .guide-body h3 { @apply text-lg font-bold mt-8 mb-3 scroll-mt-24; }
+  .guide-body img { @apply rounded-xl my-8; }
+  .guide-body table { @apply text-[15px]; }
+  .guide-body .g-label { @apply text-xs font-bold tracking-wider text-gold-dark mb-2; }
+
+  .guide-body .g-summary { @apply rounded-2xl bg-navy/5 border border-navy/10 px-6 py-5 my-8; }
+  .guide-body .g-summary ul { @apply my-0; }
+  .guide-body .g-summary li { @apply my-1.5; }
+
+  .guide-body .g-toc { @apply rounded-2xl border border-gray-200 px-6 py-5 my-8; }
+  .guide-body .g-toc ol { @apply list-none pl-0 my-0; }
+  .guide-body .g-toc li { @apply pl-0 my-1.5; }
+  .guide-body .g-toc a { @apply no-underline font-semibold hover:underline; }
+
+  .guide-body .g-term { @apply border-l-2 border-gray-200 pl-4 my-5 text-sm text-gray-500; }
+  .guide-body .g-term p { @apply my-0; }
+
+  .guide-body .g-caption { @apply -mt-5 mb-8 text-sm text-gray-500 text-center; }
+  .guide-body .g-caption p { @apply my-0; }
+
+  .guide-body .g-callout { @apply rounded-xl bg-amber-50 border border-amber-200 px-5 py-4 my-8; }
+  .guide-body .g-callout p { @apply my-1; }
+
+  .guide-body .g-deadline { @apply rounded-2xl bg-navy-dark px-6 py-5 my-10 text-white/85; }
+  .guide-body .g-deadline .g-label { @apply text-gold; }
+  .guide-body .g-deadline ul { @apply my-0; }
+  .guide-body .g-deadline li { @apply my-1.5 marker:text-white/40; }
+  .guide-body .g-deadline strong, .guide-body .g-deadline p:last-child { @apply text-white; }
+
+  .guide-body .g-flow { @apply rounded-2xl border border-navy/10 px-6 py-5 my-10; counter-reset: gflow; }
+  .guide-body .g-flow ol { @apply list-none pl-0 my-0; }
+  .guide-body .g-flow li { @apply relative pl-11 my-3 min-h-8; counter-increment: gflow; }
+  .guide-body .g-flow li::before { content: counter(gflow); @apply absolute left-0 top-0 w-8 h-8 rounded-full bg-navy text-white text-sm font-bold flex items-center justify-center; }
+
+  .guide-body .g-faq { @apply my-6 space-y-3; }
+  .guide-body .g-faq details { @apply rounded-xl border border-gray-200 bg-white; }
+  .guide-body .g-faq summary { @apply cursor-pointer list-none px-5 py-4 font-bold text-navy; }
+  .guide-body .g-faq summary::-webkit-details-marker { display: none; }
+  .guide-body .g-faq summary::after { content: '+'; @apply float-right text-gray-400 font-normal; }
+  .guide-body .g-faq details[open] summary::after { content: '−'; }
+  .guide-body .g-faq-a { @apply px-5 pb-4; }
+  .guide-body .g-faq-a p { @apply my-1; }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

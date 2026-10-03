@@ -16,15 +16,22 @@ export interface Case {
 }
 
 // content/blog/*.md 한 개 = 항공 보상 가이드 글 한 편 (/guide/파일이름)
+// 가이드는 날짜를 달고 흐르는 글이 아니라 주제별로 고정해 두고 갱신하는 문서라서, 발행일 대신 검토일(reviewedAt)을 씁니다.
 export interface BlogPost {
   slug: string
-  title: string
-  seoTitle: string
+  title: string // 목록·링크용 짧은 주제명
+  seoTitle: string // 글 제목(H1)·검색 결과 제목
   category: BlogCategory
-  summary: string
-  date: string // YYYY-MM-DD
+  summary: string // 목록 카드와 검색 결과 설명
+  keywords: string[]
+  reviewedAt: string // YYYY-MM
+  author: string
   cover: string | null // 글에서 직접 지정한 대표 이미지 (없으면 분야별 기본 이미지)
+  related: string[] // 함께 보면 좋은 가이드의 파일 이름
+  cta: { situation: string; offer: string } | null // 맺음 안내 문구를 주제에 맞게 바꿀 때
   html: string | null
+  toc: { id: string; text: string }[]
+  faq: { q: string; a: string }[]
   draft: boolean
 }
 

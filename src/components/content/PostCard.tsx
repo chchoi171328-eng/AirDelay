@@ -12,6 +12,9 @@ export const CATEGORY_COLORS: Record<BlogPost['category'], string> = {
 
 export const formatDate = (date: string) => date.replace(/-/g, '. ')
 
+// 검토일 표시: '2026-10' → '2026년 10월 검토'
+export const formatReviewed = (ym: string) => `${ym.slice(0, 4)}년 ${Number(ym.slice(5, 7))}월 검토`
+
 export default function PostCard({ post }: { post: BlogPost }) {
   return (
     <Link href={`/guide/${post.slug}`} className="card group overflow-hidden flex flex-col">
@@ -30,7 +33,7 @@ export default function PostCard({ post }: { post: BlogPost }) {
         <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
           <div className="flex items-center gap-1.5 text-gray-500 text-xs">
             <Calendar className="w-3.5 h-3.5" />
-            {formatDate(post.date)}
+            {formatReviewed(post.reviewedAt)}
           </div>
           <span className="flex items-center gap-1 text-navy text-xs font-semibold group-hover:text-orange transition-colors">
             읽기 <ChevronRight className="w-3.5 h-3.5" />

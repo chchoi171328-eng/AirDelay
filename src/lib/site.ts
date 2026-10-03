@@ -5,6 +5,9 @@ export const FIRM = {
   email: 'info@lawfirm-myung.com',
 }
 
+// 항공 보상 가이드의 기본 작성자 표시 (글마다 author 항목으로 바꿀 수 있습니다)
+export const GUIDE_AUTHOR = '법무법인 명'
+
 export const SITE_DESCRIPTION = '항공 지연·결항 피해 전문 법무법인. 한국–영국 변호사 협업으로 국내외 모든 노선을 처리합니다.'
 
 // 사이트 주소: NEXT_PUBLIC_SITE_URL을 넣으면 그 값을, 아니면 Vercel 운영 도메인을 씁니다.

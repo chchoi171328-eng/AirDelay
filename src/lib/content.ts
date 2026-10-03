@@ -3,6 +3,8 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
+import { renderGuide } from './guide-markdown'
+import { GUIDE_AUTHOR } from './site'
 import { BLOG_CATEGORY_LABELS, CASE_TYPE_LABELS, FAQ_CATEGORY_LABELS } from './types'
 import type { BlogCategory, BlogPost, Case, CaseType, FaqCategory, FaqItem } from './types'
 
@@ -40,6 +42,8 @@ function required(file: string, data: Record<string, unknown>, field: string): s
   return v.trim()
 }
 
+const strings = (v: unknown) => (Array.isArray(v) ? v.map(String).map((s) => s.trim()).filter(Boolean) : [])
+
 const toHtml = (body: string) => (body ? (marked.parse(body, { async: false }) as string) : null)
 
 let postsCache: BlogPost[] | null = null
@@ -51,19 +55,29 @@ export function getPosts(): BlogPost[] {
       const category = data.category as BlogCategory
       if (!(category in BLOG_CATEGORY_LABELS)) fail(file, `category는 ${Object.keys(BLOG_CATEGORY_LABELS).join(', ')} 중 하나여야 합니다`)
       const title = required(file, data, 'title')
+      const reviewedAt = String(data.reviewedAt ?? '')
+      if (!/^\d{4}-\d{2}$/.test(reviewedAt)) fail(file, `reviewedAt은 YYYY-MM 형식이어야 합니다 (현재: ${reviewedAt || '없음'})`)
+      const guide = body ? renderGuide(body) : null
+      const ctaOk = typeof data.ctaSituation === 'string' && typeof data.ctaOffer === 'string'
       return {
         slug,
         title,
         seoTitle: typeof data.seoTitle === 'string' && data.seoTitle.trim() ? data.seoTitle.trim() : title,
         category,
         summary: required(file, data, 'summary'),
-        date: toDate(file, 'date', data.date),
+        keywords: strings(data.keywords),
+        reviewedAt,
+        author: typeof data.author === 'string' && data.author.trim() ? data.author.trim() : GUIDE_AUTHOR,
         cover: typeof data.cover === 'string' && data.cover ? data.cover : null,
-        html: toHtml(body),
+        related: strings(data.related),
+        cta: ctaOk ? { situation: String(data.ctaSituation).trim(), offer: String(data.ctaOffer).trim() } : null,
+        html: guide?.html ?? null,
+        toc: guide?.toc ?? [],
+        faq: guide?.faq ?? [],
         draft: data.draft === true,
       }
     })
-    .sort((a, b) => b.date.localeCompare(a.date))
+    .sort((a, b) => b.reviewedAt.localeCompare(a.reviewedAt) || a.title.localeCompare(b.title, 'ko'))
   return postsCache.filter((p) => SHOW_DRAFTS || !p.draft)
 }
 

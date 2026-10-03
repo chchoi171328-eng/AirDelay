@@ -3,7 +3,7 @@ title: "국제선 결항, 몬트리올 협약으로 받을 수 있는 보상은?
 category: claim
 cover: /images/blog/montreal.jpg
 summary: "몬트리올 협약(1999)에 따른 국제 항공 보상 기준과 SDR 계산법을 설명합니다."
-date: 2024-08-15
+reviewedAt: 2026-10
 draft: true
 ---
 
