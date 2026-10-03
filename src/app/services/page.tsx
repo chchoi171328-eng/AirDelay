@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { Clock, XCircle, CheckCircle } from 'lucide-react'
+import { Clock, XCircle, CheckCircle, ArrowRight } from 'lucide-react'
 import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
 import Link from 'next/link'
 import { PROCESS_STEPS } from '@/lib/process'
@@ -65,18 +65,28 @@ export default function ServicesPage() {
       <div className="bg-gray-50 py-16 border-b">
         <div className="container-wide section-padding max-w-5xl mx-auto">
           <h2 className="text-center text-2xl font-extrabold text-navy mb-12 tracking-tight">서비스 진행 절차</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4 relative px-4">
-            <div className="hidden lg:block absolute top-6 left-12 right-12 h-[2px] bg-navy/10" />
-            
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 relative px-4">
+            <div className="hidden lg:block absolute top-6 left-[10%] right-[10%] h-[2px] bg-navy/10" />
+
             {PROCESS_STEPS.map((step, i) => (
-              <div key={step.title} className="relative z-10 flex flex-col items-center text-center group">
-                <div className="w-12 h-12 bg-white rounded-full border-[3px] border-navy flex items-center justify-center text-navy font-extrabold text-lg shadow-md group-hover:scale-110 group-hover:bg-navy group-hover:text-white transition-all duration-300 mb-4 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
+              <div key={step.title} className={`relative z-10 flex flex-col items-center text-center group ${i === PROCESS_STEPS.length - 1 ? 'col-span-2 lg:col-span-1' : ''}`}>
+                <div
+                  className={`w-12 h-12 bg-white rounded-full border-[3px] flex items-center justify-center text-navy font-extrabold text-lg shadow-md group-hover:scale-110 group-hover:bg-navy group-hover:text-white transition-all duration-300 mb-4 animate-fade-in-up ${step.when ? 'border-dashed border-navy/50' : 'border-navy'}`}
+                  style={{ animationDelay: `${i * 100}ms` }}
+                >
                   {i + 1}
                 </div>
                 <div className="font-bold text-navy mb-1 text-[15px]">{step.title}</div>
                 <div className="text-[13px] text-gray-500 font-medium">{step.short}</div>
+                {step.when && <span className="badge bg-orange/10 text-orange-dark mt-2">{step.when}</span>}
               </div>
             ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link href="/process" className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy hover:text-orange-dark transition-colors">
+              단계별 자세한 안내 보기
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </div>

@@ -32,7 +32,7 @@ const attorneys = [
   },
 ]
 
-const flowSteps = PROCESS_STEPS.map((s, i) => ({ step: String(i + 1).padStart(2, '0'), title: s.title, desc: s.desc }))
+const flowSteps = PROCESS_STEPS.map((s, i) => ({ step: String(i + 1).padStart(2, '0'), title: s.title, desc: s.desc, when: s.when }))
 
 export default function AboutPage() {
   return (
@@ -108,19 +108,26 @@ export default function AboutPage() {
             <h2 className="text-3xl font-extrabold text-white mb-3">한영 협업 구조</h2>
             <p className="text-white/60">고객은 한 번의 접수로, 나머지는 저희가 처리합니다</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {flowSteps.map(({ step, title, desc }, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-5">
+            {flowSteps.map(({ step, title, desc, when }, i) => (
               <div key={step} className="relative">
-                <div className="bg-white/5 border border-white/10 rounded-xl p-6 h-full">
+                <div className={`relative rounded-xl p-6 h-full border ${when ? 'border-dashed border-white/25' : 'bg-white/5 border-white/10'}`}>
+                  {when && <span className="badge bg-orange/15 text-orange-light absolute top-4 right-4">{when}</span>}
                   <div className="text-white/50 text-4xl font-extrabold mb-3">{step}</div>
                   <h3 className="font-bold text-white mb-2">{title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
+                  <p className="text-white/50 text-sm leading-relaxed break-keep">{desc}</p>
                 </div>
                 {i < flowSteps.length - 1 && (
                   <ArrowRight className="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 w-5 h-5 text-white/40 z-10" />
                 )}
               </div>
             ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link href="/process" className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/80 hover:text-white transition-colors">
+              진행 절차 자세히 보기
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </div>

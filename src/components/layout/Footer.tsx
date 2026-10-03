@@ -24,6 +24,7 @@ export default function Footer() {
               {[
                 ['항공 지연 보상', '/services#delay'],
                 ['항공 결항 보상', '/services#cancel'],
+                ['진행 절차', '/process'],
                 ['사건 접수', '/intake'],
               ].map(([label, href]) => (
                 <li key={label}>

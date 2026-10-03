@@ -7,6 +7,7 @@ import Logo from './Logo'
 
 const navLinks = [
   { href: '/services', label: '서비스 안내' },
+  { href: '/process', label: '진행 절차' },
   { href: '/cases', label: '보상 사례' },
   { href: '/blog', label: '법률 정보' },
   { href: '/about', label: '법인 소개' },
@@ -28,7 +29,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -43,8 +44,8 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA */}
-          <div className="hidden md:block">
+          {/* CTA — 태블릿(md~lg)에서는 메뉴 버튼 옆에 둡니다 */}
+          <div className="hidden md:block md:ml-auto md:mr-2 lg:m-0">
             <Link href="/intake" className="btn-primary text-sm py-2.5 px-5">
               사건 접수
             </Link>
@@ -53,7 +54,7 @@ export default function Header() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className="lg:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
             aria-label="메뉴"
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -63,7 +64,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-navy border-t border-white/10">
+        <div className="lg:hidden bg-navy border-t border-white/10">
           <nav className="container-wide section-padding py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
