@@ -37,18 +37,6 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   }
 }
 
-// 묶음별로 함께 보여 줄 사이트 안내 페이지
-const SITE_LINKS: Record<BlogCategory, { label: string; href: string }[]> = {
-  claim: [
-    { label: '보상 기준 — 노선별 적용 기준과 금액', href: '/services' },
-    { label: '진행 절차와 비용', href: '/process' },
-  ],
-  aviation: [
-    { label: '보상 기준 — 보상이 어려운 경우', href: '/services#exceptions' },
-    { label: '자주 묻는 질문', href: '/faq' },
-  ],
-}
-
 const DISCLAIMER: Record<BlogCategory, string> = {
   claim:
     '이 글은 항공 지연·결항 보상에 관한 일반적인 정보를 제공하기 위한 것으로, 개별 사안에 대한 법률 자문이 아닙니다. 규정과 법령은 바뀔 수 있고, 보상 여부와 금액은 항공편과 지연·결항 사유 등 구체적인 사실관계에 따라 달라집니다.',
@@ -60,10 +48,9 @@ export default function GuidePostPage({ params }: { params: { slug: string } }) 
   const post = getPost(params.slug)
   if (!post) notFound()
 
-  // 함께 보면 좋은 가이드: 글에서 지정한 것 먼저, 모자라면 같은 묶음에서 채웁니다
-  const all = getPosts().filter((p) => p.slug !== post.slug)
-  const picked = post.related.map((s) => all.find((p) => p.slug === s)).filter((p): p is NonNullable<typeof p> => !!p)
-  const relatedPosts = [...picked, ...all.filter((p) => p.category === post.category && !picked.includes(p))].slice(0, 3)
+  // 함께 보면 좋은 글: 글에서 related로 직접 지정한 것만 보여 줍니다 (없으면 칸을 숨깁니다)
+  const all = getPosts()
+  const relatedPosts = post.related.map((s) => all.find((p) => p.slug === s && p.slug !== post.slug)).filter((p): p is NonNullable<typeof p> => !!p)
 
   const jsonLd = [
     {
@@ -117,20 +104,21 @@ export default function GuidePostPage({ params }: { params: { slug: string } }) 
           {DISCLAIMER[post.category]}
         </p>
 
-        {/* 함께 보면 좋은 자료 */}
-        <section className="mt-10">
-          <h2 className="text-lg font-extrabold text-navy mb-3">함께 보면 좋은 자료</h2>
-          <ul className="divide-y divide-gray-100 border-y border-gray-100">
-            {[...SITE_LINKS[post.category], ...relatedPosts.map((p) => ({ label: p.title, href: `/guide/${p.slug}` }))].map(({ label, href }) => (
-              <li key={href}>
-                <Link href={href} className="flex items-center justify-between gap-3 py-3 text-[15px] text-navy hover:text-orange-dark transition-colors">
-                  <span className="break-keep">{label}</span>
-                  <ChevronRight className="w-4 h-4 shrink-0 text-gray-400" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {relatedPosts.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-lg font-extrabold text-navy mb-3">함께 보면 좋은 글</h2>
+            <ul className="divide-y divide-gray-100 border-y border-gray-100">
+              {relatedPosts.map((p) => (
+                <li key={p.slug}>
+                  <Link href={`/guide/${p.slug}`} className="flex items-center justify-between gap-3 py-3 text-[15px] text-navy hover:text-orange-dark transition-colors">
+                    <span className="break-keep">{p.title}</span>
+                    <ChevronRight className="w-4 h-4 shrink-0 text-gray-400" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <ArticleCTA cta={post.cta} />
 
