@@ -1,6 +1,7 @@
 ---
 question: "날씨 때문에 늦어졌어도 보상받을 수 있나요?"
 order: 5
+category: criteria
 draft: true  # 변호사 검토 후 이 줄을 지우면 운영 사이트에 표시됩니다
 ---
 

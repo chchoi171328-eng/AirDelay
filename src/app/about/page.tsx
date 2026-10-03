@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { ArrowRight, CheckCircle } from 'lucide-react'
-import Link from 'next/link'
-import { PROCESS_STEPS } from '@/lib/process'
+import { CheckCircle, Phone, Mail, MapPin, MessageCircle } from 'lucide-react'
 import PageHeader from '@/components/layout/PageHeader'
+import SectionNav from '@/components/layout/SectionNav'
+import { FIRM } from '@/lib/site'
 import IntakeCTA from '@/components/sections/home/IntakeCTA'
 
 export const metadata: Metadata = {
   title: '법인 소개',
-  description: '법무법인 명 소개. 한국–영국 변호사 협업으로 항공 피해 보상을 전문으로 처리합니다.',
+  description: '법무법인 명 소개. 한국·영국 변호사와 사무소별 연락처(전화·이메일·주소)를 안내합니다.',
 }
 
 const attorneys = [
@@ -32,15 +32,45 @@ const attorneys = [
   },
 ]
 
-const flowSteps = PROCESS_STEPS.map((s, i) => ({ step: String(i + 1).padStart(2, '0'), title: s.title, desc: s.desc, when: s.when }))
+// 사무소별 연락처 — 실제 정보로 바꿔 주세요 (대표 전화·이메일은 src/lib/site.ts)
+const offices = [
+  {
+    code: 'KR',
+    name: '한국 법인',
+    role: '국내선·일반 국제선 담당',
+    items: [
+      { icon: Phone, label: '전화', value: FIRM.phone, href: `tel:${FIRM.phone}`, note: '평일 09:00–18:00' },
+      { icon: Mail, label: '이메일', value: 'korea@lawfirm-myung.com', href: 'mailto:korea@lawfirm-myung.com' },
+      { icon: MapPin, label: '주소', value: '서울특별시 강남구 테헤란로 000' },
+      { icon: MessageCircle, label: '카카오톡 채널', value: '@법무법인명', note: '빠른 문의 가능' },
+    ],
+  },
+  {
+    code: 'UK',
+    name: '영국 법인',
+    role: 'EU261·영국 노선 담당',
+    items: [
+      { icon: Phone, label: '전화', value: '+44 20 0000 0000', href: 'tel:+442000000000', note: 'Mon–Fri 09:00–17:00 (GMT)' },
+      { icon: Mail, label: '이메일', value: 'uk@lawfirm-myung.com', href: 'mailto:uk@lawfirm-myung.com' },
+      { icon: MapPin, label: '주소', value: 'London, United Kingdom' },
+    ],
+  },
+]
+
+const sections = [
+  { href: '#mission', label: '설립 배경' },
+  { href: '#lawyers', label: '소속 변호사' },
+  { href: '#contact', label: '사무소·연락처' },
+]
 
 export default function AboutPage() {
   return (
     <div>
-      <PageHeader title="법인 소개" subtitle="한국·영국 변호사가 함께 처리합니다" />
+      <PageHeader title="법인 소개" subtitle="한국·영국 변호사와 사무소를 소개합니다" />
+      <SectionNav items={sections} />
 
       {/* Mission */}
-      <div className="py-16 bg-white">
+      <div id="mission" className="py-16 bg-white scroll-mt-32">
         <div className="container-wide section-padding">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -68,7 +98,7 @@ export default function AboutPage() {
       </div>
 
       {/* Attorneys */}
-      <div className="py-16 bg-gray-50">
+      <div id="lawyers" className="py-16 bg-gray-50 scroll-mt-32">
         <div className="container-wide section-padding">
           <div className="text-center mb-12">
             <h2 className="section-title">소속 변호사</h2>
@@ -101,36 +131,42 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Collaboration flow infographic */}
-      <div className="py-16 bg-navy">
+      {/* 사무소·연락처 (예전 '문의하기' 페이지 내용) */}
+      <section id="contact" className="py-16 bg-white scroll-mt-32">
         <div className="container-wide section-padding">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-white mb-3">한영 협업 구조</h2>
-            <p className="text-white/60">고객은 한 번의 접수로, 나머지는 저희가 처리합니다</p>
+            <h2 className="section-title">사무소·연락처</h2>
+            <p className="section-subtitle">사건 접수는 온라인 접수가 가장 빠릅니다. 접수 후 영업일 기준 2일 이내에 연락드립니다.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-5">
-            {flowSteps.map(({ step, title, desc, when }, i) => (
-              <div key={step} className="relative">
-                <div className={`relative rounded-xl p-6 h-full border ${when ? 'border-dashed border-white/25' : 'bg-white/5 border-white/10'}`}>
-                  {when && <span className="badge bg-orange/15 text-orange-light absolute top-4 right-4">{when}</span>}
-                  <div className="text-white/50 text-4xl font-extrabold mb-3">{step}</div>
-                  <h3 className="font-bold text-white mb-2">{title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed break-keep">{desc}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {offices.map(({ code, name, role, items }) => (
+              <div key={code} className="card p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="w-11 h-11 rounded-xl bg-navy text-white text-sm font-extrabold flex items-center justify-center">{code}</span>
+                  <div>
+                    <h3 className="font-extrabold text-navy">{name}</h3>
+                    <div className="text-gray-500 text-sm">{role}</div>
+                  </div>
                 </div>
-                {i < flowSteps.length - 1 && (
-                  <ArrowRight className="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 w-5 h-5 text-white/40 z-10" />
-                )}
+                <dl className="space-y-4">
+                  {items.map(({ icon: Icon, label, value, href, note }) => (
+                    <div key={label} className="flex items-start gap-3 text-sm">
+                      <Icon className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />
+                      <div>
+                        <dt className="font-semibold text-navy">{label}</dt>
+                        <dd className="text-gray-500">
+                          {href ? <a href={href} className="hover:text-navy underline-offset-2 hover:underline">{value}</a> : value}
+                        </dd>
+                        {note && <dd className="text-gray-500 text-xs mt-0.5">{note}</dd>}
+                      </div>
+                    </div>
+                  ))}
+                </dl>
               </div>
             ))}
           </div>
-          <div className="text-center mt-10">
-            <Link href="/process" className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/80 hover:text-white transition-colors">
-              진행 절차 자세히 보기
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
         </div>
-      </div>
+      </section>
 
       <IntakeCTA />
     </div>

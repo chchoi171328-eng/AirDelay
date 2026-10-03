@@ -19,12 +19,12 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">서비스</h4>
+            <h4 className="text-white font-semibold text-sm mb-4">안내</h4>
             <ul className="space-y-2.5">
               {[
-                ['항공 지연 보상', '/services#delay'],
-                ['항공 결항 보상', '/services#cancel'],
-                ['진행 절차', '/process'],
+                ['보상 기준', '/services'],
+                ['진행 절차와 비용', '/process'],
+                ['자주 묻는 질문', '/faq'],
                 ['사건 접수', '/intake'],
               ].map(([label, href]) => (
                 <li key={label}>
@@ -63,7 +63,7 @@ export default function Footer() {
           <div className="flex gap-6">
             <Link href="/privacy" className="text-white/70 hover:text-white font-bold text-xs transition-colors">개인정보처리방침</Link>
             <Link href="/about" className="text-white/60 hover:text-white/70 text-xs transition-colors">법인 소개</Link>
-            <Link href="/contact" className="text-white/60 hover:text-white/70 text-xs transition-colors">문의하기</Link>
+            <Link href="/about#contact" className="text-white/60 hover:text-white/70 text-xs transition-colors">연락처</Link>
           </div>
         </div>
       </div>

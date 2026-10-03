@@ -39,14 +39,14 @@ export default function Hero() {
 
             <h1 className="text-4xl sm:text-5xl xl:text-7xl font-extrabold text-white leading-[1.3] sm:leading-[1.4] tracking-tight mb-6 sm:mb-8">
               항공편 지연보상,<br />
-              <span className="text-orange">한국/영국 변호사</span>에게 맡기세요
+              <span className="text-orange">한국·영국 변호사</span>에게 맡기세요
             </h1>
 
             <div className="mt-6 sm:mt-10 flex gap-6 sm:gap-10">
               {[
                 { label: '한국·영국 변호사', value: '직접 청구' },
-                { label: '성공보수 (부가세 포함)', value: '25%' },
-                { label: '소송으로 가도', value: '25% 그대로' },
+                { label: '성공보수 · 소송도 같은 요율', value: '25%' },
+                { label: '영업일 기준 연락', value: '2일 이내' },
               ].map((item) => (
                 <div key={item.label}>
                   <div className="text-white font-bold text-lg">{item.value}</div>

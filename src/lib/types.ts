@@ -29,13 +29,24 @@ export interface BlogPost {
 }
 
 // content/faq/*.md 한 개 = 질문 하나
+export type FaqCategory = 'cost' | 'process' | 'criteria' | 'lawsuit'
+
 export interface FaqItem {
   slug: string
   question: string
   order: number
+  category: FaqCategory
   html: string
   text: string // 검색엔진용 일반 텍스트 답변
   draft: boolean
+}
+
+// 자주 묻는 질문 페이지는 이 순서대로 묶어서 보여 줍니다
+export const FAQ_CATEGORY_LABELS: Record<FaqCategory, string> = {
+  cost: '비용',
+  process: '접수·진행',
+  criteria: '보상 기준',
+  lawsuit: '공동소송',
 }
 
 export const CASE_TYPE_LABELS: Record<CaseType, string> = {

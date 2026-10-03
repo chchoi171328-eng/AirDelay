@@ -6,12 +6,12 @@ import { Menu, X } from 'lucide-react'
 import Logo from './Logo'
 
 const navLinks = [
-  { href: '/services', label: '서비스 안내' },
-  { href: '/process', label: '진행 절차' },
+  { href: '/services', label: '보상 기준' },
+  { href: '/process', label: '절차·비용' },
   { href: '/cases', label: '보상 사례' },
+  { href: '/faq', label: '자주 묻는 질문' },
   { href: '/blog', label: '법률 정보' },
   { href: '/about', label: '법인 소개' },
-  { href: '/contact', label: '문의하기' },
 ]
 
 export default function Header() {

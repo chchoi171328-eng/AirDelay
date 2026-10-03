@@ -18,14 +18,14 @@ export default function HomePage() {
   // 최근 운항일 순 10건 (본문 HTML은 화면에 쓰지 않으므로 빼고 넘깁니다)
   const recentCases = getCases().slice(0, 10).map((c) => ({ ...c, html: null }))
   const posts = getPosts().slice(0, 3)
-  const faqs = getFaqs()
+  const faqs = getFaqs().slice(0, 5)
 
   return (
     <>
       <Hero />
       <RecentCasesTicker cases={recentCases} />
-      <ProcessTimeline />
       <ServiceCards />
+      <ProcessTimeline />
       <Faq items={faqs} />
       <BlogPreview posts={posts} />
       <IntakeCTA />

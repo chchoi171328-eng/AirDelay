@@ -3,8 +3,8 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
-import { BLOG_CATEGORY_LABELS, CASE_TYPE_LABELS } from './types'
-import type { BlogCategory, BlogPost, Case, CaseType, FaqItem } from './types'
+import { BLOG_CATEGORY_LABELS, CASE_TYPE_LABELS, FAQ_CATEGORY_LABELS } from './types'
+import type { BlogCategory, BlogPost, Case, CaseType, FaqCategory, FaqItem } from './types'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content')
 
@@ -100,11 +100,14 @@ export function getFaqs(): FaqItem[] {
   faqCache ??= readDir('faq')
     .map(({ slug, file, data, body }) => {
       if (!body) fail(file, '답변 본문이 비어 있습니다')
+      const category = required(file, data, 'category') as FaqCategory
+      if (!(category in FAQ_CATEGORY_LABELS)) fail(file, `category는 ${Object.keys(FAQ_CATEGORY_LABELS).join(', ')} 중 하나여야 합니다`)
       const html = toHtml(body) as string
       return {
         slug,
         question: required(file, data, 'question'),
         order: Number.isFinite(Number(data.order)) ? Number(data.order) : 999,
+        category,
         html,
         text: decodeEntities(html.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim(),
         draft: data.draft === true,

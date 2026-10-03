@@ -1,6 +1,7 @@
 ---
 question: "가족 여러 명이 함께 탔는데 한 번에 접수할 수 있나요?"
 order: 8
+category: process
 draft: true  # 변호사 검토 후 이 줄을 지우면 운영 사이트에 표시됩니다
 ---
 

@@ -1,6 +1,7 @@
 ---
 question: "비용은 얼마인가요?"
 order: 1
+category: cost
 ---
 
 - **접수·보상 가능 여부 판단**: 비용 없음

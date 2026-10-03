@@ -5,17 +5,18 @@ import {
   Scale, Wallet, AlertTriangle, CornerDownRight,
 } from 'lucide-react'
 import PageHeader from '@/components/layout/PageHeader'
+import SectionNav from '@/components/layout/SectionNav'
 import IntakeCTA from '@/components/sections/home/IntakeCTA'
 import { PROCESS_STEPS } from '@/lib/process'
 
 export const metadata: Metadata = {
-  title: '진행 절차',
-  description: '사건 접수부터 보상 가능 여부 판단, 항공사 청구, 공동소송, 보상금 수령까지 단계별 진행 절차와 공동소송 일정을 안내합니다.',
+  title: '진행 절차와 비용',
+  description: '사건 접수부터 보상 가능 여부 판단, 항공사 청구, 공동소송, 보상금 수령까지의 단계와 비용(성공보수 25%, 공동소송 진행비 1만 원), 공동소송 일정을 안내합니다.',
 }
 
 const ICONS = [FileEdit, Search, Send, Users, Banknote]
 
-// 단계별 자세한 안내 — 단계 이름·요약은 src/lib/process.ts, 비용은 서비스 안내의 비용 안내와 같은 내용을 유지해 주세요
+// 단계별 자세한 안내 — 단계 이름·요약은 src/lib/process.ts, 단계별 비용은 아래 fees와 같은 내용을 유지해 주세요
 type Detail = {
   timing: string
   we: string[]
@@ -105,6 +106,25 @@ const batches = [
   { label: '하반기 차수', flights: '7월~12월 운항 항공편', close: '12월 말', file: '다음 해 2월 중' },
 ]
 
+const sections = [
+  { href: '#overview', label: '한눈에 보기' },
+  { href: '#steps', label: '단계별 안내' },
+  { href: '#group', label: '공동소송' },
+  { href: '#cost', label: '비용' },
+]
+
+// 비용 안내 — 자주 묻는 질문(content/faq/01-cost.md)과 같은 내용을 유지해 주세요
+const fees = [
+  { step: '접수·보상 가능 여부 판단', fee: <>비용 없음</> },
+  { step: '항공사 청구', fee: <>보상금을 받은 경우에만 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</> },
+  { step: '공동소송', fee: <>참여 동의 시 소송 진행비 1인 <strong className="text-navy">1만 원</strong> + 판결금·합의금을 받은 경우 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</> },
+]
+
+const feeNotes = [
+  '성공보수는 항공사로부터 실제로 받은 금액을 기준으로 계산합니다.',
+  '소송 진행비는 인지대·송달료 등에 쓰이는 정액입니다. 법인이 소송을 제기하지 않게 되면 돌려드립니다.',
+]
+
 const rules = [
   '항공사가 기한 안에 답하지 않으면 거절로 보고 같은 차수에 포함합니다.',
   '기한 안에 동의하신 분만 원고로 소장에 포함됩니다. 동의하지 않으시면 소송에 참여하지 않으며, 따로 드는 비용은 없습니다.',
@@ -115,10 +135,11 @@ const rules = [
 export default function ProcessPage() {
   return (
     <div>
-      <PageHeader title="진행 절차" subtitle="접수부터 보상금 수령까지, 단계별로 안내합니다" />
+      <PageHeader title="진행 절차와 비용" subtitle="접수부터 보상금 수령까지, 단계와 비용을 안내합니다" />
+      <SectionNav items={sections} />
 
       {/* 한눈에 보기 */}
-      <section className="bg-white py-14 sm:py-16 border-b">
+      <section id="overview" className="bg-white py-14 sm:py-16 border-b scroll-mt-32">
         <div className="container-wide section-padding max-w-4xl">
           <h2 className="section-title mb-4">한눈에 보기</h2>
           <p className="text-gray-600 leading-relaxed mb-8 break-keep">
@@ -156,7 +177,7 @@ export default function ProcessPage() {
       </section>
 
       {/* 단계별 안내 */}
-      <section className="bg-surface py-16 sm:py-20">
+      <section id="steps" className="bg-surface py-16 sm:py-20 scroll-mt-32">
         <div className="container-wide section-padding max-w-4xl">
           <h2 className="section-title mb-10 sm:mb-12">단계별 안내</h2>
           <ol>
@@ -165,7 +186,7 @@ export default function ProcessPage() {
               const d = details[i]
               const last = i === PROCESS_STEPS.length - 1
               return (
-                <li key={step.title} id={`step-${i + 1}`} className="relative pl-14 sm:pl-20 pb-8 last:pb-0 scroll-mt-24">
+                <li key={step.title} id={`step-${i + 1}`} className="relative pl-14 sm:pl-20 pb-8 last:pb-0 scroll-mt-32">
                   {!last && <div aria-hidden="true" className="absolute left-5 sm:left-7 top-12 sm:top-14 bottom-0 w-px bg-navy/15" />}
                   <div
                     className={`absolute left-0 top-0 w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-sm ${
@@ -243,7 +264,7 @@ export default function ProcessPage() {
       </section>
 
       {/* 공동소송 안내 */}
-      <section id="group" className="bg-white py-16 sm:py-20 scroll-mt-16">
+      <section id="group" className="bg-white py-16 sm:py-20 scroll-mt-32">
         <div className="container-wide section-padding max-w-4xl">
           <h2 className="section-title">공동소송 안내</h2>
           <p className="section-subtitle break-keep">항공사가 지급을 거절한 사건은 같은 항공사끼리 모아 함께 소송합니다.</p>
@@ -312,14 +333,38 @@ export default function ProcessPage() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* 비용 안내 */}
+      <section id="cost" className="bg-surface py-16 sm:py-20 scroll-mt-32">
+        <div className="container-wide section-padding max-w-4xl">
+          <h2 className="section-title">비용 안내</h2>
+          <p className="section-subtitle">보상금을 받지 못하면 성공보수는 없습니다.</p>
+          <div className="mt-10 bg-white rounded-2xl border border-navy/10 overflow-hidden shadow-sm">
+            {fees.map(({ step, fee }, i) => (
+              <div key={step} className={`grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-1 sm:gap-6 px-6 py-5 ${i ? 'border-t border-navy/5' : ''}`}>
+                <div className="font-bold text-navy">{step}</div>
+                <div className="text-gray-700 leading-relaxed break-keep">{fee}</div>
+              </div>
+            ))}
+          </div>
+          <ul className="mt-6 space-y-2">
+            {feeNotes.map((note) => (
+              <li key={note} className="flex items-start gap-2 text-sm text-gray-600 leading-relaxed break-keep">
+                <CheckCircle className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />{note}
+              </li>
+            ))}
+          </ul>
+
           {/* 더 알아보기 */}
           <div className="mt-12 flex flex-wrap gap-3">
             {[
-              { label: '비용 안내', href: '/services#cost' },
-              { label: '자주 묻는 질문', href: '/#faq' },
-              { label: '문의하기', href: '/contact' },
+              { label: '보상 기준', href: '/services' },
+              { label: '자주 묻는 질문', href: '/faq' },
+              { label: '사무소·연락처', href: '/about#contact' },
             ].map(({ label, href }) => (
-              <Link key={href} href={href} className="inline-flex items-center gap-1.5 rounded-full border border-navy/15 px-4 py-2 text-sm font-semibold text-navy hover:border-navy/40 transition-colors">
+              <Link key={href} href={href} className="inline-flex items-center gap-1.5 rounded-full border border-navy/15 bg-white px-4 py-2 text-sm font-semibold text-navy hover:border-navy/40 transition-colors">
                 {label}
                 <ArrowRight className="w-4 h-4" />
               </Link>
