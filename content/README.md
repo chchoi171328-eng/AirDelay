@@ -16,7 +16,7 @@
 ---
 title: "목록과 본문에 보이는 제목"
 seoTitle: "검색엔진용 제목 (선택, 없으면 title 사용)"
-category: eu261        # eu261(EU·영국 규정) | montreal(몬트리올 협약) | consumer(국내 기준) | guide(실전 팁)
+category: claim        # claim(보상·청구) | aviation(항공 상식: 지연 코드·기상·정비·관제 등)
 summary: "목록 카드와 검색 결과에 보이는 한두 문장 설명"
 date: 2026-10-01
 cover: /images/blog/글주소/cover.jpg   # 선택. public/ 폴더 아래에 둡니다. 없으면 분야별 기본 이미지를 씁니다

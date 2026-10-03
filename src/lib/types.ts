@@ -1,5 +1,5 @@
 export type CaseType = 'delay' | 'cancel'
-export type BlogCategory = 'eu261' | 'montreal' | 'consumer' | 'guide'
+export type BlogCategory = 'claim' | 'aviation'
 
 // content/cases/*.md 한 개 = 사례 한 건
 export interface Case {
@@ -54,19 +54,16 @@ export const CASE_TYPE_LABELS: Record<CaseType, string> = {
   cancel: '항공 결항',
 }
 
+// 항공 보상 가이드는 두 묶음으로 나눠 보여 줍니다: 보상·청구(법률) / 항공 상식(운항·기상·정비 등 업계 지식)
 export const BLOG_CATEGORY_LABELS: Record<BlogCategory, string> = {
-  eu261: 'EU·영국 규정',
-  montreal: '몬트리올 협약',
-  consumer: '국내 기준',
-  guide: '실전 팁',
+  claim: '보상·청구',
+  aviation: '항공 상식',
 }
 
 // 대표 이미지를 지정하지 않은 글에 쓰는 분야별 기본 이미지
 export const BLOG_CATEGORY_COVERS: Record<BlogCategory, string> = {
-  eu261: '/images/blog/eu261.jpg',
-  montreal: '/images/blog/montreal.jpg',
-  consumer: '/images/blog/consumer.jpg',
-  guide: '/images/blog/guide.jpg',
+  claim: '/images/blog/claim.jpg',
+  aviation: '/images/blog/aviation.jpg',
 }
 
 export const coverOf = (post: Pick<BlogPost, 'cover' | 'category'>) => post.cover ?? BLOG_CATEGORY_COVERS[post.category]

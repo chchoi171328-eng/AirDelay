@@ -1,6 +1,7 @@
 ---
 title: "항공 지연 보상 청구 시효는 몇 년일까?"
-category: guide
+category: claim
+cover: /images/blog/guide.jpg
 summary: "항공 피해 보상 청구권의 소멸시효와 늦게 청구할 경우 대응 방법을 알아봅니다."
 date: 2024-08-05
 draft: true

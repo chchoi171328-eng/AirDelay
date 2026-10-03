@@ -37,7 +37,7 @@ const offices = [
   {
     code: 'KR',
     name: '한국 법인',
-    role: '고객 연락 · 국내 기준 검토 · 한국 법원 소송',
+    role: '고객 연락 · 몬트리올 협약·국내법 검토 · 한국 법원 소송',
     contactPoint: true,
     items: [
       { icon: Phone, label: '전화', value: FIRM.phone, href: `tel:${FIRM.phone}`, note: '평일 09:00–18:00' },
@@ -63,7 +63,7 @@ const offices = [
 const collab = [
   {
     title: '보상 가능 여부 판단',
-    kr: '접수 내용을 확인하고 국내 기준·몬트리올 협약 적용 여부를 검토합니다.',
+    kr: '접수 내용을 확인하고 몬트리올 협약·국내법 적용 여부와 관할을 검토합니다.',
     uk: '유럽 노선은 EU261·UK261 적용 여부를 함께 검토합니다.',
   },
   {

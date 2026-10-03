@@ -6,10 +6,8 @@ import { BLOG_CATEGORY_LABELS, coverOf } from '@/lib/types'
 import DraftBadge from './DraftBadge'
 
 export const CATEGORY_COLORS: Record<BlogPost['category'], string> = {
-  eu261: 'bg-blue-50 text-navy',
-  montreal: 'bg-purple-50 text-purple-700',
-  consumer: 'bg-green-50 text-green-700',
-  guide: 'bg-amber-50 text-gold-dark',
+  claim: 'bg-blue-50 text-navy',
+  aviation: 'bg-amber-50 text-gold-dark',
 }
 
 export const formatDate = (date: string) => date.replace(/-/g, '. ')

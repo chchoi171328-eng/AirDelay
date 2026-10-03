@@ -24,7 +24,7 @@ export default function ServiceCards() {
       <div className="container-wide section-padding">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="section-title">항공 지연·결항, <br className="sm:hidden" />이렇게 도와드립니다</h2>
-          <p className="section-subtitle">EU261, 몬트리올 협약, 국내 기준 중 노선에 맞는 근거로 청구합니다.</p>
+          <p className="section-subtitle">EU261·UK261, 몬트리올 협약 등 노선에 맞는 근거로 청구합니다.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
