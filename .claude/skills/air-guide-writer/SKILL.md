@@ -102,7 +102,15 @@ npm run lint && npm run build
 ```
 
 빌드가 통과하면 로컬 서버에서 `/guide/{slug}`를 열어 블록이 제대로 나오는지 확인한다(데스크톱·모바일).
-커밋·푸시는 사용자가 요청할 때만 한다.
+확인이 끝나면 한 편마다 커밋해 작업 브랜치에 푸시하고, master에 바로 머지한다 (2026년 10월 사용자 확정).
+master에만 있는 커밋이 없는지 먼저 본 뒤 fast-forward로 올린다:
+
+```bash
+git fetch origin master && git rev-list --count HEAD..origin/master   # 0이어야 한다
+git push -u origin {작업 브랜치} && git push origin HEAD:master
+```
+
+머지 뒤 Vercel 운영 배포가 READY가 되었는지 확인한다.
 
 사용자에게 보고할 항목: title / seoTitle / 묶음 / slug / 공백 제외 글자 수 / 이미지 검증 결과 /
 유럽사법재판소 판단 언급 여부 / **사용자 확인이 필요한 사실 목록**.
