@@ -7,19 +7,19 @@ import PostCard from '@/components/content/PostCard'
 import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
-  title: '법률 정보',
-  description: 'EU261, 몬트리올 협약, 소비자보호원 기준 등 항공 피해 보상에 관한 법률 정보를 제공합니다.',
-  alternates: { canonical: '/blog' },
+  title: '항공 보상 가이드',
+  description: '항공편 지연·결항 보상 기준(EU261·몬트리올 협약 등), 항공사가 거절할 때 대응법, 공항에서 챙길 증거까지 항공 보상에 필요한 정보를 정리했습니다.',
+  alternates: { canonical: '/guide' },
 }
 
 const CATEGORY_TABS = Object.entries(BLOG_CATEGORY_LABELS).map(([value, label]) => ({ value, label }))
 
-export default function BlogPage() {
+export default function GuidePage() {
   const posts = getPosts()
 
   return (
     <div>
-      <PageHeader title="법률 정보" subtitle="항공 보상에 관한 핵심 법률 정보를 제공합니다" />
+      <PageHeader title="항공 보상 가이드" subtitle="지연·결항 보상을 받기 전에 알아 두면 좋은 내용을 정리했습니다" />
 
       <div className="container-wide section-padding py-12">
         {posts.length > 0 ? (
@@ -31,7 +31,7 @@ export default function BlogPage() {
           />
         ) : (
           <div className="text-center py-16">
-            <p className="text-gray-500 mb-6">법률 정보를 준비하고 있습니다. 궁금한 점은 사건 접수로 문의해 주세요.</p>
+            <p className="text-gray-500 mb-6">가이드를 준비하고 있습니다. 궁금한 점은 사건 접수로 문의해 주세요.</p>
             <Link href="/intake" className="btn-primary">사건 접수하기</Link>
           </div>
         )}

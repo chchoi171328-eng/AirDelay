@@ -1,22 +1,22 @@
 # 콘텐츠 작성 안내
 
-보상 사례와 법률 정보는 이 폴더의 마크다운(`.md`) 파일로 관리합니다.
+보상 사례와 항공 보상 가이드 글은 이 폴더의 마크다운(`.md`) 파일로 관리합니다.
 파일을 추가·수정해 저장소에 올리면 Vercel이 사이트를 다시 만들면서 목록과 상세 페이지에 반영됩니다.
 
-- 파일 이름이 주소가 됩니다. `content/blog/eu261-guide.md` → `/blog/eu261-guide`
+- 파일 이름이 주소가 됩니다. `content/blog/eu261-guide.md` → `/guide/eu261-guide`
   (영문 소문자·숫자·하이픈만 쓰세요.)
 - `draft: true`인 파일은 **미리보기 사이트에서만 보이고 운영 사이트에서는 숨겨집니다.**
   게시할 때 이 줄을 지우세요.
 - 이름이 `_`로 시작하는 파일은 무시됩니다(메모용).
 - 필수 항목이 빠지거나 형식이 틀리면 빌드가 실패하고, 오류 메시지에 파일 이름이 나옵니다.
 
-## 법률 정보 — `content/blog/*.md`
+## 항공 보상 가이드 — `content/blog/*.md`
 
 ```md
 ---
 title: "목록과 본문에 보이는 제목"
 seoTitle: "검색엔진용 제목 (선택, 없으면 title 사용)"
-category: eu261        # eu261 | montreal | consumer | guide
+category: eu261        # eu261(EU·영국 규정) | montreal(몬트리올 협약) | consumer(국내 기준) | guide(실전 팁)
 summary: "목록 카드와 검색 결과에 보이는 한두 문장 설명"
 date: 2026-10-01
 cover: /images/blog/글주소/cover.jpg   # 선택. public/ 폴더 아래에 둡니다. 없으면 분야별 기본 이미지를 씁니다

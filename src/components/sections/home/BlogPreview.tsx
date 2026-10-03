@@ -11,10 +11,10 @@ export default function BlogPreview({ posts }: { posts: BlogPost[] }) {
       <div className="container-wide section-padding">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <h2 className="section-title">법률 정보</h2>
-            <p className="section-subtitle">항공 보상에 관한 핵심 정보를 제공합니다</p>
+            <h2 className="section-title">항공 보상 가이드</h2>
+            <p className="section-subtitle">지연·결항 보상을 받기 전에 알아 두면 좋은 내용을 정리했습니다</p>
           </div>
-          <Link href="/blog" className="text-navy font-semibold text-sm hover:text-orange transition-colors flex items-center gap-1">
+          <Link href="/guide" className="text-navy font-semibold text-sm hover:text-orange transition-colors flex items-center gap-1">
             전체 보기 <ChevronRight className="w-4 h-4" />
           </Link>
         </div>

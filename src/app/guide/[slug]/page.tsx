@@ -22,7 +22,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: post.seoTitle,
     description: post.summary,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: { canonical: `/guide/${post.slug}` },
     openGraph: {
       type: 'article',
       siteName: FIRM.name,
@@ -70,8 +70,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
         <ArticleCTA />
 
-        <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy hover:text-orange transition-colors mt-10">
-          <ArrowLeft className="w-4 h-4" /> 법률 정보 목록
+        <Link href="/guide" className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy hover:text-orange transition-colors mt-10">
+          <ArrowLeft className="w-4 h-4" /> 항공 보상 가이드 목록
         </Link>
       </div>
 

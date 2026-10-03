@@ -10,7 +10,7 @@ const navLinks = [
   { href: '/process', label: '절차·비용' },
   { href: '/cases', label: '보상 사례' },
   { href: '/faq', label: '자주 묻는 질문' },
-  { href: '/blog', label: '법률 정보' },
+  { href: '/guide', label: '항공 보상 가이드' },
   { href: '/about', label: '법인 소개' },
 ]
 

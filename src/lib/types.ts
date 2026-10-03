@@ -15,7 +15,7 @@ export interface Case {
   draft: boolean
 }
 
-// content/blog/*.md 한 개 = 글 한 편
+// content/blog/*.md 한 개 = 항공 보상 가이드 글 한 편 (/guide/파일이름)
 export interface BlogPost {
   slug: string
   title: string
@@ -55,10 +55,10 @@ export const CASE_TYPE_LABELS: Record<CaseType, string> = {
 }
 
 export const BLOG_CATEGORY_LABELS: Record<BlogCategory, string> = {
-  eu261: 'EU261 규정',
+  eu261: 'EU·영국 규정',
   montreal: '몬트리올 협약',
-  consumer: '소비자보호원 기준',
-  guide: '실전 가이드',
+  consumer: '국내 기준',
+  guide: '실전 팁',
 }
 
 // 대표 이미지를 지정하지 않은 글에 쓰는 분야별 기본 이미지
