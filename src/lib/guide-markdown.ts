@@ -107,7 +107,8 @@ export function renderGuide(body: string): GuideHtml {
     },
   })
 
-  const tokens = md.lexer(body)
+  // '<!-- TODO: … -->' 같은 편집용 메모는 공개 HTML에 남기지 않습니다
+  const tokens = md.lexer(body.replace(/<!--[\s\S]*?-->/g, ''))
   // H2·H3의 {#id}를 떼어 내고 목차를 만듭니다
   md.walkTokens(tokens, (tk) => {
     if (tk.type !== 'heading') return
