@@ -53,7 +53,7 @@ export default function AboutPage() {
                 저희는 한국–영국 변호사 협업 체계를 통해 어떤 노선의 피해도 전문적으로 처리합니다.
               </p>
               <div className="space-y-2.5">
-                {['성공 보수 방식 — 보상금을 받은 경우에만 수임료 발생', '보상 가능 여부 판단 — 영업일 기준 2일 이내 연락', '국내외 모든 항공사 처리 가능'].map((item) => (
+                {['성공보수 25% — 보상받은 경우에만, 소송으로 가도 같은 요율', '보상 가능 여부 판단 — 영업일 기준 2일 이내 연락', '국내외 모든 항공사 처리 가능'].map((item) => (
                   <div key={item} className="flex items-center gap-2.5 text-sm text-gray-700">
                     <CheckCircle className="w-4 h-4 text-navy/60 shrink-0" />{item}
                   </div>

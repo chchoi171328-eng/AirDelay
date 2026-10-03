@@ -33,6 +33,7 @@ export default function CasesPage() {
         ) : (
           <p className="text-center text-gray-500 py-10">보상 사례를 정리하고 있습니다.</p>
         )}
+        {cases.length > 0 && <p className="mt-8 text-center text-xs text-gray-500">사건마다 결과가 다르며, 같은 금액을 보장하지 않습니다.</p>}
 
         {/* CTA */}
         <div className="mt-16 text-center bg-navy/3 rounded-2xl p-10 border border-navy/10">

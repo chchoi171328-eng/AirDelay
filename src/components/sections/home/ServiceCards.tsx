@@ -7,14 +7,14 @@ const services = [
     title: '항공기 지연 보상',
     desc: '3시간 이상 지연 시 EU261 또는 국내 소비자보호원 기준으로 지연 보상금을 청구합니다.',
     href: '/services#delay',
-    badge: '최대 600유로',
+    badge: 'EU261 기준 €250~600',
   },
   {
     icon: XCircle,
     title: '항공기 결항 보상',
-    desc: '갑작스러운 결항으로 인한 실비(숙박, 식비 등)와 대체편 관련 손해배상을 전액 청구합니다.',
+    desc: '결항 보상금과 함께, 결항으로 생긴 숙박비·식비 등 손해도 청구합니다.',
     href: '/services#cancel',
-    badge: '전액 손해배상',
+    badge: '손해배상 청구',
   },
 ]
 

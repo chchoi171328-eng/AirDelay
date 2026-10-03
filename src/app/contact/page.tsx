@@ -110,7 +110,8 @@ export default function ContactPage() {
           <div className="bg-navy/5 border border-navy/10 rounded-xl p-5 flex items-center justify-center gap-2">
             <CheckCircle className="w-4 h-4 text-navy shrink-0" />
             <p className="text-sm text-gray-600">
-              <strong className="text-navy">착수금·선불금 없음</strong> — 보상금을 받은 경우에만 수임료가 발생합니다 (성공 보수 방식).
+              <strong className="text-navy">항공사 청구 단계 비용 없음</strong> — 보상금을 받은 경우에만 성공보수 25%(부가세 포함)가 발생합니다.{' '}
+              <Link href="/services#cost" className="underline underline-offset-2 hover:text-navy">비용 안내</Link>
             </p>
           </div>
         </div>

@@ -34,7 +34,7 @@ export default function Hero() {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6">
               <span className="w-2.5 h-2.5 rounded-full bg-orange animate-pulse" />
-              <span className="text-white text-sm font-semibold tracking-wide">성공 시에만 수임료 발생</span>
+              <span className="text-white text-sm font-semibold tracking-wide">보상받은 경우에만 성공보수</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl xl:text-7xl font-extrabold text-white leading-[1.3] sm:leading-[1.4] tracking-tight mb-6 sm:mb-8">
@@ -45,8 +45,8 @@ export default function Hero() {
             <div className="mt-6 sm:mt-10 flex gap-6 sm:gap-10">
               {[
                 { label: '한국·영국 변호사', value: '직접 청구' },
-                { label: '착수금·선불금', value: '0원' },
-                { label: '국내외 모든 항공사', value: '청구 가능' },
+                { label: '성공보수 (부가세 포함)', value: '25%' },
+                { label: '소송으로 가도', value: '25% 그대로' },
               ].map((item) => (
                 <div key={item.label}>
                   <div className="text-white font-bold text-lg">{item.value}</div>
@@ -83,7 +83,7 @@ export default function Hero() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <p className="text-center text-xs text-gray-500 mt-4 font-medium">
-                착수금 없이, 보상금을 받은 경우에만 수임료가 발생합니다.
+                항공사 청구 단계 비용 없음 · 보상받은 경우에만 성공보수
               </p>
             </form>
           </div>

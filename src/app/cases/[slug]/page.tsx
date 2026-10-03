@@ -65,6 +65,7 @@ export default function CaseDetailPage({ params }: { params: { slug: string } })
         </div>
 
         <article className="prose prose-gray max-w-none prose-headings:text-navy prose-a:text-navy prose-strong:text-navy" dangerouslySetInnerHTML={{ __html: c.html }} />
+        <p className="mt-8 text-xs text-gray-500">사건마다 결과가 다르며, 같은 금액을 보장하지 않습니다.</p>
 
         <ArticleCTA />
 

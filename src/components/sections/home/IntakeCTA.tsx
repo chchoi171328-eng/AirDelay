@@ -28,7 +28,8 @@ export default function IntakeCTA() {
           </div>
 
           <p className="text-white/60 text-sm mt-6">
-            ※ 착수금 없이, 보상금을 받은 경우에만 수임료가 발생합니다 (성공 보수 방식)
+            ※ 항공사 청구 단계는 비용이 없고, 보상금을 받은 경우에만 성공보수 25%(부가세 포함)가 발생합니다.{' '}
+            <Link href="/services#cost" className="underline underline-offset-2 hover:text-white">비용 안내</Link>
           </p>
         </div>
       </div>

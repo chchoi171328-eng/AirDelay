@@ -36,6 +36,7 @@ export default function RecentCasesTicker({ cases }: { cases: Case[] }) {
           <div className="flex-shrink-0 text-center lg:text-left">
             <h2 className="text-3xl font-extrabold text-white tracking-tight">최신 보상 내역</h2>
             <p className="text-white/70 mt-2 font-medium">가장 최근 보상 지급이 <br className="hidden lg:block"/>완료된 사건입니다.</p>
+            <p className="text-white/50 text-xs mt-2">사건마다 결과가 다르며, 같은 금액을 보장하지 않습니다.</p>
             <Link href="/cases" className="inline-flex items-center gap-1 text-white/80 hover:text-white text-sm font-semibold mt-4">
               전체 사례 보기 <ChevronRight className="w-4 h-4" />
             </Link>
