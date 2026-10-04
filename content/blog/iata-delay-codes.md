@@ -6,7 +6,7 @@ summary: "항공사는 지연 사유를 두 자리 숫자로 기록합니다. IA
 keywords: ["IATA 지연 코드", "항공기 지연 사유 코드", "딜레이 코드", "연결 지연"]
 reviewedAt: 2026-10
 cover: /images/guide/iata-delay-codes/cover.jpg
-related: ["weather-extraordinary-circumstances"]
+related: ["weather-extraordinary-circumstances", "aircraft-maintenance-mel"]
 ctaSituation: "항공사가 알려 준 지연 사유가 납득되지 않는다면"
 ctaOffer: "그 사유가 보상을 막는 사정인지"
 ---
