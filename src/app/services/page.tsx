@@ -33,7 +33,7 @@ const amounts = [
 ]
 
 const delayNotes = [
-  '한국–유럽 노선은 대부분 3,500km를 넘습니다. 이 경우 3~4시간 늦게 도착했다면 금액의 절반(€300·£260)을 받습니다.',
+  '한국–유럽 노선은 대부분 3,500km를 넘습니다. 이 경우 3~4시간 늦게 도착했다면 금액은 절반(€300·£260)입니다.',
   'EU 안의 노선은 1,500km를 넘으면 거리와 관계없이 €400입니다.',
   '몬트리올 협약이나 상법이 적용되면 정액이 아니라 지연으로 실제 생긴 손해(숙박비·식비·교통비 등)를 청구합니다.',
   '기다리는 동안 항공사는 식사·음료와, 필요하면 숙박을 제공해야 합니다. 직접 쓴 비용은 영수증을 보관해 주세요.',
@@ -123,7 +123,7 @@ export default function CompensationPage() {
               최종 목적지에 예정보다 <strong className="text-navy">3시간 이상 늦게 도착</strong>했다면 보상 대상이 될 수 있습니다.
               EU261·UK261이 적용되면 지연 시간이 아니라 비행거리에 따라 금액이 정해집니다.
             </p>
-            <div className="rounded-xl overflow-hidden border border-navy/10 bg-white mb-6">
+            <div className="rounded-xl overflow-hidden border border-navy/10 bg-white mb-3">
               <div className="grid grid-cols-[1.5fr_1fr_1fr] gap-3 bg-navy text-white text-sm font-semibold px-4 sm:px-5 py-2.5">
                 <span>비행거리</span><span>EU261</span><span>UK261</span>
               </div>
@@ -135,6 +135,11 @@ export default function CompensationPage() {
                 </div>
               ))}
             </div>
+            <p className="text-sm text-gray-500 leading-relaxed break-keep mb-6">
+              위 금액은 항공사에 청구할 때의 규정 기준입니다. 항공사가 거절해 한국 법원에서 소송하면 법원이 한국법에 따라 판단할 수 있어,
+              인정 금액이 이와 다르거나 적을 수 있습니다.{' '}
+              <Link href="/faq#lawsuit" className="underline underline-offset-2 hover:text-navy">소송으로 가면 얼마를 받나요?</Link>
+            </p>
             <Notes items={delayNotes} />
           </div>
           <Photo src="/images/service-delay.jpg" alt="출발 안내 전광판에 표시된 항공편 지연 안내" />

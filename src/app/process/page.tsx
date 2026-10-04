@@ -345,7 +345,7 @@ export default function ProcessPage() {
               <div>
                 <h3 className="font-bold text-navy mb-2">소송으로 받을 금액은 미리 말씀드리기 어렵습니다</h3>
                 <ul className="space-y-2 text-[15px] text-gray-700 leading-relaxed break-keep">
-                  <li>소송에서는 한국 법원이 한국법에 따라 손해를 판단합니다. 정해진 기준이 없어 재판부마다 인정 금액이 크게 다르고, EU 규정 금액(€250~600)보다 적을 수 있습니다.</li>
+                  <li>소송에서는 한국 법원이 한국법에 따라 손해를 판단할 수 있습니다. 이 경우 정해진 기준이 없어 재판부마다 인정 금액이 크게 다르고, EU 규정 금액(€250~600)보다 적을 수 있습니다.</li>
                   <li>판결이나 합의까지는 항공사 청구보다 시간이 더 걸립니다.</li>
                 </ul>
               </div>
