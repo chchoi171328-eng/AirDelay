@@ -1,8 +1,19 @@
-// 법인 기본 정보 — 실제 정보로 교체할 때 이 파일만 고치면 됩니다.
+// 법인 기본 정보 — 메인 사이트(sllaw.co.kr)의 lib/organization.ts와 글자 단위로 같게 유지합니다.
+// 메인 사이트 정보가 바뀌면 이 파일만 고치면 푸터·법인 소개·검색엔진용 정보에 함께 반영됩니다.
 export const FIRM = {
   name: '법무법인 명',
-  phone: '02-000-0000',
-  email: 'info@lawfirm-myung.com',
+  nameEn: 'SOL & LUNA Law Firm',
+  phone: '031-658-6100',
+  phoneIntl: '+82-31-658-6100',
+  email: 'sllaw@sllaw.co.kr',
+  address: '경기도 평택시 평남로 1029-1, SJ프라자 5층',
+  addressParts: { street: '평남로 1029-1, SJ프라자 5층', locality: '평택시', region: '경기도', country: 'KR' },
+  taxId: '238-85-00581',
+  representative: '최철호', // 대표변호사
+  adLawyer: '최철호', // 광고책임변호사
+  hours: '평일 09:00–18:00',
+  mainSiteUrl: 'https://www.sllaw.co.kr',
+  englishSiteUrl: 'https://www.lsfp.co.kr/',
 }
 
 // 항공 보상 가이드의 기본 작성자 표시 (글마다 author 항목으로 바꿀 수 있습니다)

@@ -24,18 +24,28 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image' },
 }
 
-// 검색엔진용 법인 정보 (연락처는 src/lib/site.ts 값을 따릅니다)
+// 검색엔진용 법인 정보 — 메인 사이트(sllaw.co.kr)의 법인 정보와 같은 값을 씁니다 (src/lib/site.ts)
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LegalService',
   name: FIRM.name,
+  alternateName: FIRM.nameEn,
+  taxID: FIRM.taxId,
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.png`,
   description: SITE_DESCRIPTION,
-  telephone: FIRM.phone,
+  telephone: FIRM.phoneIntl,
   email: FIRM.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: FIRM.addressParts.street,
+    addressLocality: FIRM.addressParts.locality,
+    addressRegion: FIRM.addressParts.region,
+    addressCountry: FIRM.addressParts.country,
+  },
   areaServed: ['KR', 'GB'],
   knowsAbout: ['항공 지연 보상', '항공 결항 보상', 'EU261', '몬트리올 협약'],
+  sameAs: [FIRM.mainSiteUrl, FIRM.englishSiteUrl],
 }
 
 export default function RootLayout({

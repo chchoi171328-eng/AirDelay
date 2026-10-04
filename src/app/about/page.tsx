@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { CheckCircle, Phone, Mail, MapPin, MessageCircle, ArrowRight, Headphones } from 'lucide-react'
+import { CheckCircle, Phone, Mail, MapPin, ArrowRight, Headphones, ExternalLink } from 'lucide-react'
 import PageHeader from '@/components/layout/PageHeader'
 import SectionNav from '@/components/layout/SectionNav'
 import { FIRM } from '@/lib/site'
@@ -11,15 +11,32 @@ export const metadata: Metadata = {
   description: '법무법인 명 소개. 한국·영국 변호사와 사무소별 연락처(전화·이메일·주소)를 안내합니다.',
 }
 
-const attorneys = [
+// 한국 변호사 정보는 메인 사이트(sllaw.co.kr) 변호사 소개 페이지와 같게 유지합니다.
+const attorneys: {
+  country: string
+  code: string
+  name: string
+  bar: string
+  specialties: string[]
+  imgLabel: string
+  img: string
+  profileUrl?: string
+}[] = [
   {
     country: '한국',
     code: 'KR',
-    name: '홍길동 변호사',
-    bar: '대한변호사협회',
-    specialties: ['국내 항공소송', '소비자보호법', '민사 손해배상'],
-    imgLabel: '한국 변호사 프로필 사진',
+    name: `${FIRM.representative} 대표변호사`,
+    bar: `${FIRM.name}(SOL & LUNA) 대표변호사`,
+    specialties: [
+      '중앙대학교 컴퓨터공학과',
+      '성균관대학교 법학전문대학원',
+      '(전) 법무법인 수호 변호사',
+      '(전) GS건설 사내변호사',
+      '(전) 롯데건설 사내변호사',
+    ],
+    imgLabel: `${FIRM.name} ${FIRM.representative} 대표변호사 프로필 사진`,
     img: '/images/lawyer-kr.jpg',
+    profileUrl: `${FIRM.mainSiteUrl}/attorneys/choi-cheolho`,
   },
   {
     country: '영국',
@@ -32,7 +49,7 @@ const attorneys = [
   },
 ]
 
-// 사무소별 연락처 — 실제 정보로 바꿔 주세요 (대표 전화·이메일은 src/lib/site.ts)
+// 사무소별 연락처 — 한국 법인은 src/lib/site.ts(메인 사이트와 같은 정보)를 따릅니다. 영국 법인은 실제 정보로 바꿔 주세요.
 const offices = [
   {
     code: 'KR',
@@ -40,10 +57,9 @@ const offices = [
     role: '고객 연락 · 몬트리올 협약·국내법 검토 · 한국 법원 소송',
     contactPoint: true,
     items: [
-      { icon: Phone, label: '전화', value: FIRM.phone, href: `tel:${FIRM.phone}`, note: '평일 09:00–18:00' },
-      { icon: Mail, label: '이메일', value: 'korea@lawfirm-myung.com', href: 'mailto:korea@lawfirm-myung.com' },
-      { icon: MapPin, label: '주소', value: '서울특별시 강남구 테헤란로 000' },
-      { icon: MessageCircle, label: '카카오톡 채널', value: '@법무법인명', note: '빠른 문의 가능' },
+      { icon: Phone, label: '전화', value: FIRM.phone, href: `tel:${FIRM.phone}`, note: FIRM.hours },
+      { icon: Mail, label: '이메일', value: FIRM.email, href: `mailto:${FIRM.email}` },
+      { icon: MapPin, label: '주소', value: FIRM.address },
     ],
   },
   {
@@ -114,7 +130,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="relative w-full aspect-[4/3] rounded-2xl shadow-lg overflow-hidden">
-              <Image src="/images/lawyer-office.jpg" alt="법무법인 사무실" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+              <Image src="/images/about-bookshelf.webp" alt="법률 서적이 꽂힌 책장" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             </div>
           </div>
         </div>
@@ -125,10 +141,10 @@ export default function AboutPage() {
         <div className="container-wide section-padding">
           <div className="text-center mb-12">
             <h2 className="section-title">소속 변호사</h2>
-            <p className="section-subtitle">한국과 영국 두 나라의 항공법 전문가가 함께합니다</p>
+            <p className="section-subtitle">한국 변호사와 영국 변호사가 함께 사건을 처리합니다</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {attorneys.map(({ country, code, name, bar, specialties, imgLabel, img }) => (
+            {attorneys.map(({ country, code, name, bar, specialties, imgLabel, img, profileUrl }) => (
               <div key={country} className="card overflow-hidden">
                 <div className="relative w-full aspect-[3/2]">
                   <Image src={img} alt={imgLabel} fill sizes="(min-width: 768px) 448px, 100vw" className="object-cover object-top" />
@@ -147,6 +163,11 @@ export default function AboutPage() {
                       </div>
                     ))}
                   </div>
+                  {profileUrl && (
+                    <a href={profileUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-5 text-sm font-semibold text-navy hover:underline underline-offset-2">
+                      법인 홈페이지에서 약력 보기 <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
                 </div>
               </div>
             ))}

@@ -151,7 +151,7 @@ export default function PrivacyPage() {
           <Section title="제10조 개인정보 보호책임자">
             <table className={tableCls}>
               <tbody>
-                <tr><th className="w-28">성명·직책</th><td><Blank>성명</Blank> / <Blank>직책</Blank></td></tr>
+                <tr><th className="w-28">담당</th><td>경영지원팀</td></tr>
                 <tr><th>전화</th><td><a href={`tel:${FIRM.phone}`} className="hover:text-navy">{FIRM.phone}</a></td></tr>
                 <tr><th>이메일</th><td><a href={`mailto:${FIRM.email}`} className="hover:text-navy">{FIRM.email}</a></td></tr>
               </tbody>
