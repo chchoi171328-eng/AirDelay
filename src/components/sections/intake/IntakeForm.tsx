@@ -10,6 +10,7 @@ import type {
   CompleteIntakeResponse, CreateIntakeResponse, IntakeErrors, IntakeField, IntakeInput, UploadTarget,
 } from '@/lib/intake'
 import { FIRM } from '@/lib/site'
+import { batchFor, needsDeadlineCheck } from '@/lib/batch'
 
 const STEPS = ['피해 정보', '고객 정보', '접수 완료']
 
@@ -188,6 +189,9 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
   }
 
   const busy = status !== 'idle'
+  // 접수 완료 화면에 보여 줄 공동소송 차수 (접수 시점 기준)
+  const batch = step === 2 ? batchFor(form.date) : null
+  const airlineName = form.airline && form.airline !== '기타' ? `${form.airline} ` : '접수하신 '
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -369,7 +373,7 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
           <p className="text-gray-500 leading-relaxed mb-2">
             {form.name} 고객님, 사건을 접수했습니다.
           </p>
-          <p className="text-gray-500 leading-relaxed mb-8">
+          <p className="text-gray-500 leading-relaxed mb-8 break-keep">
             <strong className="text-navy">영업일 기준 2일 이내</strong>에 연락드립니다.<br />
             보상 가능 여부를 안내드리거나, 판단에 필요한 내용을 여쭤봅니다.
           </p>
@@ -378,6 +382,24 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
             <div className="flex justify-between"><span className="text-gray-500">노선</span><span className="font-semibold text-navy">{form.origin} → {form.destination}</span></div>
             <div className="flex justify-between"><span className="text-gray-500">날짜</span><span className="font-semibold text-navy">{form.date}</span></div>
           </div>
+          {batch && (
+            <div className="rounded-xl border border-navy/10 p-5 text-left text-sm max-w-sm mx-auto mb-8">
+              <p className="font-bold text-navy mb-1.5">공동소송 차수</p>
+              <p className="text-gray-600 leading-relaxed break-keep">
+                항공사가 지급을 거절하면 {airlineName}사건은 <strong className="text-navy">{batch.label} 차수</strong>로 공동소송 진행 여부를 안내드립니다.
+                {batch.rolledOver && ' 운항일 기준 차수는 접수가 마감되어, 지금 접수 중인 차수에 포함했습니다.'}
+              </p>
+              <dl className="mt-3 space-y-1.5">
+                <div className="flex justify-between"><dt className="text-gray-500">접수 마감</dt><dd className="font-semibold text-navy">{batch.close}</dd></div>
+                <div className="flex justify-between"><dt className="text-gray-500">소장 접수</dt><dd className="font-semibold text-navy">{batch.file}</dd></div>
+              </dl>
+              <p className="mt-3 text-xs text-gray-500 leading-relaxed break-keep">
+                항공사 답변이 늦어지면 다음 차수로 넘어갈 수 있습니다.
+                {needsDeadlineCheck(form.date) && ' 운항일이 오래된 항공편은 소송 기한을 먼저 확인해 안내드립니다.'}{' '}
+                <Link href="/process#group" className="underline underline-offset-2 hover:text-navy">차수 일정 보기</Link>
+              </p>
+            </div>
+          )}
           {result.filesSelected > 0 && result.filesStored !== result.filesSelected && (
             <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 max-w-sm mx-auto mb-4">
               {result.filesStored === null

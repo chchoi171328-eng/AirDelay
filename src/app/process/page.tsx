@@ -100,7 +100,7 @@ const reasons = [
   { icon: Wallet, title: '부담은 진행비 1만 원', desc: '참여하실 때 진행비 1만 원만 내시면 되고, 성공보수는 소송으로 가도 25% 그대로입니다.' },
 ]
 
-// 공동소송 차수 일정 — 자주 묻는 질문(content/faq/09-litigation-timing.md)과 같은 내용을 유지해 주세요
+// 공동소송 차수 일정 — 자주 묻는 질문(content/faq/09-litigation-timing.md), 접수 완료 화면의 차수 계산(src/lib/batch.ts)과 같은 내용을 유지해 주세요
 // 운항 기간이 끝나고 2개월 뒤 접수 마감, 그다음 1개월은 항공사 답변 기한(청구서에 1개월로 적어 보냄)
 const batches = [
   {
