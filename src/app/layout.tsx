@@ -45,7 +45,6 @@ const jsonLd = {
   },
   areaServed: ['KR', 'GB'],
   knowsAbout: ['항공 지연 보상', '항공 결항 보상', 'EU261', '몬트리올 협약'],
-  sameAs: [FIRM.mainSiteUrl, FIRM.englishSiteUrl],
 }
 
 export default function RootLayout({

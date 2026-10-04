@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { CheckCircle, Phone, Mail, MapPin, ArrowRight, Headphones, ExternalLink } from 'lucide-react'
+import { CheckCircle, Phone, Mail, MapPin, ArrowRight, Headphones } from 'lucide-react'
 import PageHeader from '@/components/layout/PageHeader'
 import SectionNav from '@/components/layout/SectionNav'
 import { FIRM } from '@/lib/site'
@@ -11,17 +11,8 @@ export const metadata: Metadata = {
   description: '법무법인 명 소개. 한국·영국 변호사와 사무소별 연락처(전화·이메일·주소)를 안내합니다.',
 }
 
-// 한국 변호사 정보는 메인 사이트(sllaw.co.kr) 변호사 소개 페이지와 같게 유지합니다.
-const attorneys: {
-  country: string
-  code: string
-  name: string
-  bar: string
-  specialties: string[]
-  imgLabel: string
-  img: string
-  profileUrl?: string
-}[] = [
+// 한국 변호사 정보는 메인 사이트(sllaw.co.kr) 변호사 소개 페이지와 같게 유지합니다 (링크는 걸지 않습니다).
+const attorneys = [
   {
     country: '한국',
     code: 'KR',
@@ -33,10 +24,11 @@ const attorneys: {
       '(전) 법무법인 수호 변호사',
       '(전) GS건설 사내변호사',
       '(전) 롯데건설 사내변호사',
+      '(전) 서울고등법원 실무수습',
+      '(전) 서울북부지방법원 실무수습',
     ],
     imgLabel: `${FIRM.name} ${FIRM.representative} 대표변호사 프로필 사진`,
     img: '/images/lawyer-kr.jpg',
-    profileUrl: `${FIRM.mainSiteUrl}/attorneys/choi-cheolho`,
   },
   {
     country: '영국',
@@ -144,7 +136,7 @@ export default function AboutPage() {
             <p className="section-subtitle">한국 변호사와 영국 변호사가 함께 사건을 처리합니다</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {attorneys.map(({ country, code, name, bar, specialties, imgLabel, img, profileUrl }) => (
+            {attorneys.map(({ country, code, name, bar, specialties, imgLabel, img }) => (
               <div key={country} className="card overflow-hidden">
                 <div className="relative w-full aspect-[3/2]">
                   <Image src={img} alt={imgLabel} fill sizes="(min-width: 768px) 448px, 100vw" className="object-cover object-top" />
@@ -163,11 +155,6 @@ export default function AboutPage() {
                       </div>
                     ))}
                   </div>
-                  {profileUrl && (
-                    <a href={profileUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-5 text-sm font-semibold text-navy hover:underline underline-offset-2">
-                      법인 홈페이지에서 약력 보기 <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  )}
                 </div>
               </div>
             ))}

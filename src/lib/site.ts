@@ -12,8 +12,6 @@ export const FIRM = {
   representative: '최철호', // 대표변호사
   adLawyer: '최철호', // 광고책임변호사
   hours: '평일 09:00–18:00',
-  mainSiteUrl: 'https://www.sllaw.co.kr',
-  englishSiteUrl: 'https://www.lsfp.co.kr/',
 }
 
 // 항공 보상 가이드의 기본 작성자 표시 (글마다 author 항목으로 바꿀 수 있습니다)

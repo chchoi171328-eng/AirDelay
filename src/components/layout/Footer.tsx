@@ -70,10 +70,18 @@ export default function Footer() {
           <p className="text-white/60 text-xs">
             © {new Date().getFullYear()} {FIRM.nameEn}. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          {/* 법적 고지: 메인 사이트와 같은 네 가지 (개인정보처리방침·이용약관·이메일무단수집거부·면책공고) */}
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">
             <Link href="/privacy" className="text-white/70 hover:text-white font-bold text-xs transition-colors">개인정보처리방침</Link>
-            <Link href="/about" className="text-white/60 hover:text-white/70 text-xs transition-colors">법인 소개</Link>
-            <Link href="/about#contact" className="text-white/60 hover:text-white/70 text-xs transition-colors">연락처</Link>
+            {[
+              ['이용약관', '/terms'],
+              ['이메일무단수집거부', '/email-policy'],
+              ['면책공고', '/disclaimer'],
+              ['법인 소개', '/about'],
+              ['연락처', '/about#contact'],
+            ].map(([label, href]) => (
+              <Link key={href} href={href} className="text-white/60 hover:text-white/70 text-xs transition-colors">{label}</Link>
+            ))}
           </div>
         </div>
       </div>
