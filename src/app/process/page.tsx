@@ -51,10 +51,10 @@ const details: Detail[] = [
     fee: <>없음</>,
   },
   {
-    timing: '항공사마다 답변 기간이 다릅니다',
+    timing: '항공사 답변 기한 1개월',
     we: [
       '변호사가 고객님을 대리해 항공사에 보상금을 청구합니다. 유럽 노선은 영국 변호사가, 그 밖의 노선은 한국 변호사가 맡습니다.',
-      '항공사의 답변에 대응하고 지급 여부를 확인합니다.',
+      '청구서에 답변 기한을 1개월로 적어 보내고, 항공사의 답변에 대응해 지급 여부를 확인합니다.',
     ],
     you: ['항공사가 고객님께 직접 연락하거나 바우처·마일리지를 제안하면, 받아들이기 전에 저희에게 먼저 알려 주세요.'],
     outcomes: [
@@ -64,7 +64,7 @@ const details: Detail[] = [
     fee: <>보상금을 받은 경우에만 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</>,
   },
   {
-    timing: '6월 말·12월 말 마감 → 8월·2월 중 소장 접수',
+    timing: '8월 말·2월 말 접수 마감 → 11월·5월 중 소장 접수',
     we: [
       '같은 항공사 사건을 운항일 기준 6개월 단위로 모아, 마감 후 항공사별 소송 진행 여부를 한꺼번에 안내드립니다.',
       '한국 법인이 동의하신 분들을 원고로 한국 법원에 소장을 접수하고 재판을 진행합니다. 유럽 노선 사건은 청구를 맡았던 영국 변호사와 함께 준비합니다.',
@@ -101,9 +101,30 @@ const reasons = [
 ]
 
 // 공동소송 차수 일정 — 자주 묻는 질문(content/faq/09-litigation-timing.md)과 같은 내용을 유지해 주세요
+// 운항 기간이 끝나고 2개월 뒤 접수 마감, 그다음 1개월은 항공사 답변 기한(청구서에 1개월로 적어 보냄)
 const batches = [
-  { label: '상반기 차수', flights: '1월~6월 운항 항공편', close: '6월 말', file: '8월 중' },
-  { label: '하반기 차수', flights: '7월~12월 운항 항공편', close: '12월 말', file: '다음 해 2월 중' },
+  {
+    label: '상반기 차수',
+    flights: '1월~6월 운항 항공편',
+    steps: [
+      { k: '접수 마감', v: '8월 말' },
+      { k: '항공사 청구 마무리', v: '9월 말' },
+      { k: '진행 여부 안내', v: '10월 초' },
+      { k: '동의 확인', v: '안내받은 날부터 1개월' },
+      { k: '소장 접수', v: '11월 중' },
+    ],
+  },
+  {
+    label: '하반기 차수',
+    flights: '7월~12월 운항 항공편',
+    steps: [
+      { k: '접수 마감', v: '다음 해 2월 말' },
+      { k: '항공사 청구 마무리', v: '3월 말' },
+      { k: '진행 여부 안내', v: '4월 초' },
+      { k: '동의 확인', v: '안내받은 날부터 1개월' },
+      { k: '소장 접수', v: '5월 중' },
+    ],
+  },
 ]
 
 const sections = [
@@ -126,7 +147,8 @@ const feeNotes = [
 ]
 
 const rules = [
-  '항공사가 기한 안에 답하지 않으면 거절로 보고 같은 차수에 포함합니다.',
+  '항공사에는 답변 기한을 1개월로 정해 청구합니다. 기한 안에 답하지 않으면 거절로 보고 같은 차수에 포함합니다.',
+  '접수 마감 뒤에 접수되었거나, 항공사 청구가 마무리 시점(9월 말·3월 말)까지 끝나지 않은 사건은 다음 차수에 포함합니다.',
   '기한 안에 동의하신 분만 원고로 소장에 포함됩니다. 동의하지 않으시면 소송에 참여하지 않으며, 따로 드는 비용은 없습니다.',
   '같은 항공사 사건이 너무 적으면 다음 차수로 한 번 넘겨 함께 진행합니다. 그래도 진행이 어려우면 미리 알려드립니다.',
   '소송 진행비는 인지대·송달료 등에 쓰이는 정액입니다. 법인이 소송을 제기하지 않게 되면 돌려드립니다.',
@@ -285,31 +307,26 @@ export default function ProcessPage() {
 
           {/* 차수 일정 */}
           <h3 className="text-xl font-extrabold text-navy mt-14 mb-2">차수 일정</h3>
-          <p className="text-gray-600 leading-relaxed mb-6 break-keep">항공편 운항일을 기준으로 6개월씩 묶어 진행합니다.</p>
+          <p className="text-gray-600 leading-relaxed mb-6 break-keep">항공편 운항일을 기준으로 6개월씩 묶고, 운항 기간이 끝난 뒤 2개월 동안 더 접수를 받습니다.</p>
           <div className="space-y-4">
-            {batches.map(({ label, flights, close, file }) => (
+            {batches.map(({ label, flights, steps }) => (
               <div key={label} className="rounded-2xl border border-navy/10 overflow-hidden">
                 <div className="bg-navy text-white text-sm px-5 py-2.5 flex flex-wrap gap-x-3 gap-y-0.5">
                   <span className="font-bold">{label}</span>
                   <span className="text-white/70">{flights}</span>
                 </div>
-                <ol className="grid grid-cols-1 sm:grid-cols-4">
-                  {[
-                    { k: '마감', v: close },
-                    { k: '진행 여부 안내', v: '마감 후 한꺼번에' },
-                    { k: '동의 확인', v: '안내받은 날부터 1개월' },
-                    { k: '소장 접수', v: file },
-                  ].map(({ k, v }, i) => (
-                    <li key={k} className={`flex sm:flex-col justify-between sm:justify-start gap-1 px-5 py-3.5 ${i ? 'border-t sm:border-t-0 sm:border-l border-navy/5' : ''}`}>
-                      <span className="text-sm text-gray-500"><span className="font-bold text-navy/60 mr-1.5">{i + 1}</span>{k}</span>
-                      <span className="font-bold text-navy text-right sm:text-left">{v}</span>
+                <ol className="grid grid-cols-1 md:grid-cols-5">
+                  {steps.map(({ k, v }, i) => (
+                    <li key={k} className={`flex md:flex-col justify-between md:justify-start gap-1 px-5 py-3.5 md:px-4 ${i ? 'border-t md:border-t-0 md:border-l border-navy/5' : ''}`}>
+                      <span className="text-sm text-gray-500 break-keep"><span className="font-bold text-navy/60 mr-1.5">{i + 1}</span>{k}</span>
+                      <span className="font-bold text-navy text-right md:text-left break-keep">{v}</span>
                     </li>
                   ))}
                 </ol>
               </div>
             ))}
           </div>
-          <p className="text-sm text-gray-500 mt-4 break-keep">예: 3월에 운항한 항공편은 상반기 차수에 포함되며, 항공사가 거절하고 소송에 동의하시면 8월 중 소장이 접수됩니다.</p>
+          <p className="text-sm text-gray-500 mt-4 break-keep">예: 3월에 운항한 항공편은 8월 말까지 접수하시면 상반기 차수에 포함되고, 항공사가 거절하고 소송에 동의하시면 11월 중 소장이 접수됩니다. 12월 31일에 운항한 항공편은 다음 해 2월 말까지 접수하시면 하반기 차수에 포함됩니다.</p>
 
           {/* 진행 기준 */}
           <h3 className="text-xl font-extrabold text-navy mt-14 mb-4">진행 기준</h3>
