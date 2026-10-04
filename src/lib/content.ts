@@ -5,8 +5,8 @@ import matter from 'gray-matter'
 import { marked } from 'marked'
 import { renderGuide, tildeSafeTokenizer } from './guide-markdown'
 import { GUIDE_AUTHOR } from './site'
-import { BLOG_CATEGORY_LABELS, CASE_TYPE_LABELS, FAQ_CATEGORY_LABELS } from './types'
-import type { BlogCategory, BlogPost, Case, CaseType, FaqCategory, FaqItem } from './types'
+import { BLOG_CATEGORY_LABELS, CASE_TYPE_LABELS, FAQ_CATEGORY_LABELS, LAWSUIT_STAGE_LABELS } from './types'
+import type { BlogCategory, BlogPost, Case, CaseType, FaqCategory, FaqItem, Lawsuit, LawsuitStage } from './types'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content')
 
@@ -130,6 +130,39 @@ export function getFaqs(): FaqItem[] {
     })
     .sort((a, b) => a.order - b.order)
   return faqCache.filter((f) => SHOW_DRAFTS || !f.draft)
+}
+
+let lawsuitsCache: Lawsuit[] | null = null
+const optional = (v: unknown) => (typeof v === 'string' && v.trim() ? v.trim() : null)
+const STAGE_ORDER = Object.keys(LAWSUIT_STAGE_LABELS) as LawsuitStage[]
+
+export function getLawsuits(): Lawsuit[] {
+  lawsuitsCache ??= readDir('lawsuits')
+    .map(({ slug, file, data }) => {
+      const stage = data.stage as LawsuitStage
+      if (!STAGE_ORDER.includes(stage)) fail(file, `stage는 ${STAGE_ORDER.join(', ')} 중 하나여야 합니다`)
+      const filedAt = data.filedAt == null ? null : String(data.filedAt)
+      if (filedAt !== null && !/^\d{4}-\d{2}$/.test(filedAt)) fail(file, `filedAt은 YYYY-MM 형식이어야 합니다 (현재: ${filedAt})`)
+      if (stage !== 'preparing' && !filedAt) fail(file, '소장을 접수한 사건은 filedAt(YYYY-MM)이 필요합니다')
+      return {
+        slug,
+        airline: required(file, data, 'airline'),
+        flights: required(file, data, 'flights'),
+        stage,
+        filedAt,
+        court: optional(data.court),
+        note: optional(data.note),
+        caseSlug: optional(data.caseSlug),
+        updatedAt: toDate(file, 'updatedAt', data.updatedAt),
+        draft: data.draft === true,
+      }
+    })
+    // 진행 중인 사건을 먼저, 그 안에서는 단계가 앞선 순서·최근 접수 순
+    .sort((a, b) => {
+      const done = (s: LawsuitStage) => (s === 'judgment' || s === 'closed' ? 1 : 0)
+      return done(a.stage) - done(b.stage) || (b.filedAt ?? '9999').localeCompare(a.filedAt ?? '9999') || a.airline.localeCompare(b.airline, 'ko')
+    })
+  return lawsuitsCache.filter((l) => SHOW_DRAFTS || !l.draft)
 }
 
 export const getPost = (slug: string) => getPosts().find((p) => p.slug === slug)

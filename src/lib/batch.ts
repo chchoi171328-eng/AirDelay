@@ -45,3 +45,16 @@ export function needsDeadlineCheck(flightDate: string, now = new Date()) {
   if (!m) return false
   return new Date(Number(m[1]), Number(m[2]) - 1 + 16, Number(m[3])) < now
 }
+
+/** 지금 접수 중인 차수 — 운항 기간이 시작됐고 접수 마감 전인 차수 (1~2월, 7~8월에는 두 차수가 겹칩니다) */
+export function openBatches(now = new Date()): { label: string; flights: string; close: string }[] {
+  const y = now.getFullYear()
+  const candidates: [number, Half][] = [[y - 1, 2], [y, 1], [y, 2]]
+  return candidates
+    .filter(([year, half]) => new Date(year, half === 1 ? 0 : 6, 1) <= now && closeDate(year, half) >= now)
+    .map(([year, half]) => ({
+      label: `${year}년 ${half === 1 ? '상반기' : '하반기'}`,
+      flights: half === 1 ? '1~6월 운항분' : '7~12월 운항분',
+      close: half === 1 ? `${year}년 8월 말` : `${year + 1}년 2월 말`,
+    }))
+}

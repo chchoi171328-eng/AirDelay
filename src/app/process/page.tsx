@@ -8,6 +8,9 @@ import PageHeader from '@/components/layout/PageHeader'
 import SectionNav from '@/components/layout/SectionNav'
 import IntakeCTA from '@/components/sections/home/IntakeCTA'
 import { PROCESS_STEPS } from '@/lib/process'
+import { getCases, getLawsuits } from '@/lib/content'
+import OpenBatchNotice from '@/components/process/OpenBatchNotice'
+import LawsuitList from '@/components/process/LawsuitList'
 
 export const metadata: Metadata = {
   title: '진행 절차와 비용',
@@ -155,6 +158,11 @@ const rules = [
 ]
 
 export default function ProcessPage() {
+  const lawsuits = getLawsuits()
+  // 결과를 올린 보상 사례로 연결 — 본문이 있는 사례는 상세 페이지, 없으면 목록
+  const caseLinks = new Map(getCases().map((c) => [c.slug, c.html ? `/cases/${c.slug}` : '/cases']))
+  const caseHref = (slug: string) => caseLinks.get(slug) ?? null
+
   return (
     <div>
       <PageHeader title="진행 절차와 비용" subtitle="접수부터 보상금 수령까지, 단계와 비용을 안내합니다" />
@@ -308,6 +316,7 @@ export default function ProcessPage() {
           {/* 차수 일정 */}
           <h3 className="text-xl font-extrabold text-navy mt-14 mb-2">차수 일정</h3>
           <p className="text-gray-600 leading-relaxed mb-6 break-keep">항공편 운항일을 기준으로 6개월씩 묶고, 운항 기간이 끝난 뒤 2개월 동안 더 접수를 받습니다.</p>
+          <div className="mb-4"><OpenBatchNotice /></div>
           <div className="space-y-4">
             {batches.map(({ label, flights, steps }) => (
               <div key={label} className="rounded-2xl border border-navy/10 overflow-hidden">
@@ -327,6 +336,18 @@ export default function ProcessPage() {
             ))}
           </div>
           <p className="text-sm text-gray-500 mt-4 break-keep">예: 3월에 운항한 항공편은 8월 말까지 접수하시면 상반기 차수에 포함되고, 항공사가 거절하고 소송에 동의하시면 11월 중 소장이 접수됩니다. 12월 31일에 운항한 항공편은 다음 해 2월 말까지 접수하시면 하반기 차수에 포함됩니다.</p>
+
+          {/* 진행 중인 공동소송 — content/lawsuits/*.md */}
+          {lawsuits.length > 0 && (
+            <>
+              <h3 id="lawsuits" className="text-xl font-extrabold text-navy mt-14 mb-2 scroll-mt-32">진행 중인 공동소송</h3>
+              <p className="text-gray-600 leading-relaxed mb-6 break-keep">
+                소장을 접수했거나 접수를 준비하고 있는 사건의 진행 단계입니다. 목록에 없는 항공사 사건도 모두 접수하며,
+                마무리된 사건의 결과는 <Link href="/cases" className="text-navy font-semibold underline underline-offset-2">보상 사례</Link>에 올립니다.
+              </p>
+              <LawsuitList lawsuits={lawsuits} caseHref={caseHref} />
+            </>
+          )}
 
           {/* 진행 기준 */}
           <h3 className="text-xl font-extrabold text-navy mt-14 mb-4">진행 기준</h3>

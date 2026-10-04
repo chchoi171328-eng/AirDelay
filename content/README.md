@@ -50,6 +50,27 @@ author: "법무법인 명"                     # 선택. 없으면 기본 작성
 법률 정보 안내, 접수 안내, 작성·검토 표시는 페이지가 자동으로 붙이고, 「함께 보면 좋은 글」은 `related`를 적었을 때만 나옵니다.
 작성 예는 `content/blog/flight-delay-3-hours.md`를 참고하세요.
 
+## 진행 중인 공동소송 — `content/lawsuits/*.md`
+
+진행 절차와 비용 페이지(`/process#lawsuits`)의 「진행 중인 공동소송」 목록입니다. 파일 하나가 사건 하나이고,
+**단계만 공개**합니다. 원고 수·청구 금액·사건번호는 적지 않습니다. 결과는 보상 사례에 올리고 `caseSlug`로 연결합니다.
+공개된 항목이 하나도 없으면 목록이 나오지 않습니다.
+
+```md
+---
+airline: "○○항공"
+flights: "2025년 하반기(7~12월) 운항분"   # 대상 운항 기간
+stage: trial        # preparing(소장 접수 준비) | filed(소장 접수) | trial(재판 진행 중) | judgment(판결 선고) | closed(종결)
+filedAt: 2026-05    # 소장 접수한 달 (YYYY-MM). preparing이면 생략
+court: "서울중앙지방법원"            # 선택
+note: "첫 변론기일을 마쳤습니다."     # 선택. 한 줄 안내 (금액·원고 수는 쓰지 않습니다)
+caseSlug: ""        # 선택. 결과를 올린 보상 사례 파일 이름
+updatedAt: 2026-10-01   # 마지막으로 고친 날 (YYYY-MM-DD) — 화면에 'YYYY.MM.DD 기준'으로 나옵니다
+---
+```
+
+단계가 바뀌면 `stage`와 `updatedAt`을 고칩니다. 예시는 `content/lawsuits/example-2025-h2.md`(draft)를 참고하세요.
+
 ## 보상 사례 — `content/cases/*.md`
 
 ```md
