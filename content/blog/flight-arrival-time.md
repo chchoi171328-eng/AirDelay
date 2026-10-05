@@ -6,7 +6,7 @@ summary: "항공사가 기록하는 착륙·블록 인 시각과 EU261 보상의
 keywords: ["항공편 도착 시각", "블록 인", "실제 도착 시각 ATA", "문 열린 시각 EU261"]
 reviewedAt: 2026-10
 cover: /images/guide/flight-arrival-time/cover.jpg
-related: ["flight-delay-3-hours", "airport-evidence-checklist"]
+related: ["flight-delay-3-hours", "airport-evidence-checklist", "aviation-glossary"]
 ctaSituation: "3시간 전후로 늦게 도착해 보상 대상인지 애매하다면"
 ctaOffer: "실제 도착 시각 기준으로 보상 대상인지"
 ---
