@@ -77,7 +77,7 @@ const details: Detail[] = [
       '동의하실 때 소송 진행비 1만 원을 내 주세요.',
       '법원에 나오실 일은 없습니다.',
     ],
-    fee: <>참여 동의 시 진행비 1인 <strong className="text-navy">1만 원</strong> + 판결금·합의금을 받은 경우 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</>,
+    fee: <>참여 동의 시 소송마다 진행비 1인 <strong className="text-navy">1만 원</strong> + 판결금·합의금을 받은 경우 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</>,
     more: { label: '공동소송 일정과 기준 자세히 보기', href: '#group' },
   },
   {
@@ -141,12 +141,12 @@ const sections = [
 const fees = [
   { step: '접수·보상 가능 여부 판단', fee: <>비용 없음</> },
   { step: '항공사 청구', fee: <>보상금을 받은 경우에만 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</> },
-  { step: '공동소송', fee: <>참여 동의 시 소송 진행비 1인 <strong className="text-navy">1만 원</strong> + 판결금·합의금을 받은 경우 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</> },
+  { step: '공동소송', fee: <>참여 동의 시 소송마다 진행비 1인 <strong className="text-navy">1만 원</strong> + 판결금·합의금을 받은 경우 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</> },
 ]
 
 const feeNotes = [
   '성공보수는 항공사로부터 실제로 받은 금액을 기준으로 계산합니다.',
-  '소송 진행비는 인지대·송달료 등에 쓰이는 정액입니다. 법인이 소송을 제기하지 않게 되면 돌려드립니다.',
+  '소송 진행비는 인지대·송달료 등에 쓰이는 정액이며, 항공사가 달라 소송이 둘 이상이면 소송별로 냅니다. 법인이 소송을 제기하지 않게 되면 돌려드립니다.',
 ]
 
 const rules = [
@@ -154,7 +154,7 @@ const rules = [
   '접수 마감 뒤에 접수되었거나, 항공사 청구가 마무리 시점(9월 말·3월 말)까지 끝나지 않은 사건은 다음 차수에 포함합니다.',
   '기한 안에 동의하신 분만 원고로 소장에 포함됩니다. 동의하지 않으시면 소송에 참여하지 않으며, 따로 드는 비용은 없습니다.',
   '같은 항공사 사건이 너무 적으면 다음 차수로 한 번 넘겨 함께 진행합니다. 그래도 진행이 어려우면 미리 알려드립니다.',
-  '소송 진행비는 인지대·송달료 등에 쓰이는 정액입니다. 법인이 소송을 제기하지 않게 되면 돌려드립니다.',
+  '소송 진행비는 인지대·송달료 등에 쓰이는 정액이며, 항공사가 달라 소송이 둘 이상이면 소송별로 냅니다. 법인이 소송을 제기하지 않게 되면 돌려드립니다.',
 ]
 
 export default function ProcessPage() {
