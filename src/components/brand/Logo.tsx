@@ -14,13 +14,15 @@ export default function Logo({ tone = 'dark', size = 'md', tagline = false, clas
   const gold = tone === 'dark' ? '#D8C090' : '#8A6F4D'
   const sub = tone === 'dark' ? 'text-white/70' : 'text-slate-500'
   const text = { sm: 'text-xl', md: 'text-2xl', lg: 'text-4xl' }[size]
-  const icon = { sm: 28, md: 34, lg: 48 }[size]
+  const icon = { sm: 28, md: 38, lg: 48 }[size]
+  // 작은 크기에서는 획을 두껍게 해 명조 글자와 무게를 맞춥니다 (48px 이상은 9로 충분)
+  const stroke = size === 'lg' ? 9 : 10
 
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
       <svg width={icon} height={icon} viewBox="0 0 120 120" fill="none" aria-hidden="true" className="shrink-0">
-        <path d="M22 100 L60 18 L98 100" stroke={navy} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M40 72 L112 50" stroke={gold} strokeWidth="9" strokeLinecap="round" />
+        <path d="M22 100 L60 18 L98 100" stroke={navy} strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M40 72 L112 50" stroke={gold} strokeWidth={stroke} strokeLinecap="round" />
       </svg>
       <span className="flex flex-col leading-none">
         <span className={`font-serif ${text} tracking-tight whitespace-nowrap`} aria-hidden="true">

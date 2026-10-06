@@ -32,9 +32,11 @@ export default function Hero() {
 
           {/* Left Text */}
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-2.5 h-2.5 rounded-full bg-orange animate-pulse" />
-              <span className="text-white text-sm font-semibold tracking-wide">보상받은 경우에만 성공보수</span>
+            {/* 영문 서비스명을 첫 화면에 한 번 보여 줍니다. 좁은 화면에서는 영문만 남깁니다 */}
+            <div className="flex items-center gap-3 text-sm whitespace-nowrap mb-6">
+              <span className="font-sans font-bold tracking-[0.28em] text-gold">AIRLEGAL CLAIM</span>
+              <span className="hidden sm:inline-block h-3 w-px bg-white/30" aria-hidden="true" />
+              <span className="hidden sm:inline text-white/80">보상받은 경우에만 성공보수</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl xl:text-7xl font-extrabold text-white leading-[1.3] sm:leading-[1.4] tracking-tight mb-6 sm:mb-8">
