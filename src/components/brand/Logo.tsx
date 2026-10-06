@@ -6,18 +6,21 @@ type Props = {
   /** 로고가 올라가는 배경 기준. 'dark' = 남색 배경(헤더·푸터), 'light' = 흰색·크림 배경 */
   tone?: 'light' | 'dark'
   size?: 'sm' | 'md' | 'lg'
+  /** 워드마크 아래 영문 표기(AIRLEGAL CLAIM)만 표시 — 헤더용 */
+  en?: boolean
+  /** 영문 표기 + 한글 부제 — 푸터용 */
   tagline?: boolean
   className?: string
 }
 
-export default function Logo({ tone = 'dark', size = 'md', tagline = false, className = '' }: Props) {
+export default function Logo({ tone = 'dark', size = 'md', en = false, tagline = false, className = '' }: Props) {
   const main = tone === 'dark' ? 'text-white' : 'text-navy'
   const accent = tone === 'dark' ? 'text-gold' : 'text-gold-deep'
   const sub = tone === 'dark' ? 'text-white/70' : 'text-slate-500'
-  const text = { sm: 'text-xl', md: 'text-2xl', lg: 'text-4xl' }[size]
-  const icon = { sm: 28, md: 38, lg: 48 }[size]
-  // 작은 크기에서는 획을 두껍게 해 명조 글자와 무게를 맞춥니다 (48px 이상은 9로 충분)
-  const stroke = size === 'lg' ? 9 : 10
+  const text = { sm: 'text-xl', md: 'text-[22px]', lg: 'text-4xl' }[size]
+  const icon = { sm: 28, md: 40, lg: 48 }[size]
+  // 작은 크기에서는 획을 두껍게 해 굵은 명조 글자(900)와 무게를 맞춥니다 (md: 40px 기준 약 4px)
+  const stroke = size === 'lg' ? 9 : 12
 
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
@@ -30,6 +33,9 @@ export default function Logo({ tone = 'dark', size = 'md', tagline = false, clas
           <span className={`${main} font-black`}>에어리걸</span>
           <span className={`${accent} font-normal`}>클레임</span>
         </span>
+        {en && !tagline && (
+          <span className={`mt-1.5 font-sans font-bold text-[10px] tracking-[0.28em] whitespace-nowrap ${accent}`}>AIRLEGAL CLAIM</span>
+        )}
         {tagline && (
           <span className={`mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] ${sub}`}>
             <span className={`font-sans font-bold tracking-[0.28em] ${accent}`}>AIRLEGAL CLAIM</span>

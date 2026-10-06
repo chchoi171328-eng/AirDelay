@@ -24,8 +24,8 @@ export default function Header() {
       <div className="container-wide section-padding">
         <div className="flex items-center justify-between h-16">
           {/* 서비스 로고 — 헤더에는 운영 법인 로고·이름을 두지 않습니다 (푸터가 운영 주체를 표시) */}
-          <Link href="/" className="hover:opacity-90 transition-opacity">
-            <Logo tone="dark" />
+          <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
+            <Logo tone="dark" en />
           </Link>
 
           {/* Desktop nav */}
@@ -35,7 +35,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 aria-current={isActive(link.href) ? 'page' : undefined}
-                className={`text-sm font-medium px-4 py-2 rounded-lg transition-all ${
+                className={`text-[15px] font-medium px-4 py-2 rounded-lg transition-all ${
                   isActive(link.href) ? 'text-white bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
@@ -72,7 +72,7 @@ export default function Header() {
                 href={link.href}
                 onClick={() => setOpen(false)}
                 aria-current={isActive(link.href) ? 'page' : undefined}
-                className={`text-sm font-medium px-4 py-3 rounded-lg transition-all ${
+                className={`text-[15px] font-medium px-4 py-3 rounded-lg transition-all ${
                   isActive(link.href) ? 'text-white bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
