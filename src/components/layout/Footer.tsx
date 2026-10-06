@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Logo tone="dark" tagline className="mb-5" />
             <p className="text-white/60 text-sm leading-relaxed max-w-lg break-keep">
-              항공지연·결항 보상 전문 서비스. 접수와 진행 확인은 이&nbsp;사이트에서 이루어집니다.<br />
+              항공지연·결항 보상 전문 서비스. 접수는 이&nbsp;사이트에서 받고, 진행&nbsp;상황은 한국 법인이 직접 연락드려 안내합니다.<br />
               한국–영국 변호사 협업으로 국내외 모든 노선을 처리합니다.
             </p>
           </div>

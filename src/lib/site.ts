@@ -29,7 +29,7 @@ export const FIRM = {
 export const GUIDE_AUTHOR = '법무법인 명'
 
 export const SITE_DESCRIPTION =
-  '항공편 지연·결항 보상 전문 서비스 에어리걸클레임. 법무법인 명 변호사가 항공사 청구부터 공동소송까지 직접 진행합니다. 보상받은 경우에만 성공보수.'
+  '법무법인 명이 운영하는 항공편 지연·결항 보상 전문 서비스 에어리걸클레임. 한국–영국 변호사 협업으로 국내외 모든 노선을 처리합니다. 보상받은 경우에만 성공보수.'
 
 // 사이트 주소: NEXT_PUBLIC_SITE_URL을 넣으면 그 값을, 아니면 Vercel 운영 도메인을 씁니다.
 // (자체 도메인을 연결하면 Vercel이 VERCEL_PROJECT_PRODUCTION_URL을 그 도메인으로 바꿔 줍니다.)
