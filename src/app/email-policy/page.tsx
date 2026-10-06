@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: `${FIRM.name}(SOL & LUNA)의 이메일무단수집거부 안내입니다.`,
 }
 
-// 메인 사이트(sllaw.co.kr) 이메일무단수집거부와 같은 내용입니다.
+// 메인 사이트 이메일무단수집거부와 같은 내용입니다.
 export default function EmailPolicyPage() {
   return (
     <LegalDoc title="이메일무단수집거부">

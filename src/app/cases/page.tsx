@@ -9,7 +9,7 @@ import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
   title: '보상 사례',
-  description: '법무법인 명이 실제로 보상을 받아 낸 항공 지연·결항 사례를 확인하세요.',
+  description: '에어리걸클레임에서 실제로 보상을 받아 낸 항공 지연·결항 사례를 확인하세요.',
   alternates: { canonical: '/cases' },
 }
 

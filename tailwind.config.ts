@@ -31,6 +31,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['"Pretendard Variable"', 'Pretendard', 'system-ui', 'sans-serif'],
+        // 로고 워드마크 전용 (src/app/layout.tsx에서 Noto Serif KR을 불러옵니다)
+        serif: ['var(--font-serif-kr)', '"Noto Serif KR"', 'serif'],
       },
       animation: {
         'fade-in-up': 'fadeInUp 0.6s ease-out both',

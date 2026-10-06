@@ -4,7 +4,7 @@ export default function PageHeader({ title, subtitle }: { title: string; subtitl
     <div className="bg-navy py-14 sm:py-16">
       <div className="container-wide section-padding text-center">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-white">{title}</h1>
-        {subtitle && <p className="text-white/70 text-base sm:text-lg mt-3">{subtitle}</p>}
+        {subtitle && <p className="text-white/70 text-base sm:text-lg mt-3 break-keep">{subtitle}</p>}
       </div>
     </div>
   )

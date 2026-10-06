@@ -373,9 +373,12 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
           <p className="text-gray-500 leading-relaxed mb-2">
             {form.name} 고객님, 사건을 접수했습니다.
           </p>
-          <p className="text-gray-500 leading-relaxed mb-8 break-keep">
+          <p className="text-gray-500 leading-relaxed mb-3 break-keep">
             <strong className="text-navy">영업일 기준 2일 이내</strong>에 연락드립니다.<br />
             보상 가능 여부를 안내드리거나, 판단에 필요한 내용을 여쭤봅니다.
+          </p>
+          <p className="text-sm text-gray-500 leading-relaxed mb-8 break-keep max-w-md mx-auto">
+            접수하신 사건은 {FIRM.name}(SOL &amp; LUNA) 변호사가 검토하며, 위임계약은 {FIRM.name}과 체결됩니다.
           </p>
           <div className="bg-navy/5 rounded-xl p-5 text-left text-sm space-y-2 mb-8 max-w-sm mx-auto">
             <div className="flex justify-between"><span className="text-gray-500">항공사</span><span className="font-semibold text-navy">{form.airline}</span></div>

@@ -8,9 +8,8 @@ import Faq from '@/components/sections/home/Faq'
 import IntakeCTA from '@/components/sections/home/IntakeCTA'
 import { getCases, getFaqs, getPosts } from '@/lib/content'
 
+// 제목·설명은 루트 레이아웃의 기본값(에어리걸클레임 | 태그라인)을 그대로 씁니다
 export const metadata: Metadata = {
-  title: '법무법인 명 | 항공지연·결항 보상 전문',
-  description: '항공 지연·결항 피해 전문 법무법인. 한국–영국 변호사 협업으로 국내외 모든 노선을 처리합니다.',
   alternates: { canonical: '/' },
 }
 

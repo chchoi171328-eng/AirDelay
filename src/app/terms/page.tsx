@@ -5,16 +5,16 @@ import LegalDoc, { LegalSection } from '@/components/layout/LegalDoc'
 
 export const metadata: Metadata = {
   title: '이용약관',
-  description: `${FIRM.name}(SOL & LUNA) 항공 지연·결항 보상 웹사이트 이용약관입니다.`,
+  description: `${FIRM.name}(SOL & LUNA)이 운영하는 항공 지연·결항 보상 웹사이트 에어리걸클레임의 이용약관입니다.`,
 }
 
-// 제1~4조와 제7조는 메인 사이트(sllaw.co.kr) 이용약관과 같은 내용입니다. 제5·6조는 이 사이트의 온라인 접수에 맞춰 더했습니다.
+// 제1~4조와 제7조는 메인 사이트 이용약관과 같은 내용입니다. 약관의 주체(본 법인)는 운영 법인인 법무법인 명입니다. 제5·6조는 이 사이트의 온라인 접수에 맞춰 더했습니다.
 export default function TermsPage() {
   return (
     <LegalDoc title="이용약관">
       <LegalSection title="제1조 (목적)">
         <p>
-          본 약관은 {FIRM.name}(이하 &lsquo;본 법인&rsquo;)이 제공하는 항공 지연·결항 보상 웹사이트(이하 &lsquo;본 사이트&rsquo;) 서비스의
+          본 약관은 {FIRM.name}(이하 &lsquo;본 법인&rsquo;)이 제공하는 항공 지연·결항 보상 웹사이트 에어리걸클레임(이하 &lsquo;본 사이트&rsquo;) 서비스의
           이용조건 및 절차, 이용자와 본 법인의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
         </p>
       </LegalSection>

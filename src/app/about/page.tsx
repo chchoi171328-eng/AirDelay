@@ -3,15 +3,15 @@ import type { Metadata } from 'next'
 import { CheckCircle, Phone, Mail, MapPin, ArrowRight, Headphones } from 'lucide-react'
 import PageHeader from '@/components/layout/PageHeader'
 import SectionNav from '@/components/layout/SectionNav'
-import { FIRM } from '@/lib/site'
+import { BRAND, FIRM } from '@/lib/site'
 import IntakeCTA from '@/components/sections/home/IntakeCTA'
 
 export const metadata: Metadata = {
-  title: '법인 소개',
-  description: '법무법인 명 소개. 한국·영국 변호사와 사무소별 연락처(전화·이메일·주소)를 안내합니다.',
+  title: '운영 법인 소개',
+  description: '에어리걸클레임을 운영하는 법무법인 명 소개. 한국·영국 변호사와 사무소별 연락처(전화·이메일·주소)를 안내합니다.',
 }
 
-// 한국 변호사 정보는 메인 사이트(sllaw.co.kr) 변호사 소개 페이지와 같게 유지합니다 (링크는 걸지 않습니다).
+// 운영 법인 소개는 이 페이지가 유일한 창구입니다. 한국 변호사 정보는 메인 사이트 변호사 소개와 같게 유지하되, 메인 사이트로 링크는 걸지 않습니다.
 const attorneys = [
   {
     country: '한국',
@@ -87,7 +87,7 @@ const collab = [
 ]
 
 const sections = [
-  { href: '#mission', label: '설립 배경' },
+  { href: '#mission', label: '운영 법인' },
   { href: '#lawyers', label: '소속 변호사' },
   { href: '#collab', label: '협업 방식' },
   { href: '#contact', label: '사무소·연락처' },
@@ -96,7 +96,7 @@ const sections = [
 export default function AboutPage() {
   return (
     <div>
-      <PageHeader title="법인 소개" subtitle="한국·영국 변호사와 사무소를 소개합니다" />
+      <PageHeader title="운영 법인 소개" subtitle="에어리걸클레임을 운영하는 법무법인 명과 한국·영국 변호사, 사무소를 소개합니다" />
       <SectionNav items={sections} />
 
       {/* Mission */}
@@ -104,9 +104,11 @@ export default function AboutPage() {
         <div className="container-wide section-padding">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="section-title mb-4">설립 배경 & 미션</h2>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                법무법인 명은 항공 피해를 입고도 복잡한 법적 절차 때문에 보상을 포기하는 피해자들을 위해 설립됐습니다.
+              <h2 className="section-title mb-4">운영 법인과 미션</h2>
+              <p className="text-navy font-semibold leading-relaxed mb-4 break-keep">{BRAND.operator}</p>
+              <p className="text-gray-600 leading-relaxed mb-4 break-keep">
+                항공 피해를 입고도 복잡한 절차 때문에 보상을 포기하는 분들을 위해 {FIRM.name}이 시작한 서비스입니다.
+                접수하신 사건은 {FIRM.name} 변호사가 검토하며, 위임계약은 {FIRM.name}과 체결됩니다.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
                 특히 EU261과 영국 규정이 적용되는 유럽 노선은 한국에서 혼자 대응하기 어렵습니다.

@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import IntakeForm from '@/components/sections/intake/IntakeForm'
 import { Shield, Clock, Phone } from 'lucide-react'
 import PageHeader from '@/components/layout/PageHeader'
+import { FIRM } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: '사건 접수',
@@ -45,6 +46,9 @@ export default function IntakePage() {
                     </div>
                   ))}
                 </div>
+                <p className="text-xs text-gray-500 leading-relaxed break-keep border-t border-navy/10 pt-3">
+                  접수하신 사건은 {FIRM.name}(SOL &amp; LUNA) 변호사가 검토하며, 위임계약은 {FIRM.name}과 체결됩니다.
+                </p>
               </div>
             </div>
           </div>

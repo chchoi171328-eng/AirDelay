@@ -5,7 +5,7 @@ import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
   title: '개인정보처리방침',
-  description: `${FIRM.name}의 개인정보 처리 목적, 항목, 보유기간 및 정보주체의 권리를 안내합니다.`,
+  description: `에어리걸클레임을 운영하는 ${FIRM.name}의 개인정보 처리 목적, 항목, 보유기간 및 정보주체의 권리를 안내합니다.`,
 }
 
 // 현재 구성: 접수 내용을 저장하지 않고 메일(EmailJS)로만 전달합니다.

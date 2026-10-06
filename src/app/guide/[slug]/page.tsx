@@ -8,7 +8,7 @@ import { BLOG_CATEGORY_LABELS, coverOf, type BlogCategory } from '@/lib/types'
 import { CATEGORY_COLORS, formatReviewed } from '@/components/content/PostCard'
 import DraftBadge from '@/components/content/DraftBadge'
 import ArticleCTA from '@/components/content/ArticleCTA'
-import { FIRM, SITE_URL } from '@/lib/site'
+import { BRAND, FIRM, SITE_URL } from '@/lib/site'
 
 export const dynamicParams = false
 
@@ -26,7 +26,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     alternates: { canonical: `/guide/${post.slug}` },
     openGraph: {
       type: 'article',
-      siteName: FIRM.name,
+      siteName: BRAND.name,
       locale: 'ko_KR',
       title: post.seoTitle,
       description: post.summary,
@@ -59,8 +59,9 @@ export default function GuidePostPage({ params }: { params: { slug: string } }) 
       headline: post.seoTitle,
       description: post.summary,
       dateModified: post.reviewedAt,
+      // 작성은 운영 법인, 발행은 서비스 사이트
       author: { '@type': 'Organization', name: FIRM.name },
-      publisher: { '@type': 'Organization', name: FIRM.name, logo: `${SITE_URL}/images/logo.png` },
+      publisher: { '@type': 'Organization', name: BRAND.name, logo: `${SITE_URL}/icons/icon-512.png` },
       mainEntityOfPage: `${SITE_URL}/guide/${post.slug}`,
     },
     ...(post.faq.length

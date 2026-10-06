@@ -4,6 +4,7 @@
 import type { IntakeInput } from './intake'
 import { CASE_TYPE_LABELS } from './types'
 import type { CaseType } from './types'
+import { BRAND, FIRM } from './site'
 
 const EMAILJS_ENDPOINT = 'https://api.emailjs.com/api/v1.0/email/send'
 
@@ -57,7 +58,9 @@ export async function notifyIntake(
   if (opts.filesNote) fileLines.push(opts.filesNote)
 
   // 기존 템플릿 변수명(airline, flightNo, route, date, type, delay_hours, name, phone, email, detail)을 유지합니다.
+  // from_name: EmailJS 템플릿의 From Name 칸에 {{from_name}}을 넣으면 발신명이 '에어리걸클레임 (법무법인 명)'으로 나갑니다.
   const clientParams = {
+    from_name: `${BRAND.name} (${FIRM.name})`,
     name: input.name,
     email: input.email,
     airline: input.airline,

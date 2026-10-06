@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import Logo from './Logo'
+import Logo from '@/components/brand/Logo'
 
 const navLinks = [
   { href: '/services', label: '보상 기준' },
@@ -11,7 +11,7 @@ const navLinks = [
   { href: '/cases', label: '보상 사례' },
   { href: '/faq', label: '자주 묻는 질문' },
   { href: '/guide', label: '항공 보상 가이드' },
-  { href: '/about', label: '법인 소개' },
+  { href: '/about', label: '운영 법인' },
 ]
 
 export default function Header() {
@@ -23,9 +23,9 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
       <div className="container-wide section-padding">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* 서비스 로고 — 헤더에는 운영 법인 로고·이름을 두지 않습니다 (푸터가 운영 주체를 표시) */}
           <Link href="/" className="hover:opacity-90 transition-opacity">
-            <Logo />
+            <Logo tone="dark" />
           </Link>
 
           {/* Desktop nav */}

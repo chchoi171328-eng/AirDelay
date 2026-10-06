@@ -4,16 +4,16 @@ import LegalDoc from '@/components/layout/LegalDoc'
 
 export const metadata: Metadata = {
   title: '면책공고',
-  description: `${FIRM.name}(SOL & LUNA) 항공 지연·결항 보상 웹사이트 면책공고입니다.`,
+  description: `${FIRM.name}(SOL & LUNA)이 운영하는 항공 지연·결항 보상 웹사이트 에어리걸클레임의 면책공고입니다.`,
 }
 
-// 첫 세 문단은 메인 사이트(sllaw.co.kr) 면책공고와 같은 내용이고, 뒤 두 문단은 이 사이트의 보상 안내·사례에 맞춰 더했습니다.
+// 첫 세 문단은 메인 사이트 면책공고와 같은 내용이고, 뒤 두 문단은 이 사이트의 보상 안내·사례에 맞춰 더했습니다.
 export default function DisclaimerPage() {
   return (
     <LegalDoc title="면책공고">
       <div className="space-y-4 text-[15px] text-gray-600 leading-relaxed">
         <p>
-          {FIRM.name} 항공 지연·결항 보상 웹사이트(이하 &lsquo;본 사이트&rsquo;)에 게재된 모든 내용은 일반적인 정보 제공을 목적으로 작성된 것이며,{' '}
+          {FIRM.name}이 운영하는 항공 지연·결항 보상 웹사이트 에어리걸클레임(이하 &lsquo;본 사이트&rsquo;)에 게재된 모든 내용은 일반적인 정보 제공을 목적으로 작성된 것이며,{' '}
           <strong className="text-navy">구체적인 사안에 대한 법률적 자문이나 해석을 의미하지 않습니다.</strong>
         </p>
         <p>
