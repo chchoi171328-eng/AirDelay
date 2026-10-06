@@ -14,7 +14,7 @@ import LawsuitList from '@/components/process/LawsuitList'
 
 export const metadata: Metadata = {
   title: '진행 절차와 비용',
-  description: '사건 접수부터 보상 가능 여부 판단, 항공사 청구, 공동소송, 보상금 수령까지의 단계와 비용(성공보수 25%, 공동소송 진행비 1만 원), 공동소송 일정을 안내합니다.',
+  description: '사건 접수부터 보상 가능 여부 판단, 항공사 청구, 공동소송, 보상금 수령까지의 단계와 비용(성공보수 25%, 공동소송 진행비 소송마다 1인 1만 원), 공동소송 일정을 안내합니다.',
 }
 
 const ICONS = [FileEdit, Search, Send, Users, Banknote]
@@ -74,7 +74,7 @@ const details: Detail[] = [
     ],
     you: [
       '안내받은 날부터 1개월 안에 소송 진행 동의 여부를 알려 주세요.',
-      '동의하실 때 소송 진행비 1만 원을 내 주세요.',
+      '동의하실 때 소송 진행비(소송마다 1인 1만 원)를 내 주세요.',
       '법원에 나오실 일은 없습니다.',
     ],
     fee: <>참여 동의 시 소송마다 진행비 1인 <strong className="text-navy">1만 원</strong> + 판결금·합의금을 받은 경우 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</>,
@@ -100,7 +100,7 @@ const routes = [
 const reasons = [
   { icon: Users, title: '같은 항공사끼리 함께', desc: '항공편이 달라도 같은 기간에 운항한 같은 항공사 사건이면 하나의 소송으로 모아 진행합니다.' },
   { icon: Scale, title: '변호사가 모두 대리', desc: '한국 법인이 원고 모두를 대리해 소장 작성부터 재판까지 맡습니다. 고객님이 법원에 나오실 일은 없습니다.' },
-  { icon: Wallet, title: '부담은 진행비 1만 원', desc: '참여하실 때 진행비 1만 원만 내시면 되고, 성공보수는 소송으로 가도 25% 그대로입니다.' },
+  { icon: Wallet, title: '부담은 소송마다 1만 원', desc: '참여하시는 소송마다 진행비 1인 1만\u00a0원만 내시면 되고, 성공보수는 소송으로 가도 25% 그대로입니다.' },
 ]
 
 // 공동소송 차수 일정 — 자주 묻는 질문(content/faq/09-litigation-timing.md), 접수 완료 화면의 차수 계산(src/lib/batch.ts)과 같은 내용을 유지해 주세요
