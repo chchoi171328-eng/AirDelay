@@ -287,7 +287,7 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
             <Field name="files" label="증빙 파일 첨부 (선택)" error={errors.files}>
               <label className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-8 cursor-pointer hover:border-navy/40 hover:bg-gray-50 focus-within:ring-4 focus-within:ring-navy/10 transition-all ${errors.files ? 'border-red-400' : 'border-gray-200'}`}>
                 <Upload className="w-8 h-8 text-gray-300 mb-3" />
-                <span className="text-sm text-gray-500 font-medium">항공권, 탑승권, 영수증 등</span>
+                <span className="text-sm text-gray-500 font-medium">항공권, 탑승권, 지연확인서 등</span>
                 <span className="text-xs text-gray-500 mt-1">PDF·JPG·PNG·HEIC, 파일당 10MB, 최대 {MAX_FILES}개</span>
                 <input id="intake-files" type="file" multiple accept={FILE_ACCEPT} onChange={addFiles} className="sr-only"
                   aria-describedby={errors.files ? 'intake-files-error' : undefined} />

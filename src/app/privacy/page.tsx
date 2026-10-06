@@ -53,7 +53,7 @@ export default function PrivacyPage() {
               <thead><tr><th className="w-24">구분</th><th>항목</th></tr></thead>
               <tbody>
                 <tr><td>필수</td><td>이름, 연락처, 이메일, 항공편 정보(항공사, 출발지·도착지, 운항일, 피해 유형)</td></tr>
-                <tr><td>선택</td><td>항공편명, 지연 시간, 피해 상세 내용, 상담 과정에서 제출하시는 증빙 서류(항공권·탑승권·영수증 등)</td></tr>
+                <tr><td>선택</td><td>항공편명, 지연 시간, 피해 상세 내용, 상담 과정에서 제출하시는 증빙 서류(항공권·탑승권·지연확인서 등)</td></tr>
                 <tr><td>자동 생성</td><td>서비스 이용 과정에서 IP 주소, 접속 일시 등 접속 기록이 생성될 수 있습니다.</td></tr>
               </tbody>
             </table>
