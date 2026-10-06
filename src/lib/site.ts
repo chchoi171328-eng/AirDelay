@@ -6,7 +6,7 @@ export const BRAND = {
   tagline: '항공지연·결항 보상, 변호사가 직접 청구합니다',
   taglineShort: '항공지연·결항 보상 · 변호사 직접 청구',
   operator: '에어리걸클레임은 법무법인 명(SOL & LUNA)이 운영하는 항공지연·결항 보상 전문 서비스입니다.',
-  themeColor: '#1E3A5F',
+  themeColor: '#0A2342', // 사이트 navy 토큰과 같은 값 (manifest theme_color)
 }
 
 // 운영 법인 기본 정보 — 메인 사이트의 법인 정보와 글자 단위로 같게 유지합니다 (메인 사이트로 링크는 걸지 않습니다).

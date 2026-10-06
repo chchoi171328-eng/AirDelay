@@ -18,6 +18,7 @@ const config: Config = {
           DEFAULT: '#C5A47E', // 로고 금색 (메인 사이트 brand-gold와 같은 값)
           light: '#D4B86A',
           dark: '#A8873A',
+          deep: '#8C6A3F', // text-gold-deep: 흰·크림 배경 위 골드 글자 전용 (gold는 흰 배경 대비가 약 2:1이라 글자에 쓰지 않음)
         },
         orange: {
           DEFAULT: '#FF6B35', // Action/Highlight color from redesign
