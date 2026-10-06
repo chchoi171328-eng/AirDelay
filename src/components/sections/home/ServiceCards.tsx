@@ -12,9 +12,9 @@ const services = [
   {
     icon: XCircle,
     title: '항공기 결항 보상',
-    desc: '결항 보상금과 함께, 결항으로 생긴 숙박비·식비 등 손해도 청구합니다.',
+    desc: '출발 14일 전보다 늦게 결항을 통보받았다면, 노선에 맞는 기준(EU261 등)으로 보상금을 청구합니다.',
     href: '/services#cancel',
-    badge: '손해배상 청구',
+    badge: 'EU261 기준 €250~600',
   },
 ]
 
