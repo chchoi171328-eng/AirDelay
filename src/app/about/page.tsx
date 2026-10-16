@@ -116,7 +116,7 @@ export default function AboutPage() {
                 협업 체계로 어떤 노선의 피해도 처리합니다.
               </p>
               <div className="space-y-2.5">
-                {['성공보수 25% — 보상받은 경우에만, 소송으로 가도 같은 요율', '보상 가능 여부 판단 — 영업일 기준 2일 이내 연락', '국내외 모든 항공사 처리 가능'].map((item) => (
+                {['성공보수 30%(부가세\u00a0별도) — 보상받은 경우에만, 소송으로 가도 같은 요율', '보상 가능 여부 판단 — 영업일 기준 2일 이내 연락', '국내외 모든 항공사 처리 가능'].map((item) => (
                   <div key={item} className="flex items-center gap-2.5 text-sm text-gray-700">
                     <CheckCircle className="w-4 h-4 text-navy/60 shrink-0" />{item}
                   </div>

@@ -47,12 +47,15 @@ export default function Hero() {
             <div className="mt-6 sm:mt-10 flex gap-6 sm:gap-10">
               {[
                 { label: '한국·영국 변호사', value: '직접 청구' },
-                { label: '성공보수 · 소송도 같은 요율', value: '25%' },
+                { label: '성공보수 · 소송도 같은 요율', value: '30%', note: '부가세 별도' },
                 { label: '영업일 기준 연락', value: '2일 이내' },
               ].map((item) => (
                 <div key={item.label}>
-                  <div className="text-white font-bold text-lg">{item.value}</div>
-                  <div className="text-white/75 text-xs mt-1">{item.label}</div>
+                  <div className="text-white font-bold text-lg">
+                    {item.value}
+                    {item.note && <span className="ml-1 text-[11px] font-medium text-white/75">{item.note}</span>}
+                  </div>
+                  <div className="text-white/75 text-xs mt-1 break-keep">{item.label}</div>
                 </div>
               ))}
             </div>

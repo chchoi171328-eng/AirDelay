@@ -38,7 +38,7 @@ export default function IntakePage() {
                   {[
                     { icon: Shield, text: '항공사 청구 단계 비용 없음' },
                     { icon: Clock, text: '영업일 기준 2일 이내 연락' },
-                    { icon: Phone, text: '보상받은 경우에만 성공보수 25% (부가세 포함)' },
+                    { icon: Phone, text: '보상받은 경우에만 성공보수 30% (부가세\u00a0별도)' },
                   ].map(({ icon: Icon, text }) => (
                     <div key={text} className="flex items-start gap-3 text-sm text-gray-600">
                       <Icon className="w-4 h-4 text-navy/60 mt-0.5 shrink-0" />

@@ -11,7 +11,7 @@ export default function ArticleCTA({ cta }: { cta?: { situation: string; offer: 
         {cta ? `${cta.situation}, ${cta.offer}부터 확인해 드립니다.` : '항공편 정보만 입력하시면 보상 가능 여부부터 확인해 드립니다.'}
       </p>
       <p className="text-white/60 text-sm mt-2 mb-6 break-keep">
-        접수 후 영업일 기준 2일 이내에 연락드리며, 보상금을 받은 경우에만 성공보수 25%(부가세 포함)가 발생합니다.
+        접수 후 영업일 기준 2일 이내에 연락드리며, 보상금을 받은 경우에만 성공보수 30%(부가세&nbsp;별도)가 발생합니다.
       </p>
       <div className="flex flex-wrap gap-3 justify-center">
         <Link href="/intake" className="btn-primary">

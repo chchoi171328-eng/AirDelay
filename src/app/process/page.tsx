@@ -14,7 +14,7 @@ import LawsuitList from '@/components/process/LawsuitList'
 
 export const metadata: Metadata = {
   title: '진행 절차와 비용',
-  description: '사건 접수부터 보상 가능 여부 판단, 항공사 청구, 공동소송, 보상금 수령까지의 단계와 비용(성공보수 25%, 공동소송 진행비 소송마다 1인 1만 원), 공동소송 일정을 안내합니다.',
+  description: '사건 접수부터 보상 가능 여부 판단, 항공사 청구, 공동소송, 보상금 수령까지의 단계와 비용(성공보수 30%·부가세 별도, 공동소송 진행비 소송마다 1인 1만 원), 공동소송 일정을 안내합니다.',
 }
 
 const ICONS = [FileEdit, Search, Send, Users, Banknote]
@@ -64,7 +64,7 @@ const details: Detail[] = [
       { when: '항공사가 지급하면', text: '보상금 수령 단계로 넘어갑니다.', href: '#step-5' },
       { when: '항공사가 거절하면', text: '같은 항공사 사건과 함께 공동소송을 준비합니다. 기한 안에 답하지 않아도 거절로 봅니다.', href: '#step-4' },
     ],
-    fee: <>보상금을 받은 경우에만 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</>,
+    fee: <>보상금을 받은 경우에만 성공보수 <strong className="text-navy">30%</strong> (부가세&nbsp;별도)</>,
   },
   {
     timing: '8월 말·2월 말 접수 마감 → 11월·5월 중 소장 접수',
@@ -77,7 +77,7 @@ const details: Detail[] = [
       '동의하실 때 소송 진행비(소송마다 1인 1만 원)를 내 주세요.',
       '법원에 나오실 일은 없습니다.',
     ],
-    fee: <>참여 동의 시 소송마다 진행비 1인 <strong className="text-navy">1만 원</strong> + 판결금·합의금을 받은 경우 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</>,
+    fee: <>참여 동의 시 소송마다 진행비 1인 <strong className="text-navy">1만 원</strong> + 판결금·합의금을 받은 경우 성공보수 <strong className="text-navy">30%</strong> (부가세&nbsp;별도)</>,
     more: { label: '공동소송 일정과 기준 자세히 보기', href: '#group' },
   },
   {
@@ -100,7 +100,7 @@ const routes = [
 const reasons = [
   { icon: Users, title: '같은 항공사끼리 함께', desc: '항공편이 달라도 같은 기간에 운항한 같은 항공사 사건이면 하나의 소송으로 모아 진행합니다.' },
   { icon: Scale, title: '변호사가 모두 대리', desc: '한국 법인이 원고 모두를 대리해 소장 작성부터 재판까지 맡습니다. 고객님이 법원에 나오실 일은 없습니다.' },
-  { icon: Wallet, title: '부담은 소송마다 1만 원', desc: '참여하시는 소송마다 진행비 1인 1만\u00a0원만 내시면 되고, 성공보수는 소송으로 가도 25% 그대로입니다.' },
+  { icon: Wallet, title: '부담은 소송마다 1만 원', desc: '참여하시는 소송마다 진행비 1인 1만\u00a0원만 내시면 되고, 성공보수는 소송으로 가도 30%(부가세\u00a0별도) 그대로입니다.' },
 ]
 
 // 공동소송 차수 일정 — 자주 묻는 질문(content/faq/09-litigation-timing.md), 접수 완료 화면의 차수 계산(src/lib/batch.ts)과 같은 내용을 유지해 주세요
@@ -140,8 +140,8 @@ const sections = [
 // 비용 안내 — 자주 묻는 질문(content/faq/01-cost.md)과 같은 내용을 유지해 주세요
 const fees = [
   { step: '접수·보상 가능 여부 판단', fee: <>비용 없음</> },
-  { step: '항공사 청구', fee: <>보상금을 받은 경우에만 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</> },
-  { step: '공동소송', fee: <>참여 동의 시 소송마다 진행비 1인 <strong className="text-navy">1만 원</strong> + 판결금·합의금을 받은 경우 성공보수 <strong className="text-navy">25%</strong> (부가세 포함)</> },
+  { step: '항공사 청구', fee: <>보상금을 받은 경우에만 성공보수 <strong className="text-navy">30%</strong> (부가세&nbsp;별도)</> },
+  { step: '공동소송', fee: <>참여 동의 시 소송마다 진행비 1인 <strong className="text-navy">1만 원</strong> + 판결금·합의금을 받은 경우 성공보수 <strong className="text-navy">30%</strong> (부가세&nbsp;별도)</> },
 ]
 
 const feeNotes = [
