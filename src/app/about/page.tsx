@@ -140,7 +140,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {attorneys.map(({ country, code, name, bar, specialties, imgLabel, img }) => (
               <div key={country} className="card overflow-hidden">
-                <div className="relative w-full aspect-[3/2]">
+                <div className="relative w-full aspect-[4/5]">
                   <Image src={img} alt={imgLabel} fill sizes="(min-width: 768px) 448px, 100vw" className="object-cover object-top" />
                 </div>
                 <div className="p-6">
