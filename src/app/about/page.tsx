@@ -16,6 +16,7 @@ const attorneys = [
   {
     country: '한국',
     code: 'KR',
+    badge: '한국 법인',
     name: `${FIRM.representative} 대표변호사`,
     bar: `${FIRM.name}(SOL & LUNA) 대표변호사`,
     specialties: [
@@ -27,21 +28,27 @@ const attorneys = [
       '(전) 서울고등법원 실무수습',
       '(전) 서울북부지방법원 실무수습',
     ],
+    practice: [] as string[],
     imgLabel: `${FIRM.name} ${FIRM.representative} 대표변호사 프로필 사진`,
     img: '/images/lawyer-kr.jpg',
   },
   {
     country: '영국',
     code: 'UK',
-    name: 'John Smith, Solicitor',
-    bar: 'Solicitors Regulation Authority (SRA)',
-    specialties: ['EU261 Regulation', 'Aviation Law', 'Consumer Rights Act'],
-    imgLabel: '영국 변호사 프로필 사진',
-    img: '/images/lawyer-uk.jpg',
+    badge: '영국 사무소',
+    name: '박성민 영국 변호사(Solicitor)',
+    bar: 'Bach & Law | 바흐 앤 로 대표변호사',
+    specialties: [
+      '주영국 대한민국 대사관 제공 한인 변호사 명단 등재',
+      '(현) 제22기 민주평화통일자문회의 영국협의회 자문위원',
+    ],
+    practice: ['영국·EU 항공여객 보상 청구(UK261·EU261)', '영국 소비자권리법(Consumer Rights Act 2015) 관련 분쟁'],
+    imgLabel: 'Bach & Law 박성민 영국 변호사 프로필 사진',
+    img: '/images/lawyer-uk-park.jpg',
   },
 ]
 
-// 사무소별 연락처 — 한국 법인은 src/lib/site.ts(메인 사이트와 같은 정보)를 따릅니다. 영국 법인은 실제 정보로 바꿔 주세요.
+// 사무소별 연락처 — 한국 법인은 src/lib/site.ts(메인 사이트와 같은 정보)를, 영국 사무소는 Bach & Law(박성민 변호사)가 준 정보를 씁니다.
 const offices = [
   {
     code: 'KR',
@@ -56,13 +63,13 @@ const offices = [
   },
   {
     code: 'UK',
-    name: '영국 법인',
+    name: '영국 사무소 (Bach & Law)',
     role: 'EU261·UK261 검토 · 유럽 노선 항공사 청구',
     contactPoint: false,
     items: [
-      { icon: Phone, label: '전화', value: '+44 20 0000 0000', href: 'tel:+442000000000', note: 'Mon–Fri 09:00–17:00 (GMT)' },
-      { icon: Mail, label: '이메일', value: 'uk@lawfirm-myung.com', href: 'mailto:uk@lawfirm-myung.com' },
-      { icon: MapPin, label: '주소', value: 'London, United Kingdom' },
+      { icon: Phone, label: '전화', value: '+44 20 8241 7661', href: 'tel:+442082417661' },
+      { icon: Mail, label: '이메일', value: 'office@bachlaw.co.uk', href: 'mailto:office@bachlaw.co.uk' },
+      { icon: MapPin, label: '주소', value: '74 Richmond Road, Kingston upon Thames, Surrey, KT2 5EL, United Kingdom' },
     ],
   },
 ]
@@ -138,7 +145,7 @@ export default function AboutPage() {
             <p className="section-subtitle">한국 변호사와 영국 변호사가 함께 사건을 처리합니다</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {attorneys.map(({ country, code, name, bar, specialties, imgLabel, img }) => (
+            {attorneys.map(({ country, code, badge, name, bar, specialties, practice, imgLabel, img }) => (
               <div key={country} className="card overflow-hidden">
                 <div className="relative w-full aspect-[4/5]">
                   <Image src={img} alt={imgLabel} fill sizes="(min-width: 768px) 448px, 100vw" className="object-cover object-top" />
@@ -146,17 +153,29 @@ export default function AboutPage() {
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-3">
                     <span className={`w-8 h-8 rounded-lg text-xs font-extrabold flex items-center justify-center ${code === 'UK' ? 'bg-gold text-navy' : 'bg-navy text-white'}`}>{code}</span>
-                    <span className="badge-navy text-xs">{country} 법인</span>
+                    <span className="badge-navy text-xs">{badge}</span>
                   </div>
                   <h3 className="font-extrabold text-navy text-xl mb-1">{name}</h3>
                   <p className="text-gray-500 text-sm mb-4">{bar}</p>
                   <div className="space-y-1.5">
                     {specialties.map((s) => (
-                      <div key={s} className="flex items-center gap-2 text-sm text-gray-600">
-                        <div className="w-1.5 h-1.5 rounded-full bg-navy/40 shrink-0" />{s}
+                      <div key={s} className="flex items-start gap-2 text-sm text-gray-600 break-keep">
+                        <div className="w-1.5 h-1.5 rounded-full bg-navy/40 shrink-0 mt-[7px]" />{s}
                       </div>
                     ))}
                   </div>
+                  {practice.length > 0 && (
+                    <div className="mt-5 pt-4 border-t border-gray-100">
+                      <p className="text-xs font-bold text-navy mb-2">주요 업무</p>
+                      <div className="space-y-1.5">
+                        {practice.map((s) => (
+                          <div key={s} className="flex items-start gap-2 text-sm text-gray-600 break-keep">
+                            <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-[7px]" />{s}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -192,7 +211,7 @@ export default function AboutPage() {
                     ].map(({ code, cls, text }) => (
                       <div key={code} className="flex items-start gap-3">
                         <dt className={`w-8 h-8 rounded-lg text-xs font-extrabold flex items-center justify-center shrink-0 ${cls}`}>
-                          <span className="sr-only">{code === 'KR' ? '한국 법인' : '영국 법인'}</span>
+                          <span className="sr-only">{code === 'KR' ? '한국 법인' : '영국 사무소'}</span>
                           <span aria-hidden="true">{code}</span>
                         </dt>
                         <dd className="text-white/75 text-sm leading-relaxed break-keep pt-1">{text}</dd>

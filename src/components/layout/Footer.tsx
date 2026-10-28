@@ -43,7 +43,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5 text-sm text-white/60">
                 <MapPin className="w-4 h-4 text-white/50 mt-0.5 shrink-0" />
-                <span className="break-keep">{FIRM.addressParts.region} {FIRM.addressParts.locality} (한국 법인)<br />London, UK (영국 법인)</span>
+                <span className="break-keep">{FIRM.addressParts.region} {FIRM.addressParts.locality} (한국 법인)<br />Kingston upon Thames, UK (영국 사무소)</span>
               </li>
               <li className="flex items-center gap-2.5 text-sm text-white/60">
                 <Phone className="w-4 h-4 text-white/50 shrink-0" />

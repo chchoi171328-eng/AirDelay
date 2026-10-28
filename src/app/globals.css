@@ -74,7 +74,7 @@
   }
 
   .section-subtitle {
-    @apply text-gray-500 text-lg mt-3 leading-relaxed;
+    @apply text-gray-500 text-lg mt-3 leading-relaxed break-keep;
   }
 
   .badge {
