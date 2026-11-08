@@ -24,14 +24,13 @@ reviewedAt: 2026-10                                              # 필수. 검�
 cover: /images/guide/eu261-delay-compensation/cover.jpg          # 없으면 묶음별 기본 사진
 related: []                                                      # 함께 읽을 만한 글의 파일 이름. 있을 때만 화면에 나온다
 ctaSituation: "유럽에서 출발한 항공편이 3시간 넘게 늦었다면"            # 맺음 상자 첫 문장 앞부분
-ctaOffer: "EU261 적용 여부와 비행거리 기준 금액"                      # "…부터 확인해 드립니다" 앞부분
 author: "법무법인 명"                                              # 작성자는 법무법인 명으로 통일 (생략해도 같은 값)
 draft: true                                                      # 사이트 공개 후에만 사용 (공개 전에는 이 줄 없이 올린다 — SKILL.md 6단계)
 ---
 ```
 
 - `reviewedAt`은 `YYYY-MM`. 형식이 틀리면 빌드가 실패한다
-- `ctaSituation`·`ctaOffer`는 둘 다 있어야 적용된다. 맺음 상자 문장: `{ctaSituation}, {ctaOffer}부터 확인해 드립니다.`
+- `ctaSituation`만 적는다 (`ctaOffer`는 더 이상 쓰지 않으며 남아 있어도 무시된다). 맺음 상자 문장: `{ctaSituation}, 접수하시면 적용 규정과 진행 방법을 안내드립니다.`
 - `related`는 실제로 함께 읽을 만한 글이 있을 때만 적는다. 비어 있으면 「함께 보면 좋은 글」 칸이 나오지 않는다
 
 ## 3. 본문 예시 (보상·청구 기본 글의 뼈대)

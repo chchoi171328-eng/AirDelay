@@ -104,7 +104,7 @@ export default function CompensationPage() {
             <Info className="w-5 h-5 text-navy mt-0.5 shrink-0" />
             <p className="text-[15px] text-gray-700 leading-relaxed break-keep">
               예를 들어 한국 항공사의 인천 → 파리 항공편은 EU261 대상이 아니지만, 파리 → 인천 항공편은 대상입니다.
-              어떤 기준이 적용되는지는 접수 후 보상 가능 여부를 판단할 때 확인해 드립니다.
+              어떤 기준이 적용되는지는 접수 후 연락드릴 때 안내해 드립니다.
             </p>
           </div>
         </div>
@@ -199,7 +199,7 @@ export default function CompensationPage() {
 
           <div className="mt-12 rounded-2xl bg-navy px-6 py-10 sm:px-10 text-center">
             <h2 className="text-xl sm:text-2xl font-extrabold text-white mb-3">내 항공편도 보상받을 수 있을까요?</h2>
-            <p className="text-white/70 mb-7 break-keep">항공편 정보만 입력하시면 영업일 기준 2일 이내에 보상 가능 여부를 안내드립니다.</p>
+            <p className="text-white/70 mb-7 break-keep">항공편 정보만 입력하시면 영업일 기준 2일 이내에 연락드려 적용 규정과 진행 방법을 안내합니다.</p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Link href="/intake" className="btn-primary px-8 py-3.5">
                 <FileText className="w-5 h-5" />

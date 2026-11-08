@@ -28,7 +28,7 @@ export interface BlogPost {
   author: string
   cover: string | null // 글에서 직접 지정한 대표 이미지 (없으면 분야별 기본 이미지)
   related: string[] // 함께 보면 좋은 가이드의 파일 이름
-  cta: { situation: string; offer: string } | null // 맺음 안내 문구를 주제에 맞게 바꿀 때
+  cta: { situation: string } | null // 맺음 안내 첫 문장을 주제에 맞게 바꿀 때 (ctaOffer는 더 이상 쓰지 않음)
   html: string | null
   toc: { id: string; text: string }[]
   faq: { q: string; a: string }[]

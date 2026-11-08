@@ -13,7 +13,7 @@ export default function IntakeCTA() {
           </h2>
           <p className="text-white/70 text-base sm:text-lg mb-8 max-w-xl mx-auto">
             접수 후 영업일 기준 2일 이내에 연락드립니다.<br />
-            보상 가능 여부를 안내드리거나, 판단에 필요한 내용을 여쭤봅니다.
+            적용 규정과 위임 절차를 안내드리고, 확인이 필요한 내용이 있으면 여쭤봅니다.
           </p>
 
           <div className="flex flex-wrap gap-3 sm:gap-4 justify-center">

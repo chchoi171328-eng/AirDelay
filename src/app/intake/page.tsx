@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function IntakePage() {
   return (
     <div>
-      <PageHeader title="사건 접수" subtitle="간단한 정보를 입력하시면 보상 가능 여부를 판단해 드립니다" />
+      <PageHeader title="사건 접수" subtitle="항공편 정보만 입력하시면 영업일 기준 2일 이내에 연락드립니다" />
 
       <div className="py-16">
         <div className="container-wide section-padding">

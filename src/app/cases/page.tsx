@@ -39,7 +39,7 @@ export default function CasesPage() {
         <div className="mt-16 text-center bg-navy/3 rounded-2xl p-10 border border-navy/10">
           <Banknote className="w-10 h-10 text-navy mx-auto mb-4" />
           <h2 className="text-2xl font-extrabold text-navy mb-2">나도 보상받을 수 있을까요?</h2>
-          <p className="text-gray-500 mb-6">사건을 접수하시면 보상 가능 여부를 판단해 드립니다</p>
+          <p className="text-gray-500 mb-6">사건을 접수하시면 영업일 기준 2일 이내에 연락드립니다</p>
           <Link href="/intake" className="btn-primary">사건 접수하기</Link>
         </div>
       </div>

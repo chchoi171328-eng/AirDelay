@@ -65,7 +65,7 @@ export default function Hero() {
           <div className="lg:justify-self-end w-full max-w-md">
             <form onSubmit={start} className="bg-white/95 backdrop-blur-md border border-white/50 rounded-[2rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] p-7 sm:p-9 animate-fade-in-up">
               <h2 className="text-xl font-extrabold text-navy mb-1">내 항공편, 보상받을 수 있을까요?</h2>
-              <p className="text-sm text-gray-500 mb-5">항공편 정보를 넣고 보상 가능 여부를 확인하세요.</p>
+              <p className="text-sm text-gray-500 mb-5">항공편 정보를 넣고 접수를 시작하세요. 영업일 기준 2일 이내에 연락드립니다.</p>
               <div className="grid grid-cols-2 gap-3 mb-3">
                 <div>
                   <label htmlFor="hero-origin" className="block text-xs font-semibold text-navy mb-1">출발지</label>
@@ -84,7 +84,7 @@ export default function Hero() {
                   onChange={(e) => setTrip((t) => ({ ...t, date: e.target.value }))} className={fieldCls} />
               </div>
               <button type="submit" className="btn-primary w-full text-lg py-4 group">
-                보상 가능 여부 확인하기
+                사건 접수 시작하기
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <p className="text-center text-xs text-gray-500 mt-4 font-medium">

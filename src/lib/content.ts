@@ -59,7 +59,7 @@ export function getPosts(): BlogPost[] {
       const reviewedAt = String(data.reviewedAt ?? '')
       if (!/^\d{4}-\d{2}$/.test(reviewedAt)) fail(file, `reviewedAt은 YYYY-MM 형식이어야 합니다 (현재: ${reviewedAt || '없음'})`)
       const guide = body ? renderGuide(body) : null
-      const ctaOk = typeof data.ctaSituation === 'string' && typeof data.ctaOffer === 'string'
+      const ctaOk = typeof data.ctaSituation === 'string' && data.ctaSituation.trim() !== ''
       return {
         slug,
         title,
@@ -71,7 +71,7 @@ export function getPosts(): BlogPost[] {
         author: typeof data.author === 'string' && data.author.trim() ? data.author.trim() : GUIDE_AUTHOR,
         cover: typeof data.cover === 'string' && data.cover ? data.cover : null,
         related: strings(data.related),
-        cta: ctaOk ? { situation: String(data.ctaSituation).trim(), offer: String(data.ctaOffer).trim() } : null,
+        cta: ctaOk ? { situation: String(data.ctaSituation).trim() } : null,
         html: guide?.html ?? null,
         toc: guide?.toc ?? [],
         faq: guide?.faq ?? [],

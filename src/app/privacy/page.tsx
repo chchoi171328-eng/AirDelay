@@ -43,8 +43,8 @@ export default function PrivacyPage() {
             <p>법인은 다음 목적을 위하여 개인정보를 처리하며, 목적이 변경되는 경우에는 별도의 동의를 받습니다.</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>항공 지연·결항 피해 사건의 온라인 접수</li>
-              <li>보상 가능 여부 및 예상 금액 검토</li>
-              <li>검토 결과 안내 및 상담을 위한 연락</li>
+              <li>접수 내용 확인 및 적용 규정 안내</li>
+              <li>안내 및 상담을 위한 연락</li>
             </ul>
           </Section>
 
