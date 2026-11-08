@@ -41,22 +41,10 @@ async function send(templateId: string, params: Record<string, string>): Promise
   }
 }
 
-export interface FileLink {
-  name: string
-  size: number
-  url: string | null
-}
-
-const formatSize = (bytes: number) =>
-  bytes < 1024 * 1024 ? `${Math.max(1, Math.round(bytes / 1024))}KB` : `${(bytes / 1024 / 1024).toFixed(1)}MB`
-
 export async function notifyIntake(
   input: IntakeInput,
-  opts: { id: string | null; files: FileLink[]; filesNote?: string },
+  opts: { id: string | null },
 ): Promise<{ firm: boolean; client: boolean }> {
-  const fileLines = opts.files.map((f) => `- ${f.name} (${formatSize(f.size)})${f.url ? `: ${f.url}` : ''}`)
-  if (opts.filesNote) fileLines.push(opts.filesNote)
-
   // 기존 템플릿 변수명(airline, flightNo, route, date, type, delay_hours, name, phone, email, detail)을 유지합니다.
   // from_name: EmailJS 템플릿의 From Name 칸에 {{from_name}}을 넣으면 발신명이 '에어리걸클레임 (법무법인 명)'으로 나갑니다.
   const clientParams = {
@@ -70,14 +58,12 @@ export async function notifyIntake(
     type: CASE_TYPE_LABELS[input.type as CaseType] ?? input.type,
     delay_hours: input.delayRange || '-',
   }
-  // 법인용에만 연락처·상세 내용·첨부파일 정보를 담습니다.
-  // DB를 연결해 첨부파일을 받게 되면 법인용 템플릿에 {{intake_id}}, {{files}}를 추가하세요.
+  // 법인용에만 연락처·상세 내용을 담습니다. DB를 연결했다면 법인용 템플릿에 {{intake_id}}를 넣어 접수 번호를 받을 수 있습니다.
   const firmParams = {
     ...clientParams,
     intake_id: opts.id ?? '-',
     phone: input.phone,
     detail: input.detail || '-',
-    files: fileLines.length ? fileLines.join('\n') : '없음',
   }
 
   const [firm, client] = await Promise.all([

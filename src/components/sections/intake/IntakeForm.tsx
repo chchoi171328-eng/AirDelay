@@ -1,14 +1,9 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ChevronRight, ChevronLeft, CheckCircle, Upload, X, AlertCircle } from 'lucide-react'
-import {
-  DELAY_RANGES, EMPTY_INTAKE, FILE_ACCEPT, INCIDENT_TYPES, MAX_FILES,
-  validateContact, validateFiles, validateFlight,
-} from '@/lib/intake'
-import type {
-  CompleteIntakeResponse, CreateIntakeResponse, IntakeErrors, IntakeField, IntakeInput, UploadTarget,
-} from '@/lib/intake'
+import { ChevronRight, ChevronLeft, CheckCircle, AlertCircle } from 'lucide-react'
+import { DELAY_RANGES, EMPTY_INTAKE, INCIDENT_TYPES, validateContact, validateFlight } from '@/lib/intake'
+import type { CreateIntakeResponse, IntakeErrors, IntakeField, IntakeInput } from '@/lib/intake'
 import { FIRM } from '@/lib/site'
 import { batchFor, needsDeadlineCheck } from '@/lib/batch'
 
@@ -33,19 +28,6 @@ async function postJson<T>(url: string, data: unknown): Promise<T | null> {
   }
 }
 
-// Supabase Storage 서명 업로드 주소로 직접 전송 (supabase-js uploadToSignedUrl과 같은 형식)
-async function uploadFile(target: UploadTarget, file: File) {
-  const body = new FormData()
-  body.append('cacheControl', '3600')
-  body.append('', new Blob([file], { type: target.contentType }), file.name)
-  try {
-    const res = await fetch(target.signedUrl, { method: 'PUT', body, headers: { 'x-upsert': 'false' } })
-    return res.ok
-  } catch {
-    return false
-  }
-}
-
 function Field({ name, label, required, error, group, children }: {
   name: IntakeField
   label: string
@@ -66,20 +48,13 @@ function Field({ name, label, required, error, group, children }: {
   )
 }
 
-interface Result {
-  filesSelected: number
-  filesStored: number | null // null: 처리 결과를 확인하지 못함
-  clientNotified: boolean
-}
-
-export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean }) {
+export default function IntakeForm() {
   const [step, setStep] = useState(0)
   const [form, setForm] = useState<IntakeInput>(EMPTY_INTAKE)
-  const [files, setFiles] = useState<File[]>([])
   const [errors, setErrors] = useState<IntakeErrors>({})
-  const [status, setStatus] = useState<'idle' | 'sending' | 'uploading'>('idle')
+  const [status, setStatus] = useState<'idle' | 'sending'>('idle')
   const [submitError, setSubmitError] = useState(false)
-  const [result, setResult] = useState<Result | null>(null)
+  const [result, setResult] = useState<{ clientNotified: boolean } | null>(null)
   const [honeypot, setHoneypot] = useState('')
   const [today, setToday] = useState('')
   const startedAt = useRef(Date.now())
@@ -130,32 +105,13 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
     setStep(1)
   }
 
-  const addFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const picked = Array.from(e.target.files ?? [])
-    e.target.value = '' // 같은 파일을 지웠다가 다시 고를 수 있도록
-    const merged = [...files, ...picked.filter((p) => !files.some((f) => f.name === p.name && f.size === p.size))]
-    const error = validateFiles(merged)
-    if (error) return setErrors((er) => ({ ...er, files: error }))
-    setFiles(merged)
-    clearError('files')
-  }
-
-  const removeFile = (index: number) => {
-    setFiles((fs) => fs.filter((_, i) => i !== index))
-    clearError('files')
-  }
-
   const submit = async () => {
-    const errs = validateContact(form)
-    const fileError = validateFiles(files)
-    if (fileError) errs.files = fileError
-    if (showErrors(errs)) return
+    if (showErrors(validateContact(form))) return
 
     setSubmitError(false)
     setStatus('sending')
     const created = await postJson<CreateIntakeResponse>('/api/intake', {
       ...form,
-      files: files.map((f) => ({ name: f.name, size: f.size })),
       website: honeypot,
       elapsedMs: Date.now() - startedAt.current,
     })
@@ -171,19 +127,7 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
       return
     }
 
-    let outcome: Result = { filesSelected: files.length, filesStored: created.filesStored, clientNotified: created.clientNotified }
-    if (created.id && created.uploads.length) {
-      setStatus('uploading')
-      await Promise.all(created.uploads.map((u) => uploadFile(u, files[u.index])))
-      const body = { id: created.id }
-      const done = (await postJson<CompleteIntakeResponse>('/api/intake/complete', body))
-        ?? (await postJson<CompleteIntakeResponse>('/api/intake/complete', body)) // 네트워크 오류 시 한 번 더
-      outcome = done?.ok
-        ? { ...outcome, filesStored: done.filesStored, clientNotified: done.clientNotified }
-        : { ...outcome, filesStored: null }
-    }
-
-    setResult(outcome)
+    setResult({ clientNotified: created.clientNotified })
     setStatus('idle')
     setStep(2)
   }
@@ -283,41 +227,12 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
               {...inputProps('detail')} className={`${inputProps('detail').className} resize-none`} />
           </Field>
 
-          {uploadsEnabled ? (
-            <Field name="files" label="증빙 파일 첨부 (선택)" error={errors.files}>
-              <label className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-8 cursor-pointer hover:border-navy/40 hover:bg-gray-50 focus-within:ring-4 focus-within:ring-navy/10 transition-all ${errors.files ? 'border-red-400' : 'border-gray-200'}`}>
-                <Upload className="w-8 h-8 text-gray-300 mb-3" />
-                <span className="text-sm text-gray-500 font-medium">항공권, 탑승권, 지연확인서 등</span>
-                <span className="text-xs text-gray-500 mt-1">PDF·JPG·PNG·HEIC, 파일당 10MB, 최대 {MAX_FILES}개</span>
-                <input id="intake-files" type="file" multiple accept={FILE_ACCEPT} onChange={addFiles} className="sr-only"
-                  aria-describedby={errors.files ? 'intake-files-error' : undefined} />
-              </label>
-              <p className="text-xs text-gray-500 mt-1.5">여권번호 등 고유식별정보가 보이는 부분은 가린 뒤 올려 주세요.</p>
-              {files.length > 0 && (
-                <ul className="mt-2 space-y-1">
-                  {files.map((f, i) => (
-                    <li key={`${f.name}-${f.size}`} className="flex items-center justify-between gap-2 text-xs text-navy bg-navy/5 rounded px-3 py-1.5">
-                      <span className="truncate">{f.name} <span className="text-gray-500">({(f.size / 1024 / 1024).toFixed(1)}MB)</span></span>
-                      <button type="button" onClick={() => removeFile(i)} aria-label={`${f.name} 삭제`} className="text-gray-500 hover:text-red-600 shrink-0">
-                        <X className="w-3.5 h-3.5" />
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </Field>
-          ) : (
-            <div className="text-sm text-gray-500 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3">
-              항공권·탑승권 등 증빙 파일은 접수 후 연락드릴 때 안내에 따라 보내 주세요.
-            </div>
-          )}
-
           {/* 개인정보 수집·이용 동의 (개인정보 보호법 제15조) */}
           <div className={`rounded-xl border p-4 bg-gray-50/50 ${errors.consent ? 'border-red-400' : 'border-gray-200'}`}>
             <table className="w-full text-xs text-gray-600 mb-3">
               <tbody className="[&_th]:text-left [&_th]:font-semibold [&_th]:text-navy [&_th]:pr-3 [&_th]:py-1 [&_th]:align-top [&_th]:whitespace-nowrap [&_td]:py-1">
                 <tr><th>수집 목적</th><td>항공 피해 사건 접수, 보상 가능 여부 검토 및 상담 연락</td></tr>
-                <tr><th>수집 항목</th><td>(필수) 이름, 연락처, 이메일, 항공편 정보 · (선택) 피해 상세 내용{uploadsEnabled && ', 증빙 파일'}</td></tr>
+                <tr><th>수집 항목</th><td>(필수) 이름, 연락처, 이메일, 항공편 정보 · (선택) 피해 상세 내용</td></tr>
                 <tr><th>보유 기간</th><td><strong className="text-navy">접수일로부터 1년</strong> (사건을 수임하면 위임계약에 따름)</td></tr>
               </tbody>
             </table>
@@ -357,7 +272,7 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
             </button>
             <button type="button" onClick={submit} disabled={busy}
               className="btn-navy flex-1 justify-center py-3 disabled:opacity-40">
-              {status === 'sending' ? '접수 중...' : status === 'uploading' ? '파일 올리는 중...' : '사건 접수하기'}
+              {status === 'sending' ? '접수 중...' : '사건 접수하기'}
             </button>
           </div>
         </div>
@@ -402,14 +317,6 @@ export default function IntakeForm({ uploadsEnabled }: { uploadsEnabled: boolean
                 <Link href="/process#group" className="underline underline-offset-2 hover:text-navy">차수 일정 보기</Link>
               </p>
             </div>
-          )}
-          {result.filesSelected > 0 && result.filesStored !== result.filesSelected && (
-            <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 max-w-sm mx-auto mb-4">
-              {result.filesStored === null
-                ? '첨부파일 저장 여부를 확인하지 못했습니다.'
-                : `첨부파일 ${result.filesSelected}개 중 ${result.filesStored}개만 저장됐습니다.`}{' '}
-              연락드릴 때 다시 보내 주세요.
-            </p>
           )}
           {result.clientNotified && (
             <p className="text-xs text-gray-500">접수 확인 이메일을 <strong>{form.email}</strong>(으)로 보냈습니다</p>

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 // 현재 구성: 접수 내용을 저장하지 않고 메일(EmailJS)로만 전달합니다.
-// DB(Supabase)를 연결해 첨부파일을 받게 되면 제2·5·6·9조에 Supabase를 추가하고 시행일을 바꿔야 합니다.
+// DB(Supabase)를 연결하면 제5·6·9조에 Supabase를 추가하고 시행일을 바꿔야 합니다.
 
 // 법인이 직접 확인·기재해야 하는 항목 — 공개 전에 모두 채워야 합니다.
 function Blank({ children }: { children: React.ReactNode }) {

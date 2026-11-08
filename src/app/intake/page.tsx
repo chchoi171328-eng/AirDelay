@@ -11,9 +11,6 @@ export const metadata: Metadata = {
 }
 
 export default function IntakePage() {
-  // 첨부파일은 Supabase Storage(서버 키 필요)가 설정된 경우에만 받습니다.
-  const uploadsEnabled = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY)
-
   return (
     <div>
       <PageHeader title="사건 접수" subtitle="간단한 정보를 입력하시면 보상 가능 여부를 판단해 드립니다" />
@@ -23,7 +20,7 @@ export default function IntakePage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Form */}
             <div className="lg:col-span-2">
-              <IntakeForm uploadsEnabled={uploadsEnabled} />
+              <IntakeForm />
             </div>
 
             {/* Sidebar */}
@@ -46,9 +43,10 @@ export default function IntakePage() {
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-gray-500 leading-relaxed break-keep border-t border-navy/10 pt-3">
-                  접수하신 사건은 {FIRM.name}(SOL &amp; LUNA) 변호사가 검토하며, 위임계약은 {FIRM.name}과 체결됩니다.
-                </p>
+                <div className="text-xs text-gray-500 leading-relaxed break-keep border-t border-navy/10 pt-3 space-y-1.5">
+                  <p>증빙 서류는 지금 보내지 않으셔도 됩니다. 진행하기로 하시면 그때 안내드립니다.</p>
+                  <p>접수하신 사건은 {FIRM.name}(SOL &amp; LUNA) 변호사가 검토하며, 위임계약은 {FIRM.name}과 체결됩니다.</p>
+                </div>
               </div>
             </div>
           </div>

@@ -11,37 +11,6 @@ export const INCIDENT_TYPES = (Object.keys(CASE_TYPE_LABELS) as CaseType[]).map(
 
 export const DELAY_RANGES = ['3시간 미만', '3~5시간', '5시간 이상', '해당 없음 (결항)'] as const
 
-// ─── 첨부파일 ─────────────────────────────────────────────────────
-export const MAX_FILES = 5
-export const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
-export const FILE_TYPES: Record<string, string> = {
-  pdf: 'application/pdf',
-  jpg: 'image/jpeg',
-  jpeg: 'image/jpeg',
-  png: 'image/png',
-  heic: 'image/heic',
-}
-export const FILE_ACCEPT = Object.keys(FILE_TYPES).map((ext) => `.${ext}`).join(',')
-
-export interface FileMeta {
-  name: string
-  size: number
-}
-
-export function fileExtension(name: string): string {
-  const dot = name.lastIndexOf('.')
-  return dot === -1 ? '' : name.slice(dot + 1).toLowerCase()
-}
-
-export function validateFiles(files: FileMeta[]): string | undefined {
-  if (files.length > MAX_FILES) return `첨부파일은 최대 ${MAX_FILES}개까지 올릴 수 있습니다.`
-  for (const f of files) {
-    if (!FILE_TYPES[fileExtension(f.name)]) return `${f.name}: PDF, JPG, PNG, HEIC 파일만 올릴 수 있습니다.`
-    if (f.size > MAX_FILE_SIZE) return `${f.name}: 파일당 10MB 이하만 올릴 수 있습니다.`
-    if (f.size === 0) return `${f.name}: 빈 파일입니다.`
-  }
-}
-
 // ─── 입력값 ──────────────────────────────────────────────────────
 export interface IntakeInput {
   airline: string
@@ -58,7 +27,7 @@ export interface IntakeInput {
   consent: boolean
 }
 
-export type IntakeField = keyof IntakeInput | 'files'
+export type IntakeField = keyof IntakeInput
 export type IntakeErrors = Partial<Record<IntakeField, string>>
 
 export const EMPTY_INTAKE: IntakeInput = {
@@ -135,16 +104,6 @@ function compact(e: IntakeErrors): IntakeErrors {
 }
 
 // ─── API 응답 ────────────────────────────────────────────────────
-export interface UploadTarget {
-  index: number
-  signedUrl: string
-  contentType: string
-}
-
 export type CreateIntakeResponse =
-  | { ok: true; id: string | null; uploads: UploadTarget[]; filesStored: number; clientNotified: boolean }
+  | { ok: true; id: string | null; clientNotified: boolean }
   | { ok: false; error: 'validation' | 'unavailable' | 'server'; errors?: IntakeErrors }
-
-export type CompleteIntakeResponse =
-  | { ok: true; filesStored: number; clientNotified: boolean }
-  | { ok: false; error: 'not_found' | 'unavailable' | 'server' }
