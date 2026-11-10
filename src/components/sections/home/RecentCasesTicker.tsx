@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import type { Case } from '@/lib/types'
-import { CASE_TYPE_LABELS } from '@/lib/types'
 
-// 모바일은 날짜·유형 칸을 좁히고 항공사 칸을 넓혀 금액이 줄바꿈되지 않게 합니다.
-const COLS = 'grid grid-cols-[3.5rem_minmax(0,1fr)_2.25rem_6rem] gap-x-2 sm:grid-cols-4 sm:gap-x-0'
+// 모바일은 운항 시기·지연·금액 칸을 글자 폭에 맞춰 좁히고 남는 폭을 항공사 칸에 줍니다.
+const COLS = 'grid grid-cols-[2.25rem_minmax(0,1fr)_4.25rem_5rem] gap-x-1.5 sm:grid-cols-4 sm:gap-x-0'
+
+// 띠에서는 지연 시간을 짧게 씁니다: '결항 · 약 72시간 늦게 도착' → '결항 · 72시간'
+const shortDelay = (delay: string) => delay.replace(/약 /g, '').replace(' 늦게 도착', '')
 
 export default function RecentCasesTicker({ cases }: { cases: Case[] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -46,9 +48,9 @@ export default function RecentCasesTicker({ cases }: { cases: Case[] }) {
           <div className="flex-1 bg-white/[0.04] border border-white/10 rounded-2xl p-4 sm:p-6 w-full max-w-4xl mx-auto relative">
             {/* Header row */}
             <div className={`${COLS} text-white/60 text-xs font-semibold border-b border-white/10 pb-3 mb-3 px-3 sm:px-4`}>
-              <div>운항 시기</div>
+              <div><span className="sm:hidden">시기</span><span className="hidden sm:inline">운항 시기</span></div>
               <div>항공사</div>
-              <div>유형</div>
+              <div>지연</div>
               <div className="text-right">보상금액</div>
             </div>
 
@@ -69,11 +71,8 @@ export default function RecentCasesTicker({ cases }: { cases: Case[] }) {
                     <div className="text-white/60 tabular-nums text-xs sm:text-sm">
                       {c.flightDate.replace(/-/g, '.').substring(2)}
                     </div>
-                    <div className="text-white font-bold truncate pr-2">{c.airline}</div>
-                    <div className="text-white/70 font-medium truncate pr-2">
-                      <span className="hidden sm:inline">{CASE_TYPE_LABELS[c.type]}</span>
-                      <span className="sm:hidden">{CASE_TYPE_LABELS[c.type].replace('항공 ', '')}</span>
-                    </div>
+                    <div className="text-white font-bold truncate sm:pr-2">{c.airline}</div>
+                    <div className="text-white/70 font-medium truncate text-xs sm:text-base sm:pr-2">{shortDelay(c.delay)}</div>
                     <div className="text-white font-bold text-right tabular-nums tracking-tight whitespace-nowrap">
                       {c.amount.toLocaleString()}<span className="text-xs ml-0.5 text-white/60">원</span>
                     </div>
