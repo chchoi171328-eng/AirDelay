@@ -7,8 +7,8 @@ import type { Case } from '@/lib/types'
 // 모바일은 운항 시기·지연·금액 칸을 글자 폭에 맞춰 좁히고 남는 폭을 항공사 칸에 줍니다.
 const COLS = 'grid grid-cols-[2.25rem_minmax(0,1fr)_4.25rem_5rem] gap-x-1.5 sm:grid-cols-4 sm:gap-x-0'
 
-// 띠에서는 지연 시간을 짧게 씁니다: '결항 · 약 72시간 늦게 도착' → '결항 · 72시간'
-const shortDelay = (delay: string) => delay.replace(/약 /g, '').replace(' 늦게 도착', '')
+// 띠에서는 지연 시간을 짧게 씁니다: '결항 · 약 72시간 늦게 도착' → '결항 · 72시간', '약 4시간 40분 (왕복 모두)' → '4시간 40분'
+const shortDelay = (delay: string) => delay.replace(/약 /g, '').replace(' 늦게 도착', '').replace(/\s*\(.*\)$/, '')
 
 const VISIBLE_ROWS = 5 // 한 번에 보이는 줄 수
 // 위아래 끝 12px만 흐리게 해 줄이 드나드는 모습을 부드럽게 합니다
@@ -66,9 +66,9 @@ export default function RecentCasesTicker({ cases }: { cases: Case[] }) {
           </div>
           
           {/* Ticker Board */}
-          <div className="flex-1 bg-white/[0.04] border border-white/10 rounded-2xl p-4 sm:p-6 w-full max-w-4xl mx-auto relative">
+          <div className="flex-1 bg-white/[0.04] border border-white/10 rounded-2xl p-3 sm:p-6 w-full max-w-4xl mx-auto relative">
             {/* Header row */}
-            <div className={`${COLS} text-white/60 text-xs font-semibold border-b border-white/10 pb-3 mb-3 px-3 sm:px-4`}>
+            <div className={`${COLS} text-white/60 text-xs font-semibold border-b border-white/10 pb-3 mb-3 px-2.5 sm:px-4`}>
               <div><span className="sm:hidden">시기</span><span className="hidden sm:inline">운항 시기</span></div>
               <div>항공사</div>
               <div>지연</div>
@@ -87,7 +87,7 @@ export default function RecentCasesTicker({ cases }: { cases: Case[] }) {
                 {rows.map((c, i) => (
                   <div 
                     key={`${c.slug}-${i}`} 
-                    className={`${COLS} items-center bg-white/5 hover:bg-white/10 transition-colors rounded-lg px-3 sm:px-4 py-2 h-[40px] text-[13px] sm:text-base border border-white/5`}
+                    className={`${COLS} items-center bg-white/5 hover:bg-white/10 transition-colors rounded-lg px-2.5 sm:px-4 py-2 h-[40px] text-[13px] sm:text-base border border-white/5`}
                   >
                     <div className="text-white/60 tabular-nums text-xs sm:text-sm">
                       {c.flightDate.replace(/-/g, '.').substring(2)}
