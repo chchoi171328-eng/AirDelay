@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: `에어리걸클레임을 운영하는 ${FIRM.name}의 개인정보 처리 목적, 항목, 보유기간 및 정보주체의 권리를 안내합니다.`,
 }
 
-// 현재 구성: 접수 내용을 저장하지 않고 메일(EmailJS)로만 전달합니다.
+// 현재 구성: 접수 내용을 웹사이트 DB에 저장하지 않고 Brevo로 대표 메일함에 전달합니다.
 // DB(Supabase)를 연결하면 제5·6·9조에 Supabase를 추가하고 시행일을 바꿔야 합니다.
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
               <thead><tr><th>수탁자</th><th>위탁 업무</th></tr></thead>
               <tbody>
                 <tr><td>Vercel Inc.</td><td>웹사이트 호스팅 및 접수 요청 처리</td></tr>
-                <tr><td>EmailJS Pte. Ltd.</td><td>접수 알림 메일 발송</td></tr>
+                <tr><td>Brevo (Sendinblue SAS)</td><td>접수 알림 메일 발송</td></tr>
                 <tr><td>Google LLC (Gmail)</td><td>대표 메일함 제공 — 접수 알림 메일 수신 및 보관</td></tr>
               </tbody>
             </table>
@@ -95,11 +95,11 @@ export default function PrivacyPage() {
                     <td>요청 처리 후 즉시 삭제(접속 기록 제외)</td>
                   </tr>
                   <tr>
-                    <td>EmailJS Pte. Ltd. (support@emailjs.com)</td>
-                    <td>미국 (서버 소재지, 운영 법인은 싱가포르)</td>
+                    <td>Brevo (Sendinblue SAS, dpo@brevo.com)</td>
+                    <td>프랑스·독일·벨기에 (서버 및 데이터 저장 소재지)</td>
                     <td>이름, 연락처, 이메일, 항공편 정보, 피해 상세 내용</td>
                     <td>접수 시 네트워크를 통해 전송</td>
-                    <td>발송 완료 후 보관하지 않음 (발송 기록 저장 기능을 사용하지 않음)</td>
+                    <td>메일 본문 미리보기는 저장하지 않음. 발송 로그(메일 주소, 발송 시각·상태 등)는 1개월 보관 후 삭제(삭제 처리에 최대 24시간 소요)</td>
                   </tr>
                   <tr>
                     <td>Google LLC (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA · policies.google.com/privacy)</td>

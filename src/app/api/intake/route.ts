@@ -34,7 +34,7 @@ export async function POST(req: Request) {
   const db = getSupabaseAdmin()
   const mailReady = isEmailConfigured()
   if (!db && !mailReady) {
-    console.error('[intake] Supabase와 EmailJS가 모두 설정되지 않아 접수를 저장할 수 없습니다.')
+    console.error('[intake] Supabase와 Brevo가 모두 설정되지 않아 접수를 저장할 수 없습니다.')
     return reply({ ok: false, error: 'unavailable' }, 503)
   }
 
