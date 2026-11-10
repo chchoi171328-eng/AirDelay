@@ -81,7 +81,7 @@ export default function PrivacyPage() {
               <tbody>
                 <tr><td>Vercel Inc.</td><td>웹사이트 호스팅 및 접수 요청 처리</td></tr>
                 <tr><td>EmailJS Pte. Ltd.</td><td>접수 알림 메일 발송</td></tr>
-                <tr><td>Google LLC (Google Workspace)</td><td>법인 메일함 제공 — 접수 알림 메일 수신 및 보관</td></tr>
+                <tr><td>Google LLC (Gmail)</td><td>대표 메일함 제공 — 접수 알림 메일 수신 및 보관</td></tr>
               </tbody>
             </table>
           </Section>
@@ -110,7 +110,7 @@ export default function PrivacyPage() {
                     <td>Google LLC (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA · policies.google.com/privacy)</td>
                     <td>미국 등 Google 데이터센터 소재국</td>
                     <td>이름, 연락처, 이메일, 항공편 정보, 피해 상세 내용</td>
-                    <td>접수 시 법인 메일함으로 이메일 전송</td>
+                    <td>접수 시 대표 메일함으로 이메일 전송</td>
                     <td>제3조와 같음</td>
                   </tr>
                 </tbody>

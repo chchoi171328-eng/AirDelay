@@ -14,9 +14,9 @@ export const BRAND = {
 export const FIRM = {
   name: '법무법인 명',
   nameEn: 'SOL & LUNA Law Firm',
-  phone: '031-658-6100',
-  phoneIntl: '+82-31-658-6100',
-  email: 'sllaw@sllaw.co.kr',
+  phone: '070-4421-7100',
+  phoneIntl: '+82-70-4421-7100',
+  email: 'airlegalclaim@gmail.com',
   address: '경기도 평택시 평남로 1029-1, SJ프라자 5층',
   addressParts: { street: '평남로 1029-1, SJ프라자 5층', locality: '평택시', region: '경기도', country: 'KR' },
   taxId: '238-85-00581',
