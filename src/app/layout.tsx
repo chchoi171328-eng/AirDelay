@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Noto_Serif_KR } from 'next/font/google'
 // Pretendard: 사이트에서 직접 제공 (화면에 쓰인 글자 묶음만 내려받는 방식)
 import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css'
 import './globals.css'
@@ -8,13 +7,8 @@ import Footer from '@/components/layout/Footer'
 import MobileCTA from '@/components/layout/MobileCTA'
 import { BRAND, FIRM, SITE_DESCRIPTION, SITE_URL } from '@/lib/site'
 
-// 로고 워드마크용 명조체 (에어리걸 900, 클레임 400). 빌드할 때 내려받아 사이트에서 직접 제공합니다.
-const serifKr = Noto_Serif_KR({
-  weight: ['400', '900'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-serif-kr',
-})
+// 로고 워드마크용 명조체(Noto Serif KR)는 globals.css의 @font-face로 public/fonts에서 직접 제공합니다 (워드마크 글자만 담은 조각).
+const WORDMARK_FONT_FILES = ['115', '116', '117', '118', '119'].map((n) => `/fonts/noto-serif-kr/noto-serif-kr-${n}.woff2`)
 
 const ogTitle = `${BRAND.name} — 항공지연·결항 보상`
 
@@ -72,8 +66,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko" className={serifKr.variable}>
+    <html lang="ko">
       <head>
+        {WORDMARK_FONT_FILES.map((href) => (
+          <link key={href} rel="preload" href={href} as="font" type="font/woff2" crossOrigin="anonymous" />
+        ))}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body className="min-h-screen flex flex-col">
