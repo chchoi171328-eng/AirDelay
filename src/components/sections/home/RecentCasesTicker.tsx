@@ -46,7 +46,7 @@ export default function RecentCasesTicker({ cases }: { cases: Case[] }) {
           <div className="flex-1 bg-white/[0.04] border border-white/10 rounded-2xl p-4 sm:p-6 w-full max-w-4xl mx-auto relative">
             {/* Header row */}
             <div className={`${COLS} text-white/60 text-xs font-semibold border-b border-white/10 pb-3 mb-3 px-3 sm:px-4`}>
-              <div>운항일</div>
+              <div>운항 시기</div>
               <div>항공사</div>
               <div>유형</div>
               <div className="text-right">보상금액</div>

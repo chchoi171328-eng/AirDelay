@@ -38,7 +38,7 @@ export default async function CaseDetailPage({ params }: Params) {
   const facts = [
     ['항공사', c.airline],
     ['노선', c.route],
-    ['운항일', formatDate(c.flightDate)],
+    ['운항 시기', formatDate(c.flightDate)],
     ['지연', c.delay],
   ]
 

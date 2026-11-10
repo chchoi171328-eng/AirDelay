@@ -36,6 +36,13 @@ function toDate(file: string, field: string, v: unknown): string {
   return s
 }
 
+// 보상 사례의 운항 시기: 의뢰인이 특정되지 않도록 연·월(YYYY-MM)까지만 적습니다. 예전 형식(YYYY-MM-DD)도 받습니다.
+function toMonthOrDate(file: string, field: string, v: unknown): string {
+  const s = v instanceof Date ? v.toISOString().slice(0, 10) : String(v ?? '')
+  if (!/^\d{4}-\d{2}(-\d{2})?$/.test(s)) fail(file, `${field}는 YYYY-MM 형식이어야 합니다 (현재: ${s || '없음'})`)
+  return s
+}
+
 function required(file: string, data: Record<string, unknown>, field: string): string {
   const v = data[field]
   if (typeof v !== 'string' || !v.trim()) fail(file, `${field} 항목이 필요합니다`)
@@ -93,7 +100,7 @@ export function getCases(): Case[] {
         slug,
         airline: required(file, data, 'airline'),
         route: required(file, data, 'route'),
-        flightDate: toDate(file, 'flightDate', data.flightDate),
+        flightDate: toMonthOrDate(file, 'flightDate', data.flightDate),
         delay: required(file, data, 'delay'),
         amount,
         type,

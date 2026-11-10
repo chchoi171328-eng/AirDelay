@@ -6,7 +6,7 @@ export interface Case {
   slug: string
   airline: string
   route: string
-  flightDate: string // YYYY-MM-DD
+  flightDate: string // YYYY-MM (운항 연·월까지만 — 의뢰인이 특정되지 않도록 일자는 적지 않습니다)
   delay: string // 예: '5시간 30분', '결항'
   amount: number // 원
   type: CaseType
