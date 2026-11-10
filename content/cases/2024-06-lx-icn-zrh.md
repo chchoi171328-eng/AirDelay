@@ -6,5 +6,4 @@ delay: "약 4시간 30분"
 amount: 700000
 type: delay
 summary: "출발이 약 4시간 30분 늦어졌습니다. 소송 판결로 받은 1인당 위자료입니다."
-draft: true
 ---
