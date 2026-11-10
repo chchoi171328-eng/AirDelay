@@ -80,8 +80,8 @@ export default function PrivacyPage() {
               <thead><tr><th>수탁자</th><th>위탁 업무</th></tr></thead>
               <tbody>
                 <tr><td>Vercel Inc.</td><td>웹사이트 호스팅 및 접수 요청 처리</td></tr>
-                <tr><td>EmailJS <Blank>운영 법인명 확인</Blank></td><td>접수 알림 메일 발송</td></tr>
-                <tr><td><Blank>법인 메일 서비스 제공자(예: Google)</Blank></td><td>접수 메일 수신 및 보관</td></tr>
+                <tr><td>EmailJS Pte. Ltd.</td><td>접수 알림 메일 발송</td></tr>
+                <tr><td>Google LLC (Google Workspace)</td><td>법인 메일함 제공 — 접수 알림 메일 수신 및 보관</td></tr>
               </tbody>
             </table>
           </Section>
@@ -93,36 +93,33 @@ export default function PrivacyPage() {
                 <thead><tr><th>이전받는 자(연락처)</th><th>국가</th><th>이전 항목</th><th>일시·방법</th><th>보유 기간</th></tr></thead>
                 <tbody>
                   <tr>
-                    <td>Vercel Inc. (<Blank>연락처</Blank>)</td>
-                    <td>미국 등 <Blank>함수 실행 리전</Blank></td>
+                    <td>Vercel Inc. (privacy@vercel.com)</td>
+                    <td>미국 (워싱턴 D.C. iad1 리전)</td>
                     <td>제2조의 접수 정보</td>
                     <td>접수 시 네트워크를 통해 전송</td>
                     <td>요청 처리 후 즉시 삭제(접속 기록 제외)</td>
                   </tr>
                   <tr>
-                    <td>EmailJS (<Blank>연락처</Blank>)</td>
-                    <td><Blank>국가</Blank></td>
+                    <td>EmailJS Pte. Ltd. (<Blank>support@emailjs.com</Blank>)</td>
+                    <td><Blank>싱가포르(법인) · 미국(서버)</Blank></td>
                     <td>이름, 연락처, 이메일, 항공편 정보, 피해 상세 내용</td>
                     <td>접수 시 네트워크를 통해 전송</td>
-                    <td>발송 완료 후 <Blank>보관 기간 확인</Blank></td>
+                    <td>발송 완료 후 <Blank>7일</Blank> (발송 기록 보관 기간)</td>
                   </tr>
                   <tr>
-                    <td><Blank>법인 메일 서비스 제공자(국외인 경우)</Blank></td>
-                    <td><Blank>국가</Blank></td>
+                    <td>Google LLC (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA · policies.google.com/privacy)</td>
+                    <td>미국 등 Google 데이터센터 소재국</td>
                     <td>이름, 연락처, 이메일, 항공편 정보, 피해 상세 내용</td>
-                    <td>접수 시 이메일로 전송</td>
+                    <td>접수 시 법인 메일함으로 이메일 전송</td>
                     <td>제3조와 같음</td>
-                  </tr>
-                  <tr>
-                    <td><Blank>영국 협업 변호사(해당 시)</Blank></td>
-                    <td>영국</td>
-                    <td><Blank>검토에 필요한 항목</Blank></td>
-                    <td><Blank>이전 방법</Blank></td>
-                    <td><Blank>보유 기간</Blank></td>
                   </tr>
                 </tbody>
               </table>
             </div>
+            <p>
+              온라인 접수 단계에서는 영국 협업 변호사에게 개인정보를 전달하지 않습니다. 사건을 위임하신 뒤 유럽·영국 노선 등
+              영국 변호사의 확인이 필요한 경우에는 전달 항목·방법·보유 기간을 안내하고 별도 동의를 받은 뒤 전달합니다.
+            </p>
             <p>국외 이전을 원하지 않으시면 온라인 접수 대신 전화로 접수하실 수 있습니다.</p>
           </Section>
 
