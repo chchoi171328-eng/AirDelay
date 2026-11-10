@@ -10,11 +10,20 @@ const COLS = 'grid grid-cols-[2.25rem_minmax(0,1fr)_4.25rem_5rem] gap-x-1.5 sm:g
 // 띠에서는 지연 시간을 짧게 씁니다: '결항 · 약 72시간 늦게 도착' → '결항 · 72시간'
 const shortDelay = (delay: string) => delay.replace(/약 /g, '').replace(' 늦게 도착', '')
 
+const VISIBLE_ROWS = 5 // 한 번에 보이는 줄 수
+// 위아래 끝 12px만 흐리게 해 줄이 드나드는 모습을 부드럽게 합니다
+const FADE = 'linear-gradient(to bottom, transparent, black 12px, black calc(100% - 12px), transparent)'
+const ROW_STEP = 48 // 한 줄 높이 40px + 간격 8px
+const STEP_MS = 2500 // 한 줄씩 올라가는 간격
+const SLIDE_MS = 700 // 올라가는 움직임 시간 (아래 duration-700과 같아야 합니다)
+
 export default function RecentCasesTicker({ cases }: { cases: Case[] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [animate, setAnimate] = useState(true)
   const [reduceMotion, setReduceMotion] = useState(false)
-  // 한 화면(3줄)보다 많을 때만 굴립니다. 끊김 없이 보이도록 목록을 이어 붙입니다.
-  const scrolling = cases.length > 3
+  const count = cases.length
+  // 한 화면보다 많을 때만 굴립니다. 끊김 없이 돌도록 목록을 이어 붙입니다.
+  const scrolling = count > VISIBLE_ROWS
   const rows = scrolling ? [...cases, ...cases, ...cases] : cases
 
   useEffect(() => {
@@ -24,10 +33,22 @@ export default function RecentCasesTicker({ cases }: { cases: Case[] }) {
   useEffect(() => {
     if (!scrolling || reduceMotion) return
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % cases.length)
-    }, 2500)
+      setAnimate(true)
+      setCurrentIndex((prev) => prev + 1)
+    }, STEP_MS)
     return () => clearInterval(timer)
-  }, [scrolling, reduceMotion, cases.length])
+  }, [scrolling, reduceMotion])
+
+  // 마지막 사례 다음에는 맨 위로 되감지 않고 첫 사례가 이어서 올라옵니다.
+  // 이어 붙인 두 번째 묶음까지 그대로 올라간 뒤, 움직임이 끝나면 똑같이 보이는 첫 묶음 위치로 애니메이션 없이 옮깁니다.
+  useEffect(() => {
+    if (!scrolling || currentIndex < count) return
+    const timer = setTimeout(() => {
+      setAnimate(false)
+      setCurrentIndex((prev) => prev % count)
+    }, SLIDE_MS + 50)
+    return () => clearTimeout(timer)
+  }, [scrolling, currentIndex, count])
 
   if (cases.length === 0) return null
 
@@ -56,12 +77,12 @@ export default function RecentCasesTicker({ cases }: { cases: Case[] }) {
 
             {/* Scrolling container */}
             <div 
-              className={`${scrolling ? 'h-[144px]' : ''} overflow-hidden relative`}
-              style={scrolling ? { maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)', WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)' } : undefined}
+              className="overflow-hidden relative"
+              style={scrolling ? { height: VISIBLE_ROWS * ROW_STEP - 8, maskImage: FADE, WebkitMaskImage: FADE } : undefined}
             >
               <div 
-                className="transition-transform duration-700 ease-in-out flex flex-col gap-2"
-                style={{ transform: `translateY(-${currentIndex * 48}px)` }} // 40px height + 8px gap = 48px
+                className={`${animate ? 'transition-transform duration-700 ease-in-out' : ''} flex flex-col gap-2`}
+                style={{ transform: `translateY(-${currentIndex * ROW_STEP}px)` }}
               >
                 {rows.map((c, i) => (
                   <div 
