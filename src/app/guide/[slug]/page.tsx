@@ -16,8 +16,11 @@ export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }))
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const post = getPost(params.slug)
+type Params = { params: Promise<{ slug: string }> }
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params
+  const post = getPost(slug)
   if (!post) return {}
   return {
     title: post.seoTitle,
@@ -44,8 +47,9 @@ const DISCLAIMER: Record<BlogCategory, string> = {
     '이 글은 항공 운항에 관한 일반적인 정보를 정리한 것으로, 항공사·공항·국가마다 운영 방식이 다를 수 있습니다. 개별 항공편의 보상 여부는 실제 운항 기록과 사유에 따라 달라집니다.',
 }
 
-export default function GuidePostPage({ params }: { params: { slug: string } }) {
-  const post = getPost(params.slug)
+export default async function GuidePostPage({ params }: Params) {
+  const { slug } = await params
+  const post = getPost(slug)
   if (!post) notFound()
 
   // 함께 보면 좋은 글: 글에서 related로 직접 지정한 것만 보여 줍니다 (없으면 칸을 숨깁니다)

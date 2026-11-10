@@ -16,8 +16,11 @@ export function generateStaticParams() {
   return getCases().filter((c) => c.html).map((c) => ({ slug: c.slug }))
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const c = getCase(params.slug)
+type Params = { params: Promise<{ slug: string }> }
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params
+  const c = getCase(slug)
   if (!c) return {}
   return {
     title: `${c.airline} ${c.route} ${CASE_TYPE_LABELS[c.type]} 보상 사례`,
@@ -27,8 +30,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   }
 }
 
-export default function CaseDetailPage({ params }: { params: { slug: string } }) {
-  const c = getCase(params.slug)
+export default async function CaseDetailPage({ params }: Params) {
+  const { slug } = await params
+  const c = getCase(slug)
   if (!c?.html) notFound()
 
   const facts = [
