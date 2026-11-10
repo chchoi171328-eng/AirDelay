@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   keywords: ['항공지연보상', '항공결항', 'EU261', '항공피해', '법무법인', BRAND.name],
+  verification: {
+    other: { 'naver-site-verification': 'e99962dae23c330b306896b983038aca96691d7f' },
+  },
   openGraph: {
     siteName: BRAND.name,
     title: ogTitle,
