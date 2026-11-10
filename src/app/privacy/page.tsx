@@ -62,7 +62,7 @@ export default function PrivacyPage() {
 
           <Section title="제3조 개인정보의 처리 및 보유 기간">
             <ul className="list-disc pl-5 space-y-1">
-              <li>온라인 접수 정보: 접수일로부터 <Blank>1년</Blank></li>
+              <li>온라인 접수 정보: 접수일로부터 1년</li>
               <li>사건을 수임한 경우: 위임계약 종료 후 관계 법령에서 정한 기간</li>
             </ul>
             <p>보유 기간이 지나거나 처리 목적이 달성되면 지체 없이 파기합니다.</p>

@@ -88,10 +88,9 @@ EMAILJS_PRIVATE_KEY                     EmailJS Private Key — 서버 전용. �
 
 ## 2. 공개 전 점검 (도메인 연결 전에 끝내고 사용자 확인을 받는다)
 
-1. **개인정보처리방침 미기재 표시 채우기** — `src/app/privacy/page.tsx`에 `<Blank>…</Blank>`로 표시된 곳이 화면에 노란 〔 〕로 그대로 보인다. 안의 값은 제안값이다. 확인한 값으로 바꾸고 `<Blank>` 표시를 지운다. (2026-11-10 기준 남은 곳 3군데)
-   - 제3조 온라인 접수 정보 보유 기간 〔1년〕: 사용자가 정한다
+1. **개인정보처리방침 미기재 표시 채우기** — `src/app/privacy/page.tsx`에 `<Blank>…</Blank>`로 표시된 곳이 화면에 노란 〔 〕로 그대로 보인다. 안의 값은 제안값이다. 확인한 값으로 바꾸고 `<Blank>` 표시를 지운다. (2026-11-10 기준 남은 곳 2군데 — 모두 제6조 EmailJS 행)
    - 제6조(국외 이전) EmailJS 행: 연락처 〔support@emailjs.com〕, 국가 〔싱가포르(법인) · 미국(서버)〕 — EmailJS 이용약관·개인정보처리방침에서 확인한 값으로 맞춘다(추측하지 않는다). 보관 기간은 "보관하지 않음"으로 확정됨(1-2의 4)
-   - 이미 채운 것: 제5조 EmailJS 운영 법인(EmailJS Pte. Ltd., 이용약관 기준) / 법인 메일 = Google LLC(Google Workspace) / 제6조 Vercel 행(privacy@vercel.com, 미국 iad1) / Google 행 / 영국 협업 변호사는 접수 단계에서 전달하지 않고 위임 후 별도 동의로 정리
+   - 이미 채운 것: 제3조 접수 정보 보유 기간 1년 / 제5조 EmailJS 운영 법인(EmailJS Pte. Ltd., 이용약관 기준) / 법인 메일 = Google LLC(Google Workspace) / 제6조 Vercel 행(privacy@vercel.com, 미국 iad1) / Google 행 / 영국 협업 변호사는 접수 단계에서 전달하지 않고 위임 후 별도 동의로 정리
    - 다 채운 뒤 `PRIVACY_POLICY_VERSION`(`src/lib/intake.ts`)을 공개일로 바꾼다. 접수 양식의 동의 기록이 이 값을 쓴다
 2. `npm run lint && npm run build`가 통과하는지, `/privacy`에 〔 〕가 남아 있지 않은지 확인한다.
 3. 접수가 실제로 도착하는 것(1-4)을 사용자가 직접 확인했는지 묻는다.
