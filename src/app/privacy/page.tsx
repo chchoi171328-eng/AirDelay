@@ -104,7 +104,7 @@ export default function PrivacyPage() {
                     <td><Blank>싱가포르(법인) · 미국(서버)</Blank></td>
                     <td>이름, 연락처, 이메일, 항공편 정보, 피해 상세 내용</td>
                     <td>접수 시 네트워크를 통해 전송</td>
-                    <td>발송 완료 후 <Blank>7일</Blank> (발송 기록 보관 기간)</td>
+                    <td>발송 완료 후 보관하지 않음 (발송 기록 저장 기능을 사용하지 않음)</td>
                   </tr>
                   <tr>
                     <td>Google LLC (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA · policies.google.com/privacy)</td>
