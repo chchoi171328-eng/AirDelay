@@ -105,5 +105,5 @@ function compact(e: IntakeErrors): IntakeErrors {
 
 // ─── API 응답 ────────────────────────────────────────────────────
 export type CreateIntakeResponse =
-  | { ok: true; id: string | null; clientNotified: boolean }
+  | { ok: true; id: string | null }
   | { ok: false; error: 'validation' | 'unavailable' | 'server'; errors?: IntakeErrors }

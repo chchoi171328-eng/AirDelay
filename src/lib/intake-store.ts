@@ -21,13 +21,8 @@ export function inputToRow(input: IntakeInput) {
   }
 }
 
-export async function markNotified(db: SupabaseClient, id: string, sent: { firm: boolean; client: boolean }) {
-  const now = new Date().toISOString()
-  const patch = {
-    ...(sent.firm && { firm_notified_at: now }),
-    ...(sent.client && { client_notified_at: now }),
-  }
-  if (!Object.keys(patch).length) return
-  const { error } = await db.from('intakes').update(patch).eq('id', id)
+/** 법인 알림 메일을 보낸 시각을 기록합니다. */
+export async function markNotified(db: SupabaseClient, id: string) {
+  const { error } = await db.from('intakes').update({ firm_notified_at: new Date().toISOString() }).eq('id', id)
   if (error) console.error('[intake] 알림 기록 실패', error)
 }

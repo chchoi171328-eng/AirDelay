@@ -18,8 +18,7 @@ create table if not exists public.intakes (
   detail text,
   consent_version text not null,           -- 동의한 개인정보처리방침 시행일
   consented_at timestamptz not null,
-  firm_notified_at timestamptz,
-  client_notified_at timestamptz
+  firm_notified_at timestamptz                -- 법인 알림 메일을 보낸 시각
 );
 
 create index if not exists intakes_created_at_idx on public.intakes (created_at desc);

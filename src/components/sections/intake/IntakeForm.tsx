@@ -54,7 +54,6 @@ export default function IntakeForm() {
   const [errors, setErrors] = useState<IntakeErrors>({})
   const [status, setStatus] = useState<'idle' | 'sending'>('idle')
   const [submitError, setSubmitError] = useState(false)
-  const [result, setResult] = useState<{ clientNotified: boolean } | null>(null)
   const [honeypot, setHoneypot] = useState('')
   const [today, setToday] = useState('')
   const startedAt = useRef(Date.now())
@@ -127,7 +126,6 @@ export default function IntakeForm() {
       return
     }
 
-    setResult({ clientNotified: created.clientNotified })
     setStatus('idle')
     setStep(2)
   }
@@ -279,7 +277,7 @@ export default function IntakeForm() {
       )}
 
       {/* Step 3: Success */}
-      {step === 2 && result && (
+      {step === 2 && (
         <div className="text-center py-12">
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
             <CheckCircle className="w-10 h-10 text-green-600" />
@@ -317,9 +315,6 @@ export default function IntakeForm() {
                 <Link href="/process#group" className="underline underline-offset-2 hover:text-navy">차수 일정 보기</Link>
               </p>
             </div>
-          )}
-          {result.clientNotified && (
-            <p className="text-xs text-gray-500">접수 확인 이메일을 <strong>{form.email}</strong>(으)로 보냈습니다</p>
           )}
         </div>
       )}

@@ -22,7 +22,7 @@ export async function POST(req: Request) {
 
   // 스팸 방지: 화면에 보이지 않는 칸이 채워졌거나 너무 빨리 제출되면 저장하지 않고 성공처럼 응답합니다.
   if ((typeof raw.website === 'string' && raw.website !== '') || !(Number(raw.elapsedMs) >= MIN_FILL_MS)) {
-    return reply({ ok: true, id: null, clientNotified: false })
+    return reply({ ok: true, id: null })
   }
 
   const input = normalizeIntake(raw)
@@ -48,10 +48,10 @@ export async function POST(req: Request) {
   }
   if (!id && !mailReady) return reply({ ok: false, error: 'server' }, 500)
 
-  // 2) 메일 알림 — 법인에 접수 내용, 고객에게 접수 확인
+  // 2) 메일 알림 — 법인에 접수 내용 (고객에게는 완료 화면으로만 알리고 확인 메일은 보내지 않습니다)
   const sent = await notifyIntake(input, { id })
-  if (!id && !sent.firm) return reply({ ok: false, error: 'server' }, 500)
-  if (db && id) await markNotified(db, id, sent)
+  if (!id && !sent) return reply({ ok: false, error: 'server' }, 500)
+  if (db && id && sent) await markNotified(db, id)
 
-  return reply({ ok: true, id, clientNotified: sent.client })
+  return reply({ ok: true, id })
 }

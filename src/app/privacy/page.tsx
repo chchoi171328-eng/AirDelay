@@ -80,7 +80,7 @@ export default function PrivacyPage() {
               <thead><tr><th>수탁자</th><th>위탁 업무</th></tr></thead>
               <tbody>
                 <tr><td>Vercel Inc.</td><td>웹사이트 호스팅 및 접수 요청 처리</td></tr>
-                <tr><td>EmailJS <Blank>운영 법인명 확인</Blank></td><td>접수 알림 및 접수 확인 이메일 발송</td></tr>
+                <tr><td>EmailJS <Blank>운영 법인명 확인</Blank></td><td>접수 알림 메일 발송</td></tr>
                 <tr><td><Blank>법인 메일 서비스 제공자(예: Google)</Blank></td><td>접수 메일 수신 및 보관</td></tr>
               </tbody>
             </table>
