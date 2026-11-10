@@ -2,7 +2,7 @@
 import type { CaseType } from './types'
 import { CASE_TYPE_LABELS } from './types'
 
-export const PRIVACY_POLICY_VERSION = '2026-10-01'
+export const PRIVACY_POLICY_VERSION = '2026-11-10'
 
 export const INCIDENT_TYPES = (Object.keys(CASE_TYPE_LABELS) as CaseType[]).map((value) => ({
   value,

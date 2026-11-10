@@ -11,11 +11,6 @@ export const metadata: Metadata = {
 // 현재 구성: 접수 내용을 저장하지 않고 메일(EmailJS)로만 전달합니다.
 // DB(Supabase)를 연결하면 제5·6·9조에 Supabase를 추가하고 시행일을 바꿔야 합니다.
 
-// 법인이 직접 확인·기재해야 하는 항목 — 공개 전에 모두 채워야 합니다.
-function Blank({ children }: { children: React.ReactNode }) {
-  return <mark className="bg-amber-100 text-amber-800 rounded px-1">〔{children}〕</mark>
-}
-
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="space-y-3">
@@ -100,8 +95,8 @@ export default function PrivacyPage() {
                     <td>요청 처리 후 즉시 삭제(접속 기록 제외)</td>
                   </tr>
                   <tr>
-                    <td>EmailJS Pte. Ltd. (<Blank>support@emailjs.com</Blank>)</td>
-                    <td><Blank>싱가포르(법인) · 미국(서버)</Blank></td>
+                    <td>EmailJS Pte. Ltd. (support@emailjs.com)</td>
+                    <td>미국 (서버 소재지, 운영 법인은 싱가포르)</td>
                     <td>이름, 연락처, 이메일, 항공편 정보, 피해 상세 내용</td>
                     <td>접수 시 네트워크를 통해 전송</td>
                     <td>발송 완료 후 보관하지 않음 (발송 기록 저장 기능을 사용하지 않음)</td>
