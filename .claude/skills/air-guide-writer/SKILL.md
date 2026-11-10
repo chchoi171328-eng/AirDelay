@@ -90,12 +90,8 @@ grep -H -m2 -E '^(title|seoTitle):' content/blog/*.md
 
 `references/md-template.md`의 형식으로 `content/blog/{slug}.md`를 만든다.
 
-`draft` 여부는 사이트 공개 상태에 따라 정한다:
-- **공개 전** (2026년 10월 현재: 자체 도메인 미연결, 모든 Vercel 배포가 로그인 보호 → 검색엔진이 접근할 수 없음):
-  `draft` 없이 바로 올린다. 공개 직전에 사용자가 글 전체를 한 번 검토한다.
-- **공개 후** (자체 도메인 연결 또는 보호 해제 이후): `draft: true`로 올려 미리보기에서 검토받고, 승인되면 `draft` 줄을 지운다.
-
-공개 상태가 바뀌었는지 모르면 사용자에게 묻는다.
+사이트는 **2026-11-10 공개**되었으며 대표 주소는 https://www.airlegal.co.kr 이다.
+새 가이드는 `draft: true`로 올려 미리보기에서 검토받고, 사용자가 승인하면 `draft` 줄을 지운다.
 
 ```bash
 npm run lint && npm run build

@@ -2,6 +2,8 @@
 
 항공지연·결항 보상 전문 서비스 **에어리걸클레임** 웹사이트입니다. 운영: 법무법인 명(SOL & LUNA).
 
+공개 주소: https://www.airlegal.co.kr (2026-11-10 공개, https://airlegal.co.kr에서 308 이동)
+
 - 기술: Next.js 15 (App Router) · Tailwind CSS · Vercel 배포
 - 접수 메일: Brevo REST API로 대표 Gmail에 한 통만 발송. 설정·공개 순서는 [`docs/LAUNCH-SETUP-BRIEF.md`](docs/LAUNCH-SETUP-BRIEF.md)를 참고합니다.
 - 발송 연동 검증: `node --test tests/intake-notify.test.cjs`
