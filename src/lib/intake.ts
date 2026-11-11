@@ -2,7 +2,7 @@
 import type { CaseType } from './types'
 import { CASE_TYPE_LABELS } from './types'
 
-export const PRIVACY_POLICY_VERSION = '2026-11-10'
+export const PRIVACY_POLICY_VERSION = '2026-11-11'
 
 export const INCIDENT_TYPES = (Object.keys(CASE_TYPE_LABELS) as CaseType[]).map((value) => ({
   value,
@@ -10,6 +10,14 @@ export const INCIDENT_TYPES = (Object.keys(CASE_TYPE_LABELS) as CaseType[]).map(
 }))
 
 export const DELAY_RANGES = ['3시간 미만', '3~5시간', '5시간 이상', '해당 없음 (결항)'] as const
+
+export const CONTACT_METHODS = [
+  { value: 'phone', label: '전화' },
+  { value: 'sms', label: '문자' },
+  { value: 'email', label: '이메일' },
+] as const
+
+export const contactMethodLabel = (value: string) => CONTACT_METHODS.find((method) => method.value === value)?.label ?? '미선택'
 
 // ─── 입력값 ──────────────────────────────────────────────────────
 export interface IntakeInput {
@@ -23,6 +31,7 @@ export interface IntakeInput {
   name: string
   phone: string
   email: string
+  preferredContact: string
   detail: string
   consent: boolean
 }
@@ -33,7 +42,7 @@ export type IntakeErrors = Partial<Record<IntakeField, string>>
 export const EMPTY_INTAKE: IntakeInput = {
   airline: '', flightNo: '', origin: '', destination: '', date: '',
   type: '', delayRange: '',
-  name: '', phone: '', email: '', detail: '',
+  name: '', phone: '', email: '', preferredContact: '', detail: '',
   consent: false,
 }
 
@@ -51,6 +60,7 @@ export function normalizeIntake(raw: Record<string, unknown>): IntakeInput {
     name: str(raw.name),
     phone: str(raw.phone),
     email: str(raw.email),
+    preferredContact: str(raw.preferredContact),
     detail: str(raw.detail),
     consent: raw.consent === true,
   }
@@ -93,6 +103,8 @@ export function validateContact(v: IntakeInput): IntakeErrors {
 
   if (!v.email) e.email = '이메일을 입력해 주세요.'
   else if (v.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)) e.email = '이메일 주소를 정확히 입력해 주세요.'
+
+  if (!CONTACT_METHODS.some((method) => method.value === v.preferredContact)) e.preferredContact = '선호하는 연락수단을 선택해 주세요.'
 
   e.detail = tooLong(v.detail, 2000)
   if (!v.consent) e.consent = '개인정보 수집·이용에 동의해야 접수할 수 있습니다.'

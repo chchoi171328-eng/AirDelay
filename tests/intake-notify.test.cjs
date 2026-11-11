@@ -6,7 +6,7 @@ const vm = require('node:vm')
 const ts = require('typescript')
 
 const input = {
-  name: '한글 접수 테스트', phone: '070-4421-7100', email: 'customer@example.com',
+  name: '한글 접수 테스트', phone: '070-4421-7100', email: 'customer@example.com', preferredContact: 'sms',
   airline: '대한항공', flightNo: 'KE901', origin: '인천', destination: '파리',
   date: '2026-11-09', type: 'delay', delayRange: '5시간 이상',
   detail: '한글 상세 내용\n<script>는 실행되지 않는 일반 텍스트입니다.', consent: true,
@@ -38,10 +38,27 @@ function loadNotify(responses, env = { BREVO_API_KEY: 'test-only-key', BREVO_SEN
     }, { filename: file })
     return module.exports
   }
-  return { notify: load(path.resolve(__dirname, '../src/lib/intake-notify.ts')), calls, logs }
+  return {
+    notify: load(path.resolve(__dirname, '../src/lib/intake-notify.ts')),
+    intake: load(path.resolve(__dirname, '../src/lib/intake.ts')),
+    calls, logs,
+  }
 }
 
 const response = (status, body = {}) => ({ ok: status >= 200 && status < 300, status, json: async () => body })
+
+test('선호 연락수단은 전화·문자·이메일만 허용하고 누락·변조 값은 거부한다', () => {
+  const { intake } = loadNotify([])
+  for (const preferredContact of ['phone', 'sms', 'email']) {
+    const normalized = intake.normalizeIntake({ ...input, preferredContact })
+    assert.equal(normalized.preferredContact, preferredContact)
+    assert.equal(intake.validateContact(normalized).preferredContact, undefined)
+  }
+  for (const preferredContact of [undefined, '', 'kakao', ['phone', 'sms'], 'email\nBcc: attacker@example.com']) {
+    const normalized = intake.normalizeIntake({ ...input, preferredContact })
+    assert.equal(intake.validateContact(normalized).preferredContact, '선호하는 연락수단을 선택해 주세요.')
+  }
+})
 
 test('설정이 없으면 발송하지 않는다', async () => {
   const { notify, calls } = loadNotify([], {})
@@ -63,10 +80,19 @@ test('한글 접수 내용을 대표 메일에만 보내고 고객 주소는 Rep
   assert.equal(payload.sender.name, '에어리걸클레임 (법무법인 명)')
   assert.equal(payload.subject, '[에어리걸클레임] 새 문의 접수')
   assert.ok(payload.textContent.includes('이름: ' + input.name))
+  assert.ok(payload.textContent.includes('선호 연락수단: 문자'))
   assert.ok(payload.textContent.includes('인천 → 파리'))
   assert.ok(payload.textContent.includes(input.detail))
   assert.equal(payload.htmlContent, undefined)
   assert.ok(!calls[0].body.includes('test-only-key'))
+})
+
+test('전화·문자·이메일 선택값을 각각 한글로 메일에 표시한다', async () => {
+  for (const [preferredContact, label] of [['phone', '전화'], ['sms', '문자'], ['email', '이메일']]) {
+    const { notify, calls } = loadNotify([response(201)])
+    assert.equal(await notify.notifyIntake({ ...input, preferredContact }, { id: null }), true)
+    assert.ok(calls[0].payload.textContent.includes('선호 연락수단: ' + label))
+  }
 })
 
 test('429 응답은 같은 본문과 중복 방지 키로 한 번만 재시도한다', async () => {
