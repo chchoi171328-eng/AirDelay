@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { ChevronRight, ChevronLeft, CheckCircle, AlertCircle } from 'lucide-react'
-import { DELAY_RANGES, EMPTY_INTAKE, INCIDENT_TYPES, validateContact, validateFlight } from '@/lib/intake'
+import { CONTACT_METHODS, DELAY_RANGES, EMPTY_INTAKE, INCIDENT_TYPES, contactMethodLabel, validateContact, validateFlight } from '@/lib/intake'
 import type { CreateIntakeResponse, IntakeErrors, IntakeField, IntakeInput } from '@/lib/intake'
 import { FIRM } from '@/lib/site'
 import { batchFor, needsDeadlineCheck } from '@/lib/batch'
@@ -220,6 +220,21 @@ export default function IntakeForm() {
           <Field name="email" label="이메일" required error={errors.email}>
             <input type="email" placeholder="example@email.com" autoComplete="email" maxLength={254} value={form.email} onChange={(e) => set('email', e.target.value)} {...inputProps('email')} />
           </Field>
+          <Field name="preferredContact" label="선호 연락수단" required error={errors.preferredContact} group>
+            <div id="intake-preferredContact" tabIndex={-1} role="radiogroup" aria-required="true" aria-labelledby="intake-preferredContact-label"
+              aria-invalid={Boolean(errors.preferredContact)} aria-describedby={errors.preferredContact ? 'intake-preferredContact-error' : undefined}
+              className="grid grid-cols-3 gap-2 rounded-xl focus:outline-none focus:ring-4 focus:ring-navy/10">
+              {CONTACT_METHODS.map((method) => (
+                <label key={method.value} className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 py-3 text-[15px] font-medium shadow-sm transition-colors ${
+                  form.preferredContact === method.value ? 'border-navy bg-navy/5 text-navy'
+                    : `${errors.preferredContact ? 'border-red-400' : 'border-gray-200'} text-gray-600 hover:border-navy/30 hover:bg-gray-50`}`}>
+                  <input type="radio" name="preferredContact" value={method.value} checked={form.preferredContact === method.value}
+                    onChange={() => set('preferredContact', method.value)} className="h-4 w-4 accent-navy" />
+                  {method.label}
+                </label>
+              ))}
+            </div>
+          </Field>
           <Field name="detail" label="피해 상세 내용" error={errors.detail}>
             <textarea rows={4} placeholder="상황을 자세히 설명해 주세요..." maxLength={2000} value={form.detail} onChange={(e) => set('detail', e.target.value)}
               {...inputProps('detail')} className={`${inputProps('detail').className} resize-none`} />
@@ -230,7 +245,7 @@ export default function IntakeForm() {
             <table className="w-full text-xs text-gray-600 mb-3">
               <tbody className="[&_th]:text-left [&_th]:font-semibold [&_th]:text-navy [&_th]:pr-3 [&_th]:py-1 [&_th]:align-top [&_th]:whitespace-nowrap [&_td]:py-1">
                 <tr><th>수집 목적</th><td>항공 피해 사건 접수, 접수 내용 확인 및 안내 연락</td></tr>
-                <tr><th>수집 항목</th><td>(필수) 이름, 연락처, 이메일, 항공편 정보 · (선택) 피해 상세 내용</td></tr>
+                <tr><th>수집 항목</th><td>(필수) 이름, 연락처, 이메일, 선호 연락수단, 항공편 정보 · (선택) 피해 상세 내용</td></tr>
                 <tr><th>보유 기간</th><td><strong className="text-navy">접수일로부터 1년</strong> (사건을 수임하면 위임계약에 따름)</td></tr>
               </tbody>
             </table>
@@ -297,6 +312,7 @@ export default function IntakeForm() {
             <div className="flex justify-between"><span className="text-gray-500">항공사</span><span className="font-semibold text-navy">{form.airline}</span></div>
             <div className="flex justify-between"><span className="text-gray-500">노선</span><span className="font-semibold text-navy">{form.origin} → {form.destination}</span></div>
             <div className="flex justify-between"><span className="text-gray-500">날짜</span><span className="font-semibold text-navy">{form.date}</span></div>
+            <div className="flex justify-between"><span className="text-gray-500">선호 연락수단</span><span className="font-semibold text-navy">{contactMethodLabel(form.preferredContact)}</span></div>
           </div>
           {batch && (
             <div className="rounded-xl border border-navy/10 p-5 text-left text-sm max-w-sm mx-auto mb-8">

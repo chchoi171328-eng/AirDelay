@@ -1,6 +1,7 @@
 // 서버 전용 — Brevo로 대표 메일함에 접수 알림 한 통을 보냅니다.
 import { randomUUID } from 'crypto'
 import type { IntakeInput } from './intake'
+import { contactMethodLabel } from './intake'
 import { CASE_TYPE_LABELS } from './types'
 import type { CaseType } from './types'
 import { BRAND, FIRM } from './site'
@@ -31,6 +32,7 @@ export async function notifyIntake(input: IntakeInput, opts: { id: string | null
       `이름: ${input.name}`,
       `연락처: ${input.phone}`,
       `이메일: ${input.email}`,
+      `선호 연락수단: ${contactMethodLabel(input.preferredContact)}`,
       '',
       `항공사: ${input.airline}`,
       `편명: ${input.flightNo || '-'}`,

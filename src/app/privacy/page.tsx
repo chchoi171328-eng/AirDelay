@@ -47,7 +47,7 @@ export default function PrivacyPage() {
             <table className={tableCls}>
               <thead><tr><th className="w-24">구분</th><th>항목</th></tr></thead>
               <tbody>
-                <tr><td>필수</td><td>이름, 연락처, 이메일, 항공편 정보(항공사, 출발지·도착지, 운항일, 피해 유형)</td></tr>
+                <tr><td>필수</td><td>이름, 연락처, 이메일, 선호 연락수단, 항공편 정보(항공사, 출발지·도착지, 운항일, 피해 유형)</td></tr>
                 <tr><td>선택</td><td>항공편명, 지연 시간, 피해 상세 내용, 상담 과정에서 제출하시는 증빙 서류(항공권·탑승권·지연확인서 등)</td></tr>
                 <tr><td>자동 생성</td><td>서비스 이용 과정에서 IP 주소, 접속 일시 등 접속 기록이 생성될 수 있습니다.</td></tr>
               </tbody>
@@ -97,14 +97,14 @@ export default function PrivacyPage() {
                   <tr>
                     <td>Brevo (Sendinblue SAS, dpo@brevo.com)</td>
                     <td>프랑스·독일·벨기에 (서버 및 데이터 저장 소재지)</td>
-                    <td>이름, 연락처, 이메일, 항공편 정보, 피해 상세 내용</td>
+                    <td>이름, 연락처, 이메일, 선호 연락수단, 항공편 정보, 피해 상세 내용</td>
                     <td>접수 시 네트워크를 통해 전송</td>
                     <td>메일 본문 미리보기는 저장하지 않음. 발송 로그(메일 주소, 발송 시각·상태 등)는 1개월 보관 후 삭제(삭제 처리에 최대 24시간 소요)</td>
                   </tr>
                   <tr>
                     <td>Google LLC (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA · policies.google.com/privacy)</td>
                     <td>미국 등 Google 데이터센터 소재국</td>
-                    <td>이름, 연락처, 이메일, 항공편 정보, 피해 상세 내용</td>
+                    <td>이름, 연락처, 이메일, 선호 연락수단, 항공편 정보, 피해 상세 내용</td>
                     <td>접수 시 대표 메일함으로 이메일 전송</td>
                     <td>제3조와 같음</td>
                   </tr>
