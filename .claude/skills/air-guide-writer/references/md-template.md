@@ -24,7 +24,6 @@ reviewedAt: 2026-10                                              # 필수. 검�
 cover: /images/guide/eu261-delay-compensation/cover.jpg          # 없으면 묶음별 기본 사진
 related: []                                                      # 함께 읽을 만한 글의 파일 이름. 있을 때만 화면에 나온다
 ctaSituation: "유럽에서 출발한 항공편이 3시간 넘게 늦었다면"            # 맺음 상자 첫 문장 앞부분
-ctaNote: ""                                                      # 선택. 맺음 상자에 이 글에만 덧붙이는 한 문단 (거의 쓰지 않는다 — guide-structure.md 3절)
 author: "법무법인 명"                                              # 작성자는 법무법인 명으로 통일 (생략해도 같은 값)
 draft: true                                                      # 사이트 공개 후에만 사용 (공개 전에는 이 줄 없이 올린다 — SKILL.md 6단계)
 ---

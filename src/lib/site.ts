@@ -10,7 +10,7 @@ export const BRAND = {
 }
 
 // 모든 페이지 헤더 아래에 한 줄로 띄우는 알림 띠. 연결된 가이드가 공개되어 있을 때만 나옵니다.
-// live: false 인 동안은 미리보기 배포에서만 보이고 운영 사이트에는 나오지 않습니다 (사용자 승인 후 true로).
+// 2026년 11월 사용자 결정으로 보류 중 — live: false 인 동안은 어디에도 나오지 않습니다. 쓰기로 하면 true로 바꿉니다.
 export const ANNOUNCEMENT = {
   id: 'supreme-court-2026-11', // 방문자가 닫은 기록을 구분하는 값 — 내용을 바꾸면 이 값도 바꿉니다
   slug: 'foreign-compensation-rules-korean-court',

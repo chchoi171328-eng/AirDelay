@@ -70,8 +70,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // 알림 띠: 연결된 가이드가 공개 상태일 때만. live가 꺼져 있으면 미리보기 배포에서만 보입니다.
-  const showNotice = Boolean(getPost(ANNOUNCEMENT.slug)) && (ANNOUNCEMENT.live || process.env.VERCEL_ENV !== 'production')
+  // 알림 띠: live가 켜져 있고 연결된 가이드가 공개 상태일 때만 나옵니다 (지금은 보류 중)
+  const showNotice = ANNOUNCEMENT.live && Boolean(getPost(ANNOUNCEMENT.slug))
 
   return (
     <html lang="ko">
