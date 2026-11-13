@@ -9,6 +9,17 @@ export const BRAND = {
   themeColor: '#0A2342', // 사이트 navy 토큰과 같은 값 (manifest theme_color)
 }
 
+// 모든 페이지 헤더 아래에 한 줄로 띄우는 알림 띠. 연결된 가이드가 공개되어 있을 때만 나옵니다.
+// live: false 인 동안은 미리보기 배포에서만 보이고 운영 사이트에는 나오지 않습니다 (사용자 승인 후 true로).
+export const ANNOUNCEMENT = {
+  id: 'supreme-court-2026-11', // 방문자가 닫은 기록을 구분하는 값 — 내용을 바꾸면 이 값도 바꿉니다
+  slug: 'foreign-compensation-rules-korean-court',
+  label: '대법원 판결 · 2026년 11월',
+  text: '항공사 약관을 근거로 외국의 정액 보상 규정에 따른 보상을 청구할 수 있다는 확인을 받았습니다.',
+  textShort: '약관을 근거로 외국 정액 보상 규정에 따라 청구할 수 있습니다.',
+  live: false,
+}
+
 // 운영 법인 기본 정보 — 메인 사이트의 법인 정보와 글자 단위로 같게 유지합니다 (메인 사이트로 링크는 걸지 않습니다).
 // 푸터 운영 주체 표기·운영 법인 소개·법적 고지·검색엔진용 정보가 이 값을 씁니다.
 export const FIRM = {

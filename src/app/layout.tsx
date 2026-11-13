@@ -5,7 +5,9 @@ import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import MobileCTA from '@/components/layout/MobileCTA'
-import { BRAND, FIRM, SITE_DESCRIPTION, SITE_URL } from '@/lib/site'
+import AnnouncementBar from '@/components/layout/AnnouncementBar'
+import { getPost } from '@/lib/content'
+import { ANNOUNCEMENT, BRAND, FIRM, SITE_DESCRIPTION, SITE_URL } from '@/lib/site'
 
 // 로고 워드마크용 명조체(Noto Serif KR)는 globals.css의 @font-face로 public/fonts에서 직접 제공합니다 (워드마크 글자만 담은 조각).
 const WORDMARK_FONT_FILES = ['115', '116', '117', '118', '119'].map((n) => `/fonts/noto-serif-kr/noto-serif-kr-${n}.woff2`)
@@ -68,6 +70,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // 알림 띠: 연결된 가이드가 공개 상태일 때만. live가 꺼져 있으면 미리보기 배포에서만 보입니다.
+  const showNotice = Boolean(getPost(ANNOUNCEMENT.slug)) && (ANNOUNCEMENT.live || process.env.VERCEL_ENV !== 'production')
+
   return (
     <html lang="ko">
       <head>
@@ -79,6 +84,15 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-1 pt-16">
+          {showNotice && (
+            <AnnouncementBar
+              id={ANNOUNCEMENT.id}
+              href={`/guide/${ANNOUNCEMENT.slug}`}
+              label={ANNOUNCEMENT.label}
+              text={ANNOUNCEMENT.text}
+              textShort={ANNOUNCEMENT.textShort}
+            />
+          )}
           {children}
         </main>
         <Footer />
