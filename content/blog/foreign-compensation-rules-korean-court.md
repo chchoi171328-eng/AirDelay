@@ -7,7 +7,7 @@ keywords: ["항공 지연 정액 보상", "항공 지연 보상 소송", "터키
 reviewedAt: 2026-11
 related: ["montreal-convention-delay", "claim-deadline"]
 ctaSituation: "외국의 정액 보상 규정이 적용될 수 있는 항공편이 늦어지거나 결항됐다면"
-draft: true
+cover: /images/guide/foreign-compensation-rules-korean-court/cover.jpg
 ---
 
 :::summary
