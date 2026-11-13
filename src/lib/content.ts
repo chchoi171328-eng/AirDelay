@@ -78,7 +78,7 @@ export function getPosts(): BlogPost[] {
         author: typeof data.author === 'string' && data.author.trim() ? data.author.trim() : GUIDE_AUTHOR,
         cover: typeof data.cover === 'string' && data.cover ? data.cover : null,
         related: strings(data.related),
-        cta: ctaOk ? { situation: String(data.ctaSituation).trim() } : null,
+        cta: ctaOk ? { situation: String(data.ctaSituation).trim(), note: typeof data.ctaNote === 'string' && data.ctaNote.trim() ? data.ctaNote.trim() : undefined } : null,
         html: guide?.html ?? null,
         toc: guide?.toc ?? [],
         faq: guide?.faq ?? [],
