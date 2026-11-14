@@ -8,6 +8,7 @@ import { BLOG_CATEGORY_LABELS, coverOf, type BlogCategory } from '@/lib/types'
 import { CATEGORY_COLORS, formatReviewed } from '@/components/content/PostCard'
 import DraftBadge from '@/components/content/DraftBadge'
 import ArticleCTA from '@/components/content/ArticleCTA'
+import ShareButton from '@/components/ui/ShareButton'
 import { BRAND, FIRM, SITE_URL } from '@/lib/site'
 
 export const dynamicParams = false
@@ -104,8 +105,17 @@ export default async function GuidePostPage({ params }: Params) {
         {!post.html?.includes('g-summary') && <p className="text-lg text-gray-600 leading-relaxed mb-8 break-keep">{post.summary}</p>}
         {post.html && <article className="guide-body prose prose-gray max-w-none prose-headings:text-navy prose-a:text-navy prose-strong:text-navy" dangerouslySetInnerHTML={{ __html: post.html }} />}
 
+        {/* 공유하기 — 휴대폰에서는 기본 공유 창(카카오톡 등), 그 밖에는 주소 복사 */}
+        <div className="mt-10 flex justify-end">
+          <ShareButton
+            siteUrl={SITE_URL}
+            label="이 글 공유하기"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-navy/20 text-navy font-semibold text-sm px-4 py-2.5 hover:border-navy/40 transition-colors"
+          />
+        </div>
+
         {/* 법률 정보 안내 */}
-        <p className="mt-12 rounded-xl bg-gray-50 border border-gray-200 px-5 py-4 text-sm text-gray-500 leading-relaxed break-keep">
+        <p className="mt-6 rounded-xl bg-gray-50 border border-gray-200 px-5 py-4 text-sm text-gray-500 leading-relaxed break-keep">
           {DISCLAIMER[post.category]}
         </p>
 

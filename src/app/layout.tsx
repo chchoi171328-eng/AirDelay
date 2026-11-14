@@ -96,7 +96,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <MobileCTA />
+        <MobileCTA siteUrl={SITE_URL} />
       </body>
     </html>
   )

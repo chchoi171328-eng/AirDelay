@@ -4,10 +4,11 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { FileText, Phone } from 'lucide-react'
 import { FIRM } from '@/lib/site'
+import ShareButton from '@/components/ui/ShareButton'
 
-// 모바일 화면 아래에 늘 보이는 접수·전화 버튼 (접수 페이지에서는 숨김)
+// 모바일 화면 아래에 늘 보이는 공유·전화·접수 버튼 (접수 페이지에서는 숨김)
 // 홈에서는 첫 화면에 같은 버튼이 이미 있으므로, 조금 내려간 뒤부터 보여 줍니다.
-export default function MobileCTA() {
+export default function MobileCTA({ siteUrl }: { siteUrl: string }) {
   const pathname = usePathname()
   const isHome = pathname === '/'
   const [scrolled, setScrolled] = useState(false)
@@ -33,7 +34,13 @@ export default function MobileCTA() {
         visible ? 'translate-y-0' : 'translate-y-full pointer-events-none'
       }`}
     >
-      <a href={`tel:${FIRM.phone}`} tabIndex={visible ? undefined : -1} className="flex items-center justify-center gap-1.5 rounded-xl border border-navy/20 text-navy font-bold text-sm px-4 py-3">
+      <ShareButton
+        siteUrl={siteUrl}
+        label="공유"
+        tabIndex={visible ? undefined : -1}
+        className="flex items-center justify-center gap-1.5 rounded-xl border border-navy/20 text-navy font-bold text-sm px-3.5 py-3 whitespace-nowrap"
+      />
+      <a href={`tel:${FIRM.phone}`} tabIndex={visible ? undefined : -1} className="flex items-center justify-center gap-1.5 rounded-xl border border-navy/20 text-navy font-bold text-sm px-3.5 py-3 whitespace-nowrap">
         <Phone className="w-4 h-4" />
         전화
       </a>
