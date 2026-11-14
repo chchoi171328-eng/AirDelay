@@ -4,7 +4,7 @@ seoTitle: "항공편 결항 보상 — 언제 통보받았는지, 대체편이 �
 category: claim
 summary: "EU261에서 결항 보상은 통보 시점과 대체편 시각으로 정해집니다. 출발 14일·7일 전 기준과 금액이 줄어드는 경우를 정리했습니다."
 keywords: ["항공편 결항 보상", "결항 통보 14일", "EU261 결항", "결항 대체편"]
-reviewedAt: 2026-10
+reviewedAt: 2026-11
 cover: /images/guide/flight-cancellation-notice/cover.jpg
 related: ["eu261-compensation-amount", "eu261-direction-and-airline"]
 ctaSituation: "항공편 결항을 통보받았다면"
@@ -77,5 +77,5 @@ EU261 제5조 제1항 (c)는 결항 통보 시점을 세 구간으로 나누고,
 보상이나 환불을 바우처로 받는 것은 승객이 서면으로 동의한 경우에만 가능합니다(제7조 제3항). 바우처를 제안받았을 때 확인할 점은 [항공사 바우처 제안](/guide/airline-voucher-offer)에 정리해 두었습니다.
 
 :::callout
-**EU261·UK261이 적용되지 않는 노선에는 통보 시점에 따른 정액 보상 기준이 없습니다.** 이런 노선은 결항으로 실제 생긴 손해를 청구하는 방식이며, 기준별 차이는 [비행기 3시간 지연 보상](/guide/flight-delay-3-hours)에 정리해 두었습니다.
+**EU261·UK261이 적용되지 않는 노선에는 통보 시점에 따른 정액 보상 기준이 없습니다.** 이런 노선은 한국 법원 소송으로 위자료를 청구하는 방식이며, 기준별 차이는 [비행기 3시간 지연 보상](/guide/flight-delay-3-hours)에 정리해 두었습니다.
 :::

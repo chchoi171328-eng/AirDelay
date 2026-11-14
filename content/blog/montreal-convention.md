@@ -8,7 +8,6 @@ reviewedAt: 2026-11
 cover: /images/guide/montreal-convention/cover.jpg
 related: ["delay-claim-without-fixed-compensation", "foreign-compensation-rules-korean-court"]
 ctaSituation: "항공사가 몬트리올 협약을 이유로 보상을 거절했다면"
-draft: true
 ---
 
 :::summary

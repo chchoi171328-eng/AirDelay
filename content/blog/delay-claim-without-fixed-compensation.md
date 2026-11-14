@@ -6,7 +6,7 @@ summary: "정액 보상 규정이 없는 노선의 항공편 지연은 한국 �
 keywords: ["항공 지연 위자료", "항공 지연 소송", "비행기 지연 보상 소송", "국제선 지연 보상"]
 reviewedAt: 2026-11
 cover: /images/guide/delay-claim-without-fixed-compensation/cover.jpg
-related: ["foreign-compensation-rules-korean-court", "claim-deadline"]
+related: ["foreign-compensation-rules-korean-court", "montreal-convention"]
 ctaSituation: "정액 보상 규정이 없는 노선의 항공편이 늦어지거나 결항됐다면"
 ---
 
