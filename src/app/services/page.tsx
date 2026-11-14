@@ -7,7 +7,7 @@ import SectionNav from '@/components/layout/SectionNav'
 
 export const metadata: Metadata = {
   title: '보상 기준',
-  description: '항공편 지연·결항 때 받을 수 있는 보상과 노선별 적용 기준(EU261·UK261·몬트리올 협약 등), 보상이 어려운 경우와 청구 기한을 안내합니다.',
+  description: '항공편 지연·결항 때 청구할 수 있는 보상과 적용 기준(외국의 정액 보상 규정, 한국법상 위자료), 보상이 어려운 경우와 청구 기한을 안내합니다.',
 }
 
 // 보상 기준 — 자주 묻는 질문(content/faq/04~07)과 같은 내용을 유지해 주세요
@@ -19,11 +19,24 @@ const sections = [
   { href: '#deadline', label: '청구 기한' },
 ]
 
+// 기본 갈래 — 정액 보상 규정이 있는 노선인지에 따라 청구 방법과 청구하는 보상이 달라집니다
 const rules = [
-  { flight: 'EU(유럽연합)·스위스·노르웨이·아이슬란드에서 출발하는 항공편 — 항공사와 관계없이', basis: 'EU261 (유럽연합 규정)', pay: '정액 €250·400·600' },
-  { flight: 'EU·스위스·노르웨이·아이슬란드 항공사가 운항하는 이 지역 도착 항공편', basis: 'EU261 (유럽연합 규정)', pay: '정액 €250·400·600' },
-  { flight: '영국에서 출발하는 항공편, 영국·EU 항공사가 운항하는 영국 도착 항공편', basis: 'UK261 (영국 규정)', pay: '정액 £220·350·520' },
-  { flight: '그 밖의 국제선·국내선', basis: '몬트리올 협약 · 상법(항공운송)', pay: '지연으로 실제 생긴 손해' },
+  {
+    flight: '정액 보상 규정이 있는 노선',
+    how: '먼저 항공사에 청구하고, 거절되면 한국 법원에 소송합니다.',
+    pay: '규정이 정한 금액. 소송에서 그 규정을 적용할 수 없으면 한국법에 따른 위자료',
+  },
+  {
+    flight: '그 밖의 국제선·국내선',
+    how: '정해진 보상 금액이 없어 항공사에 따로 청구하지 않고, 한국 법원에 소송합니다.',
+    pay: '한국법에 따른 위자료',
+  },
+]
+
+// 정액 보상 규정의 예 — 유럽연합·영국 규정은 대상 항공편과 금액을 적고, 튀르키예 규정은 이름만 언급합니다
+const fixedRules = [
+  { name: 'EU261 (유럽연합 규정)', flight: 'EU·스위스·노르웨이·아이슬란드에서 출발하는 항공편(항공사와 관계없이), 이 지역 항공사가 운항하는 이 지역 도착 항공편', pay: '€250·400·600' },
+  { name: 'UK261 (영국 규정)', flight: '영국에서 출발하는 항공편, 영국·EU 항공사가 운항하는 영국 도착 항공편', pay: '£220·350·520' },
 ]
 
 const amounts = [
@@ -35,11 +48,12 @@ const amounts = [
 const delayNotes = [
   '한국–유럽 노선은 대부분 3,500km를 넘습니다. 이 경우 3~4시간 늦게 도착했다면 금액은 절반(€300·£260)입니다.',
   'EU 안의 노선은 1,500km를 넘으면 거리와 관계없이 €400입니다.',
-  '몬트리올 협약이나 상법이 적용되는 노선은 정해진 보상 금액이 없고, 지연으로 생긴 손해를 따져 청구합니다.',
-  '기다리는 동안 항공사는 식사·음료와, 필요하면 숙박을 제공해야 합니다.',
+  'EU261·UK261은 기다리는 동안 항공사가 식사·음료와, 필요하면 숙박을 제공하도록 정합니다.',
+  '정액 보상 규정이 없는 노선은 정해진 보상 금액이 없습니다. 한국 법원 소송으로 한국법에 따라 위자료를 청구합니다.',
 ]
 
 const cancelNotes = [
+  '정액 보상 규정이 없는 노선의 결항은 한국 법원 소송으로 한국법에 따라 위자료를 청구합니다.',
   '항공사가 비슷한 시간대의 대체편을 제공했다면, 대체편의 출발·도착 시각에 따라 보상이 줄거나 없을 수 있습니다.',
   '보상과 별개로 항공권 환불이나 대체편 중 하나를 선택할 수 있습니다.',
 ]
@@ -84,17 +98,35 @@ export default function CompensationPage() {
       {/* 노선별 적용 기준 */}
       <section id="rules" className="bg-white py-16 sm:py-20 scroll-mt-32">
         <div className="container-wide section-padding max-w-5xl">
-          <h2 className="section-title">노선별 적용 기준</h2>
-          <p className="section-subtitle break-keep">같은 노선이라도 출발지와 항공사에 따라 적용되는 기준이 달라집니다.</p>
+          <h2 className="section-title">적용 기준</h2>
+          <p className="section-subtitle break-keep">정액 보상 규정이 있는 노선인지에 따라 청구 방법과 청구하는 보상이 달라집니다.</p>
 
           <div className="mt-10 rounded-2xl border border-navy/10 overflow-hidden">
-            <div className="hidden md:grid grid-cols-[1.6fr_1fr_1fr] gap-4 bg-navy text-white text-sm font-semibold px-6 py-3">
-              <span>이런 항공편이라면</span><span>적용 기준</span><span>보상 방식</span>
+            <div className="hidden md:grid grid-cols-[1fr_1.4fr_1.4fr] gap-4 bg-navy text-white text-sm font-semibold px-6 py-3">
+              <span>이런 항공편이라면</span><span>청구 방법</span><span>청구하는 보상</span>
             </div>
             {rules.map((r, i) => (
-              <div key={r.flight} className={`grid md:grid-cols-[1.6fr_1fr_1fr] gap-1 md:gap-4 px-6 py-4 ${i ? 'border-t border-navy/5' : ''}`}>
+              <div key={r.flight} className={`grid md:grid-cols-[1fr_1.4fr_1.4fr] gap-1 md:gap-4 px-6 py-4 ${i ? 'border-t border-navy/5' : ''}`}>
                 <span className="font-semibold text-navy break-keep">{r.flight}</span>
-                <span className="text-gray-700 text-[15px]">{r.basis}</span>
+                <span className="text-gray-700 text-[15px] break-keep">{r.how}</span>
+                <span className="text-gray-700 text-[15px] break-keep">{r.pay}</span>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="mt-12 text-xl font-bold text-navy">정액 보상 규정의 예</h3>
+          <p className="mt-2 text-[15px] text-gray-600 leading-relaxed break-keep">
+            지연·결항 때 항공사가 정해진 금액을 보상하도록 법으로 정한 나라가 있습니다. 유럽연합과 영국의 규정이 대표적이고,
+            튀르키예처럼 자국 규정을 둔 나라도 있습니다.
+          </p>
+          <div className="mt-5 rounded-2xl border border-navy/10 overflow-hidden">
+            <div className="hidden md:grid grid-cols-[1fr_2.2fr_0.8fr] gap-4 bg-navy/5 text-navy text-sm font-semibold px-6 py-3">
+              <span>규정</span><span>대상 항공편</span><span>정액 보상</span>
+            </div>
+            {fixedRules.map((r, i) => (
+              <div key={r.name} className={`grid md:grid-cols-[1fr_2.2fr_0.8fr] gap-1 md:gap-4 px-6 py-4 ${i ? 'border-t border-navy/5' : ''}`}>
+                <span className="font-semibold text-navy break-keep">{r.name}</span>
+                <span className="text-gray-700 text-[15px] break-keep">{r.flight}</span>
                 <span className="text-gray-700 text-[15px]">{r.pay}</span>
               </div>
             ))}
@@ -104,7 +136,10 @@ export default function CompensationPage() {
             <Info className="w-5 h-5 text-navy mt-0.5 shrink-0" />
             <p className="text-[15px] text-gray-700 leading-relaxed break-keep">
               예를 들어 한국 항공사의 인천 → 파리 항공편은 EU261 대상이 아니지만, 파리 → 인천 항공편은 대상입니다.
-              어떤 기준이 적용되는지는 접수 후 연락드릴 때 안내해 드립니다.
+              어느 쪽에 해당하는지는 접수 후 연락드릴 때 안내해 드립니다.{' '}
+              <Link href="/guide/foreign-compensation-rules-korean-court" className="font-semibold text-navy underline underline-offset-2 hover:text-orange-dark">
+                외국의 정액 보상 규정을 한국 법원에서 청구할 수 있는지 보기
+              </Link>
             </p>
           </div>
         </div>
@@ -119,8 +154,8 @@ export default function CompensationPage() {
             </div>
             <h2 className="section-title mb-4">항공편 지연</h2>
             <p className="text-gray-600 leading-relaxed mb-6 break-keep">
-              최종 목적지에 예정보다 <strong className="text-navy">3시간 이상 늦게 도착</strong>했다면 보상 대상이 될 수 있습니다.
-              EU261·UK261이 적용되면 지연 시간이 아니라 비행거리에 따라 금액이 정해집니다.
+              EU261·UK261이 적용되는 노선은 최종 목적지에 예정보다 <strong className="text-navy">3시간 이상 늦게 도착</strong>했다면 보상 대상이 될 수 있습니다.
+              지연 시간이 아니라 비행거리에 따라 금액이 정해집니다.
             </p>
             <div className="rounded-xl overflow-hidden border border-navy/10 bg-white mb-3">
               <div className="grid grid-cols-[1.5fr_1fr_1fr] gap-3 bg-navy text-white text-sm font-semibold px-4 sm:px-5 py-2.5">
@@ -135,7 +170,7 @@ export default function CompensationPage() {
               ))}
             </div>
             <p className="text-sm text-gray-500 leading-relaxed break-keep mb-6">
-              위 금액은 항공사에 청구할 때의 규정 기준입니다. 항공사가 거절해 한국 법원에서 소송하면 법원이 한국법에 따라 판단할 수 있어,
+              위 금액은 규정이 정한 금액입니다. 항공사가 거절해 한국 법원에서 소송할 때 이 규정을 적용할 수 없는 사건은 한국법에 따라 위자료를 청구하며,
               인정 금액이 이와 다르거나 적을 수 있습니다.{' '}
               <Link href="/faq#lawsuit" className="underline underline-offset-2 hover:text-navy">소송으로 가면 얼마를 받나요?</Link>
             </p>
@@ -154,7 +189,7 @@ export default function CompensationPage() {
             </div>
             <h2 className="section-title mb-4">항공편 결항</h2>
             <p className="text-gray-600 leading-relaxed mb-6 break-keep">
-              <strong className="text-navy">출발 14일 전보다 늦게</strong> 결항을 통보받았다면, 지연과 같은 금액(€250~600)의 보상 대상이 될 수 있습니다.
+              EU261·UK261이 적용되는 노선은 <strong className="text-navy">출발 14일 전보다 늦게</strong> 결항을 통보받았다면, 지연과 같은 금액(€250~600)의 보상 대상이 될 수 있습니다.
             </p>
             <Notes items={cancelNotes} />
           </div>
@@ -193,13 +228,14 @@ export default function CompensationPage() {
         <div className="container-wide section-padding max-w-5xl">
           <h2 className="section-title mb-4">청구 기한</h2>
           <p className="text-gray-600 leading-relaxed break-keep max-w-3xl">
-            청구할 수 있는 기간은 적용되는 법과 나라에 따라 다르며, 기한이 지나면 청구할 수 없습니다.
+            한국 법원 소송은 국제선·국내선 모두 항공편이 도착한 날(도착했어야 할 날)부터 <strong className="text-navy">2년 안에</strong> 제기해야 하고,
+            기한이 지나면 청구할 수 없습니다. 항공사에 청구할 수 있는 기간은 적용되는 규정과 나라에 따라 다릅니다.
             오래된 항공편이라도 먼저 접수해 주시면 기한 안인지 확인해 드립니다.
           </p>
 
           <div className="mt-12 rounded-2xl bg-navy px-6 py-10 sm:px-10 text-center">
             <h2 className="text-xl sm:text-2xl font-extrabold text-white mb-3">내 항공편도 보상받을 수 있을까요?</h2>
-            <p className="text-white/70 mb-7 break-keep">항공편 정보만 입력하시면 영업일 기준 2일 이내에 연락드려 적용 규정과 진행 방법을 안내합니다.</p>
+            <p className="text-white/70 mb-7 break-keep">항공편 정보만 입력하시면 영업일 기준 2일 이내에 연락드려 진행 방법을 안내합니다.</p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Link href="/intake" className="btn-primary px-8 py-3.5">
                 <FileText className="w-5 h-5" />

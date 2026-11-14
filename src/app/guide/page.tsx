@@ -7,7 +7,7 @@ import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
   title: '항공 보상 가이드',
-  description: '항공편 지연·결항 보상 기준(EU261·몬트리올 협약 등), 항공사가 거절할 때 대응법, 공항에서 챙길 증거까지 항공 보상에 필요한 정보를 정리했습니다.',
+  description: '항공편 지연·결항 보상 기준(외국의 정액 보상 규정과 한국 법원 소송), 항공사가 거절할 때 대응법, 공항에서 챙길 증거까지 항공 보상에 필요한 정보를 정리했습니다.',
   alternates: { canonical: '/guide' },
 }
 

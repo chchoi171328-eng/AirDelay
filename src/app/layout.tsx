@@ -62,7 +62,7 @@ const jsonLd = {
     addressCountry: FIRM.addressParts.country,
   },
   areaServed: ['KR', 'GB'],
-  knowsAbout: ['항공 지연 보상', '항공 결항 보상', 'EU261', '몬트리올 협약'],
+  knowsAbout: ['항공 지연 보상', '항공 결항 보상', 'EU261', '항공 지연 위자료 소송'],
 }
 
 export default function RootLayout({

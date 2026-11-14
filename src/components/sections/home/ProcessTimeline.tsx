@@ -4,7 +4,7 @@ import { PROCESS_STEPS } from '@/lib/process'
 
 const ICONS = [FileEdit, Search, Send, Users, Banknote]
 
-// 진행 절차 — 데스크톱은 가로 5단, 모바일은 세로 목록. 조건부 단계(공동소송)는 점선 원으로 구분합니다.
+// 진행 절차 — 데스크톱은 가로 5단, 모바일은 세로 목록. 조건부 단계(항공사 청구)는 점선 원으로 구분합니다.
 export default function ProcessTimeline() {
   return (
     <section className="bg-surface py-20 sm:py-24">

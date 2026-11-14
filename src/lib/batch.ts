@@ -39,7 +39,7 @@ export function batchFor(flightDate: string, now = new Date()): Batch | null {
   }
 }
 
-/** 운항 후 1년 4개월이 넘은 항공편 — 다음 차수로는 몬트리올 협약 2년 안에 소송을 내지 못할 수 있어 기한을 따로 확인합니다 */
+/** 운항 후 1년 4개월이 넘은 항공편 — 다음 차수로는 도착일부터 2년 안에 소송을 내지 못할 수 있어 기한을 따로 확인합니다 */
 export function needsDeadlineCheck(flightDate: string, now = new Date()) {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(flightDate)
   if (!m) return false

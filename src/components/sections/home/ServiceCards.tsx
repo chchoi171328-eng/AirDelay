@@ -5,16 +5,16 @@ const services = [
   {
     icon: Clock,
     title: '항공기 지연 보상',
-    desc: '최종 목적지에 3시간 이상 늦게 도착했다면, 노선에 맞는 기준(EU261·몬트리올 협약 등)으로 보상금을 청구합니다.',
+    desc: '최종 목적지에 늦게 도착했다면, 정액 보상 규정이 있는 노선은 그 규정에 따라, 그 밖의 노선은 한국법에 따라 보상을 청구합니다.',
     href: '/services#delay',
-    badge: 'EU261 기준 €250~600',
+    badge: '규정 금액 또는 위자료',
   },
   {
     icon: XCircle,
     title: '항공기 결항 보상',
-    desc: '출발 14일 전보다 늦게 결항을 통보받았다면, 노선에 맞는 기준(EU261 등)으로 보상금을 청구합니다.',
+    desc: '항공편이 결항됐다면, 정액 보상 규정이 있는 노선은 그 규정에 따라, 그 밖의 노선은 한국법에 따라 보상을 청구합니다.',
     href: '/services#cancel',
-    badge: 'EU261 기준 €250~600',
+    badge: '규정 금액 또는 위자료',
   },
 ]
 
@@ -24,7 +24,7 @@ export default function ServiceCards() {
       <div className="container-wide section-padding">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="section-title">항공 지연·결항, <br className="sm:hidden" />이렇게 도와드립니다</h2>
-          <p className="section-subtitle">EU261·UK261, 몬트리올 협약 등 노선에 맞는 근거로 청구합니다.</p>
+          <p className="section-subtitle">정액 보상 규정(EU261·UK261, 튀르키예 규정 등)이 있는 노선은 그 규정으로, 그 밖의 노선은 한국법상 위자료로 청구합니다.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -47,7 +47,7 @@ export default function ServiceCards() {
                 <h3 className="font-extrabold text-xl mb-3 text-navy group-hover:text-white transition-colors">
                   {title}
                 </h3>
-                <p className="text-gray-500 text-[15px] leading-relaxed group-hover:text-white/70 transition-colors mb-6">
+                <p className="text-gray-500 text-[15px] leading-relaxed break-keep group-hover:text-white/70 transition-colors mb-6">
                   {desc}
                 </p>
 

@@ -45,7 +45,7 @@ export default function Hero() {
             </h1>
 
             <p className="max-w-xl text-white/85 text-base sm:text-lg leading-relaxed break-keep">
-              외국 항공사에는 본사 쪽 창구로 청구하고, <br className="hidden sm:block" />거절되면 한국 법원 소송까지 한 곳에서 맡습니다.
+              영국 변호사와 함께 항공사 본사에 청구하고, <br className="hidden sm:block" />한국 법원 소송까지 한 곳에서 맡습니다.
             </p>
 
             <div className="mt-6 sm:mt-10 flex gap-6 sm:gap-10">
