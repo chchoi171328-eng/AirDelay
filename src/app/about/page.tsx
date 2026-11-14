@@ -53,7 +53,7 @@ const offices = [
   {
     code: 'KR',
     name: '한국 법인',
-    role: '고객 연락 · 한국법 검토 · 한국 법원 소송',
+    role: '고객 연락 · 한국법 및 외국의 정액 보상 규정 적용 가능성 검토 · 한국 법원 소송',
     contactPoint: true,
     items: [
       { icon: Phone, label: '전화', value: FIRM.phone, href: `tel:${FIRM.phone}`, note: FIRM.hours },

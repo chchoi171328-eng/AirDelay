@@ -27,16 +27,17 @@ const rules = [
     pay: '규정이 정한 금액. 소송에서 그 규정을 적용할 수 없으면 한국법에 따른 위자료',
   },
   {
-    flight: '그 밖의 국제선·국내선',
+    flight: '그 밖의 노선',
     how: '정해진 보상 금액이 없어 항공사에 따로 청구하지 않고, 한국 법원에 소송합니다.',
     pay: '한국법에 따른 위자료',
   },
 ]
 
-// 정액 보상 규정의 예 — 유럽연합·영국 규정은 대상 항공편과 금액을 적고, 튀르키예 규정은 이름만 언급합니다
+// 정액 보상 규정의 예 — 금액은 국제선 기준 (튀르키예 규정의 대상 범위는 '출발 항공편 등'으로만 적습니다)
 const fixedRules = [
   { name: 'EU261 (유럽연합 규정)', flight: 'EU·스위스·노르웨이·아이슬란드에서 출발하는 항공편(항공사와 관계없이), 이 지역 항공사가 운항하는 이 지역 도착 항공편', pay: '€250·400·600' },
   { name: 'UK261 (영국 규정)', flight: '영국에서 출발하는 항공편, 영국·EU 항공사가 운항하는 영국 도착 항공편', pay: '£220·350·520' },
+  { name: '튀르키예 규정', flight: '튀르키예에서 출발하는 항공편 등', pay: '€250·400·600' },
 ]
 
 const amounts = [
@@ -116,8 +117,8 @@ export default function CompensationPage() {
 
           <h3 className="mt-12 text-xl font-bold text-navy">정액 보상 규정의 예</h3>
           <p className="mt-2 text-[15px] text-gray-600 leading-relaxed break-keep">
-            지연·결항 때 항공사가 정해진 금액을 보상하도록 법으로 정한 나라가 있습니다. 유럽연합과 영국의 규정이 대표적이고,
-            튀르키예처럼 자국 규정을 둔 나라도 있습니다.
+            지연·결항 때 항공사가 정해진 금액을 보상하도록 법으로 정한 나라가 있습니다. 유럽연합과 영국, 튀르키예의 규정이 그 예입니다.
+            금액은 비행거리에 따라 달라집니다.
           </p>
           <div className="mt-5 rounded-2xl border border-navy/10 overflow-hidden">
             <div className="hidden md:grid grid-cols-[1fr_2.2fr_0.8fr] gap-4 bg-navy/5 text-navy text-sm font-semibold px-6 py-3">
@@ -228,7 +229,7 @@ export default function CompensationPage() {
         <div className="container-wide section-padding max-w-5xl">
           <h2 className="section-title mb-4">청구 기한</h2>
           <p className="text-gray-600 leading-relaxed break-keep max-w-3xl">
-            한국 법원 소송은 국제선·국내선 모두 항공편이 도착한 날(도착했어야 할 날)부터 <strong className="text-navy">2년 안에</strong> 제기해야 하고,
+            한국 법원 소송은 항공편이 도착한 날(도착했어야 할 날)부터 <strong className="text-navy">2년 안에</strong> 제기해야 하고,
             기한이 지나면 청구할 수 없습니다. 항공사에 청구할 수 있는 기간은 적용되는 규정과 나라에 따라 다릅니다.
             오래된 항공편이라도 먼저 접수해 주시면 기한 안인지 확인해 드립니다.
           </p>
