@@ -33,11 +33,11 @@ const rules = [
   },
 ]
 
-// 정액 보상 규정의 예 — 금액은 국제선 기준 (튀르키예 규정의 대상 범위는 '출발 항공편 등'으로만 적습니다)
+// 정액 보상 규정의 예 — 금액은 비행거리별 정액
 const fixedRules = [
   { name: 'EU261 (유럽연합 규정)', flight: 'EU·스위스·노르웨이·아이슬란드에서 출발하는 항공편(항공사와 관계없이), 이 지역 항공사가 운항하는 이 지역 도착 항공편', pay: '€250·400·600' },
   { name: 'UK261 (영국 규정)', flight: '영국에서 출발하는 항공편, 영국·EU 항공사가 운항하는 영국 도착 항공편', pay: '£220·350·520' },
-  { name: '튀르키예 규정', flight: '튀르키예에서 출발하는 항공편 등', pay: '€250·400·600' },
+  { name: '튀르키예 규정', flight: '튀르키예에서 출발하는 항공편, 터키항공 등 튀르키예 항공사가 운항하는 튀르키예 도착 항공편', pay: '€250·400·600' },
 ]
 
 const amounts = [
@@ -136,8 +136,7 @@ export default function CompensationPage() {
           <div className="mt-5 flex items-start gap-3 rounded-xl bg-navy/5 px-5 py-4">
             <Info className="w-5 h-5 text-navy mt-0.5 shrink-0" />
             <p className="text-[15px] text-gray-700 leading-relaxed break-keep">
-              예를 들어 한국 항공사의 인천 → 파리 항공편은 EU261 대상이 아니지만, 파리 → 인천 항공편은 대상입니다.
-              어느 쪽에 해당하는지는 접수 후 연락드릴 때 안내해 드립니다.{' '}
+              예를 들어 한국 항공사의 인천 → 파리 항공편은 EU261 대상이 아니지만, 파리 → 인천 항공편은 대상입니다.{' '}
               <Link href="/guide/foreign-compensation-rules-korean-court" className="font-semibold text-navy underline underline-offset-2 hover:text-orange-dark">
                 외국의 정액 보상 규정을 한국 법원에서 청구할 수 있는지 보기
               </Link>

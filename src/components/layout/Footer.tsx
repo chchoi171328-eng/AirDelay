@@ -14,7 +14,7 @@ export default function Footer() {
             <Logo tone="dark" tagline className="mb-5" />
             <p className="text-white/60 text-sm leading-relaxed max-w-lg break-keep">
               항공지연·결항 보상 전문 서비스. 접수는 이&nbsp;사이트에서 받고, 진행&nbsp;상황은 한국 법인이 직접 연락드려 안내합니다.<br />
-              한국–영국 변호사 협업으로 국내외 모든 노선을 처리합니다.
+              한국–영국 변호사 협업으로 청구부터 소송까지 맡습니다.
             </p>
           </div>
 

@@ -120,10 +120,10 @@ export default function AboutPage() {
               <p className="text-gray-600 leading-relaxed mb-6">
                 외국의 정액 보상 규정이 적용되는 노선은 한국에서 혼자 대응하기 어렵습니다.
                 저희는 영국 변호사와 함께 항공사 본사에 청구하고, 거절되거나 그런 규정이 없는 노선은 한국 법인이 한국 법원에서 소송을 진행하는
-                협업 체계로 어떤 노선의 피해도 처리합니다.
+                협업 체계를 갖추고 있습니다.
               </p>
               <div className="space-y-2.5">
-                {['성공보수 30%(부가세\u00a0별도) — 보상받은 경우에만, 소송으로 가도 같은 요율', '접수 후 영업일 기준 2일 이내 연락 — 진행 방법과 위임 절차 안내', '국내외 모든 항공사 처리 가능'].map((item) => (
+                {['성공보수 30%(부가세\u00a0별도) — 보상받은 경우에만, 소송으로 가도 같은 요율', '접수 후 영업일 기준 2일 이내 연락 — 진행 방법과 위임 절차 안내', '한국·외국 항공사 모두 처리 가능'].map((item) => (
                   <div key={item} className="flex items-center gap-2.5 text-sm text-gray-700">
                     <CheckCircle className="w-4 h-4 text-navy/60 shrink-0" />{item}
                   </div>
