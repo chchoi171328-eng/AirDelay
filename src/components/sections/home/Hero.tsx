@@ -44,6 +44,10 @@ export default function Hero() {
               <span className="text-orange">한국·영국 변호사</span>에게 맡기세요
             </h1>
 
+            <p className="max-w-xl text-white/85 text-base sm:text-lg leading-relaxed break-keep">
+              외국 항공사에는 본사 쪽 창구로 청구하고, <br className="hidden sm:block" />거절되면 한국 법원 소송까지 한 곳에서 맡습니다.
+            </p>
+
             <div className="mt-6 sm:mt-10 flex gap-6 sm:gap-10">
               {[
                 { label: '한국·영국 변호사', value: '직접 청구' },

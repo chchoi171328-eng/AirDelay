@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Hero from '@/components/sections/home/Hero'
+import ClaimStructure from '@/components/sections/home/ClaimStructure'
 import RecentCasesTicker from '@/components/sections/home/RecentCasesTicker'
 import ProcessTimeline from '@/components/sections/home/ProcessTimeline'
 import ServiceCards from '@/components/sections/home/ServiceCards'
@@ -22,6 +23,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <ClaimStructure />
       <RecentCasesTicker cases={recentCases} />
       <ServiceCards />
       <ProcessTimeline />
