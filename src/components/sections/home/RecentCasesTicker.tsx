@@ -57,8 +57,8 @@ export default function RecentCasesTicker({ cases }: { cases: Case[] }) {
       <div className="container-wide section-padding">
         <div className="flex flex-col lg:flex-row items-center gap-10">
           <div className="flex-shrink-0 text-center lg:text-left">
-            <h2 className="text-3xl font-extrabold text-white tracking-tight leading-snug">소송을 거쳐<br />최근 지급된 보상</h2>
-            <p className="text-white/70 mt-2 font-medium break-keep">소송에 시간이 걸려, 표의 운항 시기는 <br className="hidden lg:block"/>보상을 받은 때보다 한참 앞섭니다.</p>
+            <h2 className="text-3xl font-extrabold text-white tracking-tight">최근 지급된 보상</h2>
+            <p className="text-white/70 mt-2 font-medium break-keep">소송을 거친 사건은 시간이 걸려, <br className="hidden lg:block"/>운항 시기가 지급 시점보다 한참 앞섭니다.</p>
             <p className="text-white/50 text-xs mt-2">사건마다 결과가 다르며, 같은 금액을 보장하지 않습니다.</p>
             <Link href="/cases" className="inline-flex items-center gap-1 text-white/80 hover:text-white text-sm font-semibold mt-4">
               전체 사례 보기 <ChevronRight className="w-4 h-4" />
