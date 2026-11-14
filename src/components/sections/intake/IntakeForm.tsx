@@ -303,7 +303,7 @@ export default function IntakeForm() {
           </p>
           <p className="text-gray-500 leading-relaxed mb-3 break-keep">
             <strong className="text-navy">영업일 기준 2일 이내</strong>에 연락드립니다.<br />
-            적용 규정과 위임 절차를 안내드리고, 확인이 필요한 내용이 있으면 여쭤봅니다.
+            진행 방법과 위임 절차를 안내드리고, 확인이 필요한 내용이 있으면 여쭤봅니다.
           </p>
           <p className="text-sm text-gray-500 leading-relaxed mb-8 break-keep max-w-md mx-auto">
             접수하신 사건은 {FIRM.name}(SOL &amp; LUNA) 변호사가 검토하며, 위임계약은 {FIRM.name}과 체결됩니다.

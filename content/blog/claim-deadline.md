@@ -6,7 +6,7 @@ summary: "항공 지연·결항 보상의 청구 기한을 몬트리올 협약�
 keywords: ["항공 지연 보상 청구 기한", "몬트리올 협약 2년", "EU261 청구 기한", "항공 결항 소멸시효"]
 reviewedAt: 2026-10
 cover: /images/guide/claim-deadline/cover.jpg
-related: ["montreal-convention-delay", "group-lawsuit-after-rejection"]
+related: ["delay-claim-without-fixed-compensation", "group-lawsuit-after-rejection"]
 ctaSituation: "오래전 항공편의 지연·결항 보상이 궁금하다면"
 ctaOffer: "아직 청구할 수 있는 기간인지"
 ---

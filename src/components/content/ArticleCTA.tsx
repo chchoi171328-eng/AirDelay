@@ -8,7 +8,7 @@ export default function ArticleCTA({ cta }: { cta?: { situation: string } | null
     <div className="mt-12 rounded-2xl bg-navy p-8 text-center">
       <h2 className="text-xl font-extrabold text-white mb-3">내 항공편도 보상받을 수 있을까요?</h2>
       <p className="text-white/80 leading-relaxed break-keep max-w-xl mx-auto">
-        {cta ? `${cta.situation}, 접수하시면 적용 규정과 진행 방법을 안내드립니다.` : '항공편 정보만 입력하시면 접수가 끝나고, 적용 규정과 진행 방법을 안내드립니다.'}
+        {cta ? `${cta.situation}, 접수하시면 진행 방법을 안내드립니다.` : '항공편 정보만 입력하시면 접수가 끝나고, 진행 방법을 안내드립니다.'}
       </p>
       <p className="text-white/60 text-sm mt-2 mb-6 break-keep">
         접수 후 영업일 기준 2일 이내에 연락드리며, 보상금을 받은 경우에만 성공보수 30%(부가세&nbsp;별도)가 발생합니다.

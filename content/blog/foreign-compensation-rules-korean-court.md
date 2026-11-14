@@ -5,7 +5,7 @@ category: claim
 summary: "외국 법이 정한 항공 지연·결항 정액 보상을 한국 법원에서 청구할 수 있는지, 2026년 11월 대법원 판결을 중심으로 정리했습니다."
 keywords: ["항공 지연 정액 보상", "항공 지연 보상 소송", "터키항공 지연 보상", "항공사 운송약관"]
 reviewedAt: 2026-11
-related: ["montreal-convention-delay", "claim-deadline"]
+related: ["delay-claim-without-fixed-compensation", "claim-deadline"]
 ctaSituation: "외국의 정액 보상 규정이 적용될 수 있는 항공편이 늦어지거나 결항됐다면"
 cover: /images/guide/foreign-compensation-rules-korean-court/cover.jpg
 ---

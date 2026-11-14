@@ -7,6 +7,8 @@ const nextConfig = {
       { source: '/contact', destination: '/about#contact', permanent: true },
       { source: '/blog', destination: '/guide', permanent: true },
       { source: '/blog/:slug', destination: '/guide/:slug', permanent: true },
+      // 「몬트리올 협약 손해배상」을 내리고 새 글로 보냅니다. 같은 주소에 새 글을 올릴 수 있어 임시 이동으로 둡니다
+      { source: '/guide/montreal-convention-delay', destination: '/guide/delay-claim-without-fixed-compensation', permanent: false },
     ]
   },
 }
