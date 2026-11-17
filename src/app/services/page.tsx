@@ -37,7 +37,7 @@ const rules = [
 const fixedRules = [
   { name: 'EU261 (유럽연합 규정)', flight: 'EU·스위스·노르웨이·아이슬란드에서 출발하는 항공편(항공사와 관계없이), 이 지역 항공사가 운항하는 이 지역 도착 항공편', pay: '€250·400·600', guide: '/guide/eu261-compensation-amount' },
   { name: 'UK261 (영국 규정)', flight: '영국에서 출발하는 항공편, 영국·EU 항공사가 운항하는 영국 도착 항공편', pay: '£220·350·520', guide: '/guide/uk261-flight-delay' },
-  { name: '튀르키예 규정', flight: '튀르키예에서 출발하는 항공편, 터키항공 등 튀르키예 항공사가 운항하는 튀르키예 도착 항공편', pay: '€250·400·600', guide: '/guide/turkiye-passenger-rights-regulation' },
+  { name: '튀르키예 규정', flight: '튀르키예에서 출발하는 모든 항공편, 터키항공 등 튀르키예 항공사가 운항하는 튀르키예 도착 항공편', pay: '€250·400·600', guide: '/guide/turkiye-passenger-rights-regulation' },
   { name: '캐나다 규정', flight: '캐나다에서 출발하거나 캐나다에 도착하는 항공편', pay: 'C$400·700·1,000', payNote: '소형 항공사는 C$125·250·500', guide: '/guide/canada-appr-flight-delay' },
 ]
 
