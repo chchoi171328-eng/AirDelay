@@ -35,9 +35,10 @@ const rules = [
 
 // 정액 보상 규정의 예 — 금액은 비행거리별 정액 (튀르키예 규정은 번역 공증본 제8조와 대조, 2026년 11월)
 const fixedRules = [
-  { name: 'EU261 (유럽연합 규정)', flight: 'EU·스위스·노르웨이·아이슬란드에서 출발하는 항공편(항공사와 관계없이), 이 지역 항공사가 운항하는 이 지역 도착 항공편', pay: '€250·400·600' },
-  { name: 'UK261 (영국 규정)', flight: '영국에서 출발하는 항공편, 영국·EU 항공사가 운항하는 영국 도착 항공편', pay: '£220·350·520' },
-  { name: '튀르키예 규정', flight: '튀르키예에서 출발하는 항공편, 터키항공 등 튀르키예 항공사가 운항하는 튀르키예 도착 항공편', pay: '€250·400·600' },
+  { name: 'EU261 (유럽연합 규정)', flight: 'EU·스위스·노르웨이·아이슬란드에서 출발하는 항공편(항공사와 관계없이), 이 지역 항공사가 운항하는 이 지역 도착 항공편', pay: '€250·400·600', guide: '/guide/eu261-compensation-amount' },
+  { name: 'UK261 (영국 규정)', flight: '영국에서 출발하는 항공편, 영국·EU 항공사가 운항하는 영국 도착 항공편', pay: '£220·350·520', guide: '/guide/uk261-flight-delay' },
+  { name: '튀르키예 규정', flight: '튀르키예에서 출발하는 항공편, 터키항공 등 튀르키예 항공사가 운항하는 튀르키예 도착 항공편', pay: '€250·400·600', guide: '/guide/turkiye-passenger-rights-regulation' },
+  { name: '캐나다 규정', flight: '캐나다에서 출발하거나 캐나다에 도착하는 항공편', pay: 'C$400·700·1,000', payNote: '소형 항공사는 C$125·250·500', guide: '/guide/canada-appr-flight-delay' },
 ]
 
 const amounts = [
@@ -117,8 +118,8 @@ export default function CompensationPage() {
 
           <h3 className="mt-12 text-xl font-bold text-navy">정액 보상 규정의 예</h3>
           <p className="mt-2 text-[15px] text-gray-600 leading-relaxed break-keep">
-            지연·결항 때 항공사가 정해진 금액을 보상하도록 법으로 정한 나라가 있습니다. 유럽연합과 영국, 튀르키예의 규정이 그 예입니다.
-            금액은 비행거리에 따라 달라집니다.
+            지연·결항 때 항공사가 정해진 금액을 보상하도록 법으로 정한 나라가 있습니다. 유럽연합과 영국, 튀르키예, 캐나다의 규정이 그 예입니다.
+            금액은 규정에 따라 비행거리나 도착이 늦어진 시간으로 정해집니다. 규정 이름을 누르면 자세한 가이드로 이어집니다.
           </p>
           <div className="mt-5 rounded-2xl border border-navy/10 overflow-hidden">
             <div className="hidden md:grid grid-cols-[1fr_2.2fr_0.8fr] gap-4 bg-navy/5 text-navy text-sm font-semibold px-6 py-3">
@@ -126,9 +127,14 @@ export default function CompensationPage() {
             </div>
             {fixedRules.map((r, i) => (
               <div key={r.name} className={`grid md:grid-cols-[1fr_2.2fr_0.8fr] gap-1 md:gap-4 px-6 py-4 ${i ? 'border-t border-navy/5' : ''}`}>
-                <span className="font-semibold text-navy break-keep">{r.name}</span>
+                <Link href={r.guide} className="font-semibold text-navy underline underline-offset-2 decoration-navy/30 hover:text-orange-dark break-keep self-start">
+                  {r.name}
+                </Link>
                 <span className="text-gray-700 text-[15px] break-keep">{r.flight}</span>
-                <span className="text-gray-700 text-[15px]">{r.pay}</span>
+                <span className="text-gray-700 text-[15px] break-keep">
+                  {r.pay}
+                  {'payNote' in r && <span className="block text-[13px] text-gray-500">{r.payNote}</span>}
+                </span>
               </div>
             ))}
           </div>
