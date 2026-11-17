@@ -5,9 +5,9 @@ category: claim
 summary: "캐나다 항공 여객 보호 규정(APPR)이 정한 지연·결항 보상의 대상 항공편, 금액, 청구 기한을 정리했습니다."
 keywords: ["캐나다 항공 지연 보상", "APPR", "캐나다 항공편 결항 보상", "밴쿠버 토론토 항공편 지연"]
 reviewedAt: 2026-11
+cover: /images/guide/canada-appr-flight-delay/cover.jpg
 related: ["foreign-compensation-rules-korean-court", "eu261-compensation-amount"]
 ctaSituation: "캐나다를 오가는 항공편이 늦어지거나 결항됐다면"
-draft: true
 ---
 
 :::summary
